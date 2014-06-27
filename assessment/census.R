@@ -7,4 +7,8 @@ fqs <- readLines(exprRes, encoding = "UTF-8")
 
 # separate the first string line in the fqs into column names
 qs1 <- unlist(strsplit(fqs[1], "--"))
-df1 <- subset(census, select = qs1)
+df <- subset(census, select = qs1)
+
+hist(df[, 1])
+hist(table(df[, 2]))          ## hist() cannot be called directly on a factor variable
+barplot(prop.table(table(df[, 1],df[, 2])),beside=T)
