@@ -3,8 +3,8 @@
 
 readCensusFqs <- function(fqsFile) {
   
-  census <- read.csv("census.csv", sep = ";")  
-  colnames(census) <- readLines("census_colnames.txt", encoding = "UTF-8") 
+#  census <- read.csv("census.csv", sep = ";")  
+#  colnames(census) <- readLines("census_colnames.txt", encoding = "UTF-8") 
   fqs <- readLines(fqsFile, encoding = "UTF-8")  
   qs <- NULL
   
