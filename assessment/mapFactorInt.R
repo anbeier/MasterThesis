@@ -4,7 +4,7 @@ mapCategoryInt <- function(fac, lsCategory, map, col) {
   col <- paste(col, "factor", sep = ".")
   unitdf <- lsCategory[[fac]]
   vals <- rep(map[[fac]], dim(unitdf)[1])
-  unitdf <- cbind(unitdf, col = vals)
+  unitdf[, col] <- vals
   return(unitdf)
 }
 
