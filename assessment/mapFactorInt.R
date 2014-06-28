@@ -1,13 +1,14 @@
 
-mapCategoryInt <- function(fac, lsCategory, map) {
+mapCategoryInt <- function(fac, lsCategory, map, col) {
   
+  col <- paste(col, "factor", sep = ".")
   unitdf <- lsCategory[[fac]]
   vals <- rep(map[[fac]], dim(unitdf)[1])
-  unitdf <- cbind(unitdf, "factor" = vals)
+  unitdf <- cbind(unitdf, col = vals)
   return(unitdf)
 }
 
-converToDataframe <- function(lp) {
+convertToDataframe <- function(lp) {
   
   df <- NULL
   
@@ -22,7 +23,7 @@ mapFactorInt <- function(df, col) {
   fac <- factor(df[, col])
   map <- mapLevels(x = fac)
   lsCategory <- split(df, df[, col])
-  lp <- lapply(names(lsCategory), function(x) mapCategoryInt(x, lsCategory, map))
+  lp <- lapply(names(lsCategory), function(x) mapCategoryInt(x, lsCategory, map, col))
   resdf <- convertToDataframe(lp)
   return(resdf)
 }
