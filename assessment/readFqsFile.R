@@ -15,3 +15,14 @@ readFqsFile <- function(fqsFile) {
   
   return(qs)
 }
+
+
+# not fully successful
+replaceSpacesInColnames <- function(df, cols) {
+  
+  for(i in 1:length(cols)) {
+    cols[i] <- gsub(" ", ".", cols[i])
+  }
+  
+  colnames(census) <- cols
+}
