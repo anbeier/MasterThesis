@@ -18,12 +18,25 @@ convertToDataframe <- function(lp) {
   return(df)
 }
 
-mapFactorInt <- function(df, col) {
+
+
+mapFactorInt <- function(df) {
   
-  fac <- factor(df[, col])
-  map <- mapLevels(x = fac)
-  lsCategory <- split(df, df[, col])
-  lp <- lapply(names(lsCategory), function(x) mapCategoryInt(x, lsCategory, map, col))
-  resdf <- convertToDataframe(lp)
+  resdf <- df
+  
+  for(i in 1:dim(resdf)[2]) {
+    
+    if(class(resdf[, colnames(resdf)[i]]) == "factor") {
+      
+      col <- colnames(resdf)[i]
+      fac <- factor(resdf[, col])
+      map <- mapLevels(x = fac)
+      lsCategory <- split(resdf, resdf[, col])
+      lp <- lapply(names(lsCategory), function(x) mapCategoryInt(x, lsCategory, map, col))
+      resdf <- convertToDataframe(lp)
+      resdf[, col] <- NULL
+    }
+  }
+  
   return(resdf)
 }
