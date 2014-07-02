@@ -18,17 +18,16 @@ convertToDataframe <- function(lp) {
   return(df)
 }
 
-
-
 mapFactorInt <- function(df) {
   
   resdf <- df
+  cols <- colnames(df)
   
   for(i in 1:dim(resdf)[2]) {
     
-    if(class(resdf[, colnames(resdf)[i]]) == "factor") {
+    if(class(resdf[, cols[i]]) == "factor") {
       
-      col <- colnames(resdf)[i]
+      col <- cols[i]
       fac <- factor(resdf[, col])
       map <- mapLevels(x = fac)
       lsCategory <- split(resdf, resdf[, col])
