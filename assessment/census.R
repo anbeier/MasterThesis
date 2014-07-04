@@ -11,9 +11,10 @@ fqs <- readFqsFile(fqsFile)
 qs <- subset(census, select = fqs[[1]])    ## take the first one
 
 # choose a few samples with respect to a specific target value
-target = ""
-qs <- trainingSamples(qs, target)
-## qstest <- testingSamples()
+target = "migration code-change in msa"
+sets <- takeSamples(qs, target)
+qs <- sets[["training"]]
+qstest <- sets[["testing"]]
 
 # replace invalid symbols in column names with "_"
 qs <- reviseColnames(qs)
