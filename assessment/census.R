@@ -1,23 +1,29 @@
 # read dataset
 census <- read.csv("census.csv", sep = ";")  
-colnames(census) <- readLines("census_colnames.txt", encoding = "UTF-8") 
+colnames(census) <- readLines("census_colnames.txt", encoding = "UTF-8")
+census <- unique(census)    ## remove duplicates
 
-# get a list of character vectors indicating the final quasi cliques
+# read quasi cliques in a list of char vectors
 fqsFile <- "census_fqs_delta0.7_alpha0.5.txt"
-qs <- readFqsFile(fqsFile)
+fqs <- readFqsFile(fqsFile)
 
-# take the first quasi clique for instance
-# take the "education" column in the qs for example
-# following is try to map an integer value to a category in one column
-# this preprocessing step should be done after having read the dataset
-df <- subset(census, select = qs[[1]])
+# choose one of the quasi cliques
+qs <- subset(census, select = fqs[[1]])    ## take the first one
 
-# hist(df[, 1])
-# hist(table(df[, 2]))          ## hist() cannot be called directly on a factor variable
-# barplot(prop.table(table(df[, 1], df[, 2])), beside = FALSE)
+# choose a few samples with respect to a specific target value
+target = ""
+qs <- trainingSamples(qs, target)
+## qstest <- testingSamples()
 
-install.packages("gdata")
-library(gdata)
+# replace invalid symbols in column names with "_"
+qs <- reviseColnames(qs)
+## qstest <- reviseColnames(qstest)
 
-# get a data frame in which the factor column "col" obtained an extra column containing integers which are mapped on to the factor
-df <- mapFactorInt(df, col)
+# preprocess: categorize age into group
+qs <- makeAgeInterval(qs)
+
+# preprocess: convert education factor to integers by hand
+qs <- makeEducationCat(qs)
+
+# proprocess: convert factors to integers using mapLevels()
+qs <- convertCategories(qs)
