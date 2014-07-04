@@ -1,7 +1,7 @@
 # read dataset
 census <- read.csv("census.csv", sep = ";")  
 colnames(census) <- readLines("census_colnames.txt", encoding = "UTF-8")
-census <- unique(census)    ## remove duplicates
+census <- na.omit(census)    ## remove rows with NA
 
 # read quasi cliques in a list of char vectors
 fqsFile <- "census_fqs_delta0.7_alpha0.5.txt"
@@ -14,7 +14,7 @@ qs <- subset(census, select = fqs[[1]])    ## take the first one
 target = "migration code-change in msa"
 sets <- takeSamples(qs, target)
 qs <- sets[["training"]]
-qstest <- sets[["testing"]]
+## qstest <- sets[["testing"]]
 
 # replace invalid symbols in column names with "_"
 qs <- reviseColnames(qs)
@@ -22,6 +22,9 @@ qs <- reviseColnames(qs)
 
 # preprocess: categorize age into group
 qs <- makeAgeInterval(qs)
+
+# preprocess: categorize worked weeks into group
+qs <- makeWeekInterval(qs)
 
 # preprocess: convert education factor to integers by hand
 qs <- makeEducationCat(qs)
