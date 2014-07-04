@@ -93,9 +93,10 @@ convertCategories <- function(qs) {
       newcol <- paste(col, "cat", sep = ".")
       
       for(j in 1:length(map)) {
-        df[, newcol][df[, col] == names(map)[j]] <- map[j]
+        df$newcol[df[, col] == names(map)[j]] <- map[[j]]    ## add a new column
       }
       
+      colnames(df)[ncol(df)] <- newcol    ## change the new column name
       df[, col] <- NULL
     }
   }
