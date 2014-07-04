@@ -56,6 +56,16 @@ makeAgeInterval <- function(qs) {
 }
 
 
+# categorize working weeks into group
+makeWeekInterval <- function(qs) {
+  
+  qs$newcol <- findInterval(qs[, "weeks_worked_in_year"], seq(0, 50, 10))
+  colnames(qs)[ncol(qs)] <- "weeks_worked_in_year.cat"
+  qs[, "weeks_worked_in_year"] <- NULL
+  return(qs)
+}
+
+
 # convert education factor to integers by hand
 makeEducationCat <- function(qs) {
   
