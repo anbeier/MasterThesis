@@ -80,15 +80,18 @@ makeEducationCat <- function(qs) {
 # convert factors to integers using mapLevels()
 convertCategories <- function(qs) {
   
+  ## install.packages("gdata")
+  library(gdata)
+  
   df <- qs
   cols <- colnames(qs)
   
   for(i in 1:ncol(qs)) {
     
-    if(class(df[, cols[i]]) == "factor") {
+    if(class(qs[, cols[i]]) == "factor") {
       
       col <- cols[i]
-      fac <- factor(df[, col])
+      fac <- factor(qs[, col])
       map <- mapLevels(x = fac)    
       newcol <- paste(col, "cat", sep = ".")
       
