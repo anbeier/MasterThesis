@@ -17,22 +17,19 @@ readFqsFile <- function(fqsFile) {
 
 # choose a few samples from a clique w.r.t a specific target value
 # input: a quasi clique, a target value
-# output: a sensible amount of samples for training
-trainingSamples <- function(qs, targetval) {
+# output: a list of sensible size of samples for training and testing, respectively
+takeSamples <- function(qs, targetval) {
   
-  samples <<- qs[sample(nrow(qs), replace = FALSE, size = 0.15 * nrow(qs))]  
+  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.15 * nrow(qs)), ]  
   
   ## install.packages("caTools")
   library(caTools)
-  split <<- sample.split(samples[, targetval], SplitRatio = 0.6)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.65)
   training <- subset(samples, split == TRUE)
-  return(training)
-}
-
-# output: a sensible amount of samples for testing
-testingSamples <- function() {
+  testing <- subset(samples, split == FALSE)
   
-  return(subset(samples, split == FALSE))
+  ls <- list(training = training, testing = testing)
+  return(ls)
 }
 
 
