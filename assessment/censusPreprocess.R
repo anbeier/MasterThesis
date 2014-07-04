@@ -57,3 +57,48 @@ makeAgeInterval <- function(qs) {
   qs$age <- NULL
   return(qs)
 }
+
+
+# convert education factor to integers by hand
+makeEducationCat <- function(qs) {
+  
+  lsedu = list("Children" = 1, "Less than 1st grade" = 2,"1st 2nd 3rd or 4th grade" = 3, "5th or 6th grade" = 4, 
+                     "7th and 8th grade" = 5, "9th grade" = 6, "10th grade" = 7, "11th grade" = 8, 
+                     "12th grade no diploma" = 9, "High school graduate" = 10, "Some college but no degree" = 11, 
+                     "Associates degree-occup /vocational" = 12, "Associates degree-academic program" = 13, 
+                     "Bachelors degree(BA AB BS)" = 14, "Masters degree(MA MS MEng MEd MSW MBA)" = 15, 
+                     "Prof school degree (MD DDS DVM LLB JD)" = 16, "Doctorate degree(PhD EdD)" = 17)
+  
+  for(i in 1:17) {
+    qs$education.cat[qs$education == names(lsedu)[i]] <- lsedu[[i]]
+  }
+  qs$education <- NULL
+  return(qs)
+}
+
+
+# convert factors to integers using mapLevels()
+convertCategories <- function(qs) {
+  
+  df <- qs
+  cols <- colnames(qs)
+  
+  for(i in 1:ncol(qs)) {
+    
+    if(class(df[, cols[i]]) == "factor") {
+      
+      col <- cols[i]
+      fac <- factor(df[, col])
+      map <- mapLevels(x = fac)    
+      newcol <- paste(col, "cat", sep = ".")
+      
+      for(j in 1:length(map)) {
+        df[, newcol][df[, col] == names(map)[j]] <- map[j]
+      }
+      
+      df[, col] <- NULL
+    }
+  }
+  
+  return(df)
+}
