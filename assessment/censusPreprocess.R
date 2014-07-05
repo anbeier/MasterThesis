@@ -38,9 +38,35 @@ takeSamples <- function(qs, targetval) {
 # output: a quasi clique with all valid column names
 reviseColnames <- function(qs) {
   
-  colnames(qs)[i] <- gsub(" ", "_", colnames(qs)[i], fixed = TRUE)
-  colnames(qs)[i] <- gsub("-", "_", colnames(qs)[i], fixed = TRUE)
+  colnames(qs) <- gsub(" ", "_", colnames(qs), fixed = TRUE)
+  colnames(qs) <- gsub("-", "_", colnames(qs), fixed = TRUE)
   return(qs)
+}
+
+
+# dummy code the factors except for the target value
+# input: a quasi clique, the target value
+# output: a data frame in which all the factors except for the target value are replaced with dummy code
+dummycodeFactors <- function(qs, target) {
+  
+  targetval <- qs[, target]
+  qs[, target] <- NULL
+  df <- qs
+  cols <- colnames(df)
+  
+  for(i in 1:ncol(qs)) {
+    
+    col <- cols[i]
+    
+    if(class(df[, col]) == "factor") {
+      df <- cbind(df, model.matrix(~ df[, col] - 1, df))
+      df[, col] <- NULL
+    }
+  }
+  
+  df$newcol <- targetval
+  colnames(df)[ncol(df)] <- target
+  return(df)
 }
 
 
