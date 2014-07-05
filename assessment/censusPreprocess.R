@@ -1,3 +1,16 @@
+# get a quasi clique
+# input: file paths
+# output: the quasi clique according to the given index
+getQuasiClique <- function(csvFile, colnameFile, fqsFile, index) {
+  
+  census <- read.csv(csvFile, sep = ";")  
+  colnames(census) <- readLines(colnameFile, encoding = "UTF-8")
+  census <- na.omit(census)    ## remove rows containing NAs
+  fqs <- readFqsFile(fqsFile)
+  qs <- subset(census, select = fqs[[index]])
+  return(qs)
+}
+
 # read quasi cliques
 # input: fqs.txt file path
 # output: a list of character vectors indicating the quasi cliques
@@ -70,11 +83,13 @@ dummycodeFactors <- function(qs, target) {
 }
 
 
-# categorize age into group
-makeAgeInterval <- function(qs) {
+# categorize age into group and make it factor
+makeAgeIntervalFactor <- function(qs) {
   
-  qs$age.group <- findInterval(qs$age, seq(0, 90, 10))
-  qs$age <- NULL
+  for(i in 0:9) {
+    qs$age[qs$age >= i * 10 & qs$age < i * 10 + 10] <- paste("under", i * 10 + 10, sep = " ")
+  }
+  qs$age <- as.factor(qs$age)
   return(qs)
 }
 
