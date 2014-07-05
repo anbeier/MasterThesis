@@ -38,11 +38,8 @@ takeSamples <- function(qs, targetval) {
 # output: a quasi clique with all valid column names
 reviseColnames <- function(qs) {
   
-  for(i in 1:ncol(qs)) {
-    colnames(qs)[i] <- gsub(" ", "_", colnames(qs)[i], fixed = TRUE)
-    colnames(qs)[i] <- gsub("-", "_", colnames(qs)[i], fixed = TRUE)
-  }
-  
+  colnames(qs)[i] <- gsub(" ", "_", colnames(qs)[i], fixed = TRUE)
+  colnames(qs)[i] <- gsub("-", "_", colnames(qs)[i], fixed = TRUE)
   return(qs)
 }
 
