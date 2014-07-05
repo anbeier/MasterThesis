@@ -24,3 +24,43 @@ aggregate.plot(x = education, by = list(Migration.Change = qs$migration_code_cha
 legend(8, 16, legend = c("Abroad to MSA", "Abroad to nonMSA", "MSA to MSA", "MSA to nonMSA", "Nonmover", 
                                  "NonMSA to MSA", "NonMSA to nonMSA", "Not identifiable", "Not in universe"), 
        fill = c("salmon", "wheat", "paleturquoise3", "pink2", "slategray3", "khaki", "lightcoral", "seagreen3", "khaki4"))
+
+
+
+## This is a VERSUCH ##
+niceCensus = function() {
+  df <- census
+  names(df) <- gsub(" ", ".", names(df))
+  df
+}
+
+processAndAggregateEducationDataForOriginGroup = function(groupName) {
+  dataf <- niceCensus()
+  df = subset(dataf, dataf[, "hispanic.origin"] == groupName)
+  df <- makeEducationCat(df)
+  aggregate(weeks.worked.in.year ~ education.cat, df, FUN=mean)
+  aggregate(education.cat ~ age, df, FUN=median)
+}
+
+plotEducationAndWorkAggregates = function(data, l=FALSE, col="blue") {
+  if (l == FALSE) {
+    plot(x=data$age, y=data$education.cat, type="l", col=col)
+  } else {
+    lines(x=data$age, y=data$education.cat, col=col)
+  }
+}
+
+plotThem = function() {
+  plotGroup <- function(name, notFirst=FALSE, col="blue") {
+    plotEducationAndWorkAggregates(processAndAggregateEducationDataForOriginGroup(name), notFirst, col)
+  }
+  
+  plotGroup('Mexican-American')
+  plotGroup('Mexican (Mexicano)', TRUE, "red")
+  plotGroup('Puerto Rican', TRUE, "green")
+  plotGroup('Central or South American', TRUE, "purple")
+  plotGroup('Chicano', TRUE, "black")
+}
+
+plot(df$education, df$weeks_worked_in_year.cat, pch = 2, cex = 2)
+points(df2$education, df2$weeks_worked_in_year.cat, pch = 6, cex = 2)
