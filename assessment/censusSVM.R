@@ -19,7 +19,7 @@ trainSVMModel <- function(qs, target) {
     cross(model)
   }
   
-  list(getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
+  list(model = model, getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
 }
 
 
