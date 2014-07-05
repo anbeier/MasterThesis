@@ -2,13 +2,34 @@
 # input: file paths
 # output: the quasi clique according to the given index
 getQuasiClique <- function(csvFile, colnameFile, fqsFile, index) {
+ 
+  census <- readdata(csvFile, colnameFile)
   
-  census <- read.csv(csvFile, sep = ";")  
-  colnames(census) <- readLines(colnameFile, encoding = "UTF-8")
-  census <- na.omit(census)    ## remove rows containing NAs
+  ## here is preprocessing
+  ## census <- censusPreprocess(census)
+  
   fqs <- readFqsFile(fqsFile)
   qs <- subset(census, select = fqs[[index]])
+  qs <- reviseColnames(qs)
   return(qs)
+}
+
+
+# read in data
+readdata <- function(csvFile, colnameFile) {
+  
+  df <- read.csv(csvFile, sep = ";")  
+  colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
+  df <- na.omit(df)    ## remove rows containing NAs
+  return(df)
+}
+
+
+# preprocess the data set
+censusPreprocess <- function(df) {
+  
+  # preprocess: categorize age into group and make it factor
+  df <- makeAgeIntervalFactor(df)
 }
 
 # read quasi cliques
@@ -33,16 +54,18 @@ readFqsFile <- function(fqsFile) {
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetval) {
   
-  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.15 * nrow(qs)), ]  
+  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.1 * nrow(qs)), ]  
+  targetval <- reviseTargetName(targetval)
   
   ## install.packages("caTools")
   library(caTools)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.65)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.6)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
   
   ls <- list(training = training, testing = testing)
-  return(ls)
+  ## return(ls)
+  return(training)
 }
 
 
@@ -54,6 +77,13 @@ reviseColnames <- function(qs) {
   colnames(qs) <- gsub(" ", "_", colnames(qs), fixed = TRUE)
   colnames(qs) <- gsub("-", "_", colnames(qs), fixed = TRUE)
   return(qs)
+}
+
+reviseTargetName <- function(str) {
+  
+  str <- gsub(" ", "_", str, fixed = TRUE)
+  str <- gsub("-", "_", str, fixed = TRUE)
+  return(str)
 }
 
 
@@ -84,13 +114,42 @@ dummycodeFactors <- function(qs, target) {
 
 
 # categorize age into group and make it factor
-makeAgeIntervalFactor <- function(qs) {
+makeAgeIntervalFactor <- function(df) {
   
   for(i in 0:9) {
-    qs$age[qs$age >= i * 10 & qs$age < i * 10 + 10] <- paste("under", i * 10 + 10, sep = " ")
+    df$age[df$age >= i * 10 & df$age < i * 10 + 10] <- paste("under", i * 10 + 10, sep = " ")
   }
-  qs$age <- as.factor(qs$age)
-  return(qs)
+  df$age <- as.factor(df$age)
+  return(df)
+}
+
+
+# categorize worked weeks into group and make it factor
+makeWeekIntervalFactor <- function(df) {
+  
+  i <- 0
+  
+  while(i <= 50) {
+    
+    if(i == 0) {
+      df[, "weeks worked in year"][df[, "weeks worked in year"] == 0] <- "no work"
+      i <- i + 1
+    } else if(i == 50) {
+      df[, "weeks worked in year"][df[, "weeks worked in year"] >= 50] <- "over 50 weeks"
+      i <- i + 1
+    } else if(i == 1) {
+      df[, "weeks worked in year"][df[, "weeks worked in year"] >= i & df[, "weeks worked in year"] < i + 4] <- 
+        paste("under", i + 4, "weeks", sep = " ")
+      i <- i + 4
+    } else {
+      df[, "weeks worked in year"][df[, "weeks worked in year"] >= i & df[, "weeks worked in year"] < i + 5] <- 
+        paste("under", i + 5, "weeks", sep = " ")  
+      i <- i + 5
+    }  
+  }
+  
+  df[, "weeks worked in year"] <- as.factor(df[, "weeks worked in year"])
+  return(df)
 }
 
 
