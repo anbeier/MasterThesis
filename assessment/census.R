@@ -1,9 +1,11 @@
 csvFile = "census.csv"
 colnameFile = "census_colnames.txt"
+specialCols = c(3, 4, 36, 38, 40)
 fqsFile = "census_fqs_delta0.7_alpha0.5.txt"
 alpha = 0.5
 
 main <- function(csvFile, colnameFile, alpha, fqsFile) {
+  
   census <- getDataset(csvFile, colnameFile, alpha)
   cliques <- readingQuasiCliques(census, fqsFile)
   
@@ -15,10 +17,10 @@ main <- function(csvFile, colnameFile, alpha, fqsFile) {
   # here is the 2nd loop which is for each column in the clique
   # loop 2: take one column for example
   target = "migration_code_change_in_msa"
-  df <- preprocessingMatrix(qs, target)
+  df <- takeSamples(qs, target)
   
-  # train a svm model and return its results
-  res <- getTrainingResultsOfOneClique(df)
+  res <- getTrainingResultsOfOneClique(qs)
+  
    
 }
 
