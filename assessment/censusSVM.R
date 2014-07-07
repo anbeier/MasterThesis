@@ -4,19 +4,20 @@ getTrainingResultsOfOneClique <- function(qs) {
   ## install.packages("kernlab")
   library(kernlab)
   cols <- colnames(qs)
-  trainErr <- NULL
-  CVErr <- NULL
-  target <- NULL
+  trainError <- NULL
+  crossError <- NULL
+  tar <- NULL
   
-  for(targetcol in cols) {   
-    model <- trainSVMModel(qs, targetcol)
-    trainErr <- c(trainErr, model$getTrainingError())
-    CVErr <- c(CVErr, model$getCrossValidationError())
-    target <- c(target, targetcol)
+  for(target in colnames(qs)) {   
+    df <- takeSamples(qs, target)
+    model <- trainSVMModel(df, target)
+    trainError <- c(trainError, model$getTrainingError())
+    crossError <- c(crossError, model$getCrossValidationError())
+    tar <- c(tar, target)
   }
   
-  df <- data.frame("quasi_clique" = rep(qs, ncol(qs)), "training_error" = trainErr, 
-                   "crossvalidation_error" = CVErr, "target value" = target)
+  df <- data.frame("quasi_clique" = rep(qs, ncol(qs)), "training_error" = trainError, 
+                   "crossvalidation_error" = crossError, "target_value" = tar)
   return(df)
 }
 
@@ -27,8 +28,8 @@ getTrainingResultsOfOneClique <- function(qs) {
 trainSVMModel <- function(qs, target) {
 
   formulastr <- as.formula(paste(target, "~."))
-  model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 10), 
-                C = 10, cross = 5, prob.model = TRUE)
+  model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
+                C = 10, prob.model = TRUE)
   
   getTrainingError <- function() {
     error(model)
