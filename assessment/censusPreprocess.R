@@ -1,51 +1,48 @@
-# get a quasi clique
-# input: file paths
-# output: the quasi clique according to the given index
-getQuasiClique <- function(csvFile, colnameFile, fqsFile, index) {
- 
-  census <- readdata(csvFile, colnameFile)
-  
-  ## here is preprocessing
-  ## census <- censusPreprocess(census)
-  
-  fqs <- readFqsFile(fqsFile)
-  qs <- subset(census, select = fqs[[index]])
-  qs <- reviseColnames(qs)
+getDataset <- function(csvfp, colnameFile, alpha) {
+  # reading in dataset
+  census <- readingdataset(csvfp, colnameFile)
+  # preprocessing the origin data
+  census <- bucketizeNumericColumns(census, alpha)
+  return(census)
+}
+
+
+getOneClique <- function(dataset, fqs, index) { 
+  qs <- subset(dataset, select = fqs[[index]])   
   return(qs)
 }
 
 
-# read in data
-readdata <- function(csvFile, colnameFile) {
+# read in data, modify column names
+readingdataset <- function(csvFile, colnameFile) {
   
   df <- read.csv(csvFile, sep = ";")  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
+  df <- modifyColnames(df)
   df <- na.omit(df)    ## remove rows containing NAs
   return(df)
 }
 
 
-# preprocess the data set
-censusPreprocess <- function(df) {
+# read in quasi clique file
+readingQuasiCliques <- function(dataset, fp) {
   
-  # preprocess: categorize age into group and make it factor
-  df <- makeAgeIntervalFactor(df)
-}
-
-# read quasi cliques
-# input: fqs.txt file path
-# output: a list of character vectors indicating the quasi cliques
-readFqsFile <- function(fqsFile) {
-  
-  fqs <- readLines(fqsFile, encoding = "UTF-8")  
-  qs <- NULL
-  
+  fqs <- readLines(fp, encoding = "UTF-8") 
+  qs <- NULL  
   for(i in 1:length(fqs)) {
     tmp <- unlist(strsplit(fqs[i], "--"))
     qs <- append(qs, list(tmp))
   }
   
+  qs <- lapply(qs, function(x) modifySingleString(x))  
   return(qs)
+}
+
+
+preprocessingMatrix <- function(qs, targetval) {
+  qs <- takeSamples(qs, targetval)
+  m <- dummycodeFactors(qs, targetval)
+  return(m)
 }
 
 
@@ -54,8 +51,8 @@ readFqsFile <- function(fqsFile) {
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetval) {
   
-  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.1 * nrow(qs)), ]  
-  targetval <- reviseTargetName(targetval)
+  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.001 * nrow(qs)), ]  
+  targetval <- modifySingleString(targetval)
   
   ## install.packages("caTools")
   library(caTools)
@@ -72,14 +69,14 @@ takeSamples <- function(qs, targetval) {
 # replace invalid symbols in column names with "_"
 # input: a quasi clique
 # output: a quasi clique with all valid column names
-reviseColnames <- function(qs) {
+modifyColnames <- function(qs) {
   
   colnames(qs) <- gsub(" ", "_", colnames(qs), fixed = TRUE)
   colnames(qs) <- gsub("-", "_", colnames(qs), fixed = TRUE)
   return(qs)
 }
 
-reviseTargetName <- function(str) {
+modifySingleString <- function(str) {
   
   str <- gsub(" ", "_", str, fixed = TRUE)
   str <- gsub("-", "_", str, fixed = TRUE)
@@ -92,27 +89,24 @@ reviseTargetName <- function(str) {
 # output: a data frame in which all the factors except for the target value are replaced with dummy code
 dummycodeFactors <- function(qs, target) {
   
-  targetval <- qs[, target]
+  tmp <- qs[, target]
   qs[, target] <- NULL
   df <- qs
   cols <- colnames(df)
   
-  for(i in 1:ncol(qs)) {
-    
-    col <- cols[i]
-    
-    if(class(df[, col]) == "factor") {
-      df <- cbind(df, model.matrix(~ df[, col] - 1, df))
-      df[, col] <- NULL
+  for(colname in colnames(qs)) {   
+    if(class(qs[, colname]) == 'character') {
+      df <- cbind(df, model.matrix(~ df[, colname] - 1, df))
+      df[, colname] <- NULL
     }
   }
   
-  df$newcol <- targetval
+  df$newcol <- tmp
   colnames(df)[ncol(df)] <- target
   return(df)
 }
 
-
+# not used
 # categorize age into group and make it factor
 makeAgeIntervalFactor <- function(df) {
   
@@ -123,7 +117,7 @@ makeAgeIntervalFactor <- function(df) {
   return(df)
 }
 
-
+# not used
 # categorize worked weeks into group and make it factor
 makeWeekIntervalFactor <- function(df) {
   
@@ -152,7 +146,7 @@ makeWeekIntervalFactor <- function(df) {
   return(df)
 }
 
-
+# not used
 # categorize working weeks into group
 makeWeekInterval <- function(qs) {
   
@@ -162,7 +156,7 @@ makeWeekInterval <- function(qs) {
   return(qs)
 }
 
-
+# not used
 # convert education factor to integers by hand
 makeEducationCat <- function(qs) {
   
@@ -180,7 +174,7 @@ makeEducationCat <- function(qs) {
   return(qs)
 }
 
-
+# not used
 # convert factors to integers using mapLevels()
 convertCategories <- function(qs) {
   
