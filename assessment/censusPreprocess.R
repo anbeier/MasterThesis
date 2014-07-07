@@ -38,7 +38,7 @@ readingQuasiCliques <- function(dataset, fp) {
   return(qs)
 }
 
-
+# not used
 preprocessingMatrix <- function(qs, targetval) {
   qs <- takeSamples(qs, targetval)
   m <- dummycodeFactors(qs, targetval)
@@ -51,12 +51,12 @@ preprocessingMatrix <- function(qs, targetval) {
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetval) {
   
-  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.001 * nrow(qs)), ]  
+  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.06 * nrow(qs)), ]  
   targetval <- modifySingleString(targetval)
   
   ## install.packages("caTools")
   library(caTools)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.6)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.65)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
   
@@ -83,7 +83,7 @@ modifySingleString <- function(str) {
   return(str)
 }
 
-
+# not used
 # dummy code the factors except for the target value
 # input: a quasi clique, the target value
 # output: a data frame in which all the factors except for the target value are replaced with dummy code
@@ -95,7 +95,7 @@ dummycodeFactors <- function(qs, target) {
   cols <- colnames(df)
   
   for(colname in colnames(qs)) {   
-    if(class(qs[, colname]) == 'character') {
+    if(class(qs[, colname]) == 'character' | class(qs[, colname]) == 'factor') {
       df <- cbind(df, model.matrix(~ df[, colname] - 1, df))
       df[, colname] <- NULL
     }
@@ -253,18 +253,30 @@ applyBinToColumn <- function(df, colname, bin, binsize){
 }
 
 # bucketize numeric values in a column
-bucketizeNumericColumns <- function(df, alpha) {
+bucketizeNumericColumns <- function(df, alpha, specialCols) {
   
   x <- getBins(df, alpha)  
   bin <- x$getBin
-  binsize <- x$getBinsize
+  binsize <- x$getBinsize 
   
+  # special treatment for column[3, 4, 36, 38, 40]
+  # numericColumnsAsCategory <- c(3, 4, 36, 38, 40)
   dd <- df
-  for(colname in colnames(dd)) {    
-    if(mode(dd[, colname]) == 'numeric') {
-      df <- applyBinToColumn(df, colname, bin, binsize)
+  for(i in 1:ncol(dd)) {
+    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
+      if(!(i %in% specialCols)) {
+        colname = colnames(dd)[i]
+        df <- applyBinToColumn(df, colname, bin, binsize)
+      }
     }
   }
-  
+  return(df)
+}
+
+
+convertSpecialNumericColumnToFactor <- function(df, indices) {
+  for(i in indices) {
+    df[, i] <- as.factor(df[, i])
+  }
   return(df)
 }
