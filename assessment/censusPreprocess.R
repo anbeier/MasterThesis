@@ -210,3 +210,67 @@ convertCategories <- function(qs) {
   
   return(df)
 }
+
+
+# calculate bins
+# input: a data frame without NAs, alpha
+# output: bin
+getBins <- function(df, alpha) {
+  
+  n <- nrow(df)
+  b <- n^alpha
+  if(b > 128) {
+    b <- 128
+  }  
+  if(b > n) {
+    b <- n
+  }
+  bs <- floor(n / b)
+  
+  getBin <- function() {b}
+  getBinsize <- function() {bs}
+  list(getBin = b, getBinsize = bs)
+}
+
+
+# bucketize the column values and return the sorted data frame
+applyBinToColumn <- function(df, colname, bin, binsize){
+  
+  df <- df[oder(df[, colname]), ]
+  
+  i <- 1
+  vec <- NULL
+  while(i <= bin) {
+    tmp <- rep(paste(colname, 'bin', i, sep = '_'), binsize)
+    vec <- c(vec, tmp)
+    i  = i + 1
+  }
+  
+  if(length(vec) < nrow(df)) {
+    tmp <- rep(paste(colname, 'bin', i, sep = '_'), nrow(df) - length(vec))
+    vec <- c(vec, tmp) 
+  }
+  
+  if(length(vec) == nrow(df)) {
+    df[, colname] <- vec
+  }
+ 
+  return(df)
+}
+
+# bucketize numeric values in a column
+bucketizeNumericColumns <- function(df, alpha) {
+  
+  x <- getBins(df, alpha)  
+  bin <- x$getBin()
+  binsize <- x$getBinSize()
+  
+  dd <- df
+  for(colname in colnames(dd)) {    
+    if(mode(dd[, colname]) == 'numeric') {
+      df <- applyBinToColumn(df, colname, bin, binsize)
+    }
+  }
+  
+  return(df)
+}
