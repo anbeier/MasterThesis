@@ -236,7 +236,7 @@ getBins <- function(df, alpha) {
 # bucketize the column values and return the sorted data frame
 applyBinToColumn <- function(df, colname, bin, binsize){
   
-  df <- df[oder(df[, colname]), ]
+  df <- df[order(df[, colname]), ]
   
   i <- 1
   vec <- NULL
@@ -262,8 +262,8 @@ applyBinToColumn <- function(df, colname, bin, binsize){
 bucketizeNumericColumns <- function(df, alpha) {
   
   x <- getBins(df, alpha)  
-  bin <- x$getBin()
-  binsize <- x$getBinSize()
+  bin <- x$getBin
+  binsize <- x$getBinsize
   
   dd <- df
   for(colname in colnames(dd)) {    
