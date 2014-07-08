@@ -51,12 +51,14 @@ preprocessingMatrix <- function(qs, targetval) {
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetval) {
   
-  samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.06 * nrow(qs)), ]  
+  ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.06 * nrow(qs)), ]  
+  samples <- qs
   targetval <- modifySingleString(targetval)
   
   ## install.packages("caTools")
   library(caTools)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.65)
+  ## split <- sample.split(samples[, targetval], SplitRatio = 0.65)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.04)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
   
@@ -253,7 +255,7 @@ applyBinToColumn <- function(df, colname, bin, binsize){
 }
 
 # bucketize numeric values in a column
-bucketizeNumericColumns <- function(df, alpha, specialCols) {
+bucketizeNumericColumns <- function(df, alpha, specialColumns = c(3, 4, 36, 38, 40)) {
   
   x <- getBins(df, alpha)  
   bin <- x$getBin
@@ -264,7 +266,7 @@ bucketizeNumericColumns <- function(df, alpha, specialCols) {
   dd <- df
   for(i in 1:ncol(dd)) {
     if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
-      if(!(i %in% specialCols)) {
+      if(!(i %in% specialColumns)) {
         colname = colnames(dd)[i]
         df <- applyBinToColumn(df, colname, bin, binsize)
       }
