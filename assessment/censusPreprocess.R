@@ -19,6 +19,7 @@ readingdataset <- function(csvFile, colnameFile) {
   df <- read.csv(csvFile, sep = ";")  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
+  df <- unique(df)
   df <- na.omit(df)    ## remove rows containing NAs
   return(df)
 }
@@ -51,18 +52,17 @@ preprocessingMatrix <- function(qs, targetval) {
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetval) {
   
-  ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.06 * nrow(qs)), ]  
+  ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
   samples <- qs
-  targetval <- modifySingleString(targetval)
+  ## targetval <- modifySingleString(targetval)
   
   ## install.packages("caTools")
   library(caTools)
-  ## split <- sample.split(samples[, targetval], SplitRatio = 0.65)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.04)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.05)
   training <- subset(samples, split == TRUE)
-  testing <- subset(samples, split == FALSE)
+  ## testing <- subset(samples, split == FALSE)
   
-  ls <- list(training = training, testing = testing)
+  ## ls <- list(training = training, testing = testing)
   ## return(ls)
   return(training)
 }
