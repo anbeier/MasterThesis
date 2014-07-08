@@ -15,9 +15,12 @@ getTrainingResultsOfOneClique <- function(qs) {
     tar <- c(tar, target)
   }
   
+  avgTrainError <- getAvgError(trainError)
+  # report <- paste('avg training error: ', avgTrainError)
   cliq <- paste(colnames(qs), collapse = '--')
-  df <- data.frame(quasi_clique = rep(cliq, ncol(qs)), training_error = trainError, 
-                   crossvalidation_error = crossError, target_value = tar)  
+  df <- data.frame(quasi_clique = c(cliq, rep(NA, ncol(qs) - 1)), training_error = trainError,
+                                    crossvalidation_error = crossError, target_value = tar, 
+                                    avg_train_error = c(avgTrainError, rep(NA, ncol(qs) - 1)))
   return(df)
 }
 
@@ -29,7 +32,7 @@ trainSVMModel <- function(qs, target) {
 
   formulastr <- as.formula(paste(target, "~."))
   model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
-                C = 5, prob.model = TRUE)
+                C = 10, prob.model = TRUE)
   
   getTrainingError <- function() {
     error(model)
@@ -40,6 +43,15 @@ trainSVMModel <- function(qs, target) {
   }
   
   list(model = model, getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
+}
+
+getAvgError <- function(error) {
+  res <- 0
+  for(i in error) {
+    res <- res + i
+  }
+  res <- res / length(error)
+  return(res)
 }
 
 
