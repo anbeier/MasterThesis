@@ -6,9 +6,10 @@ getDataset <- function(csvfp, colnameFile, alpha) {
   return(census)
 }
 
-
+# returns a quasi clique regarding to the given index, without duplicated entries
 getOneClique <- function(dataset, fqs, index) { 
   qs <- subset(dataset, select = fqs[[index]])   
+  qs <- unique(qs)
   return(qs)
 }
 
@@ -19,7 +20,6 @@ readingdataset <- function(csvFile, colnameFile) {
   df <- read.csv(csvFile, sep = ";")  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
-  df <- unique(df)
   df <- na.omit(df)    ## remove rows containing NAs
   return(df)
 }
@@ -58,7 +58,7 @@ takeSamples <- function(qs, targetval) {
   
   ## install.packages("caTools")
   library(caTools)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.05)
+  split <- sample.split(samples[, targetval], SplitRatio = 0.4)
   training <- subset(samples, split == TRUE)
   ## testing <- subset(samples, split == FALSE)
   
@@ -281,4 +281,21 @@ convertSpecialNumericColumnToFactor <- function(df, indices) {
     df[, i] <- as.factor(df[, i])
   }
   return(df)
+}
+
+makeSamplesForEachTarget <- function(qs, cliqueColnames) {
+  ls <- NULL
+  for(target in cliqueColnames) {
+    df <- takeSamples(qs, target)
+    ls <- append(ls, list(df))
+  }
+  return(ls)
+}
+
+writeCSVForEachSamples <- function(ls) {
+  for(i in 1:length(ls)) {
+    fp <- paste(paste('data', i, sep = '_'), 'csv', sep = '.')
+    df <- ls[[i]]
+    write.csv(df, file = fp, row.names = FALSE)
+  }
 }
