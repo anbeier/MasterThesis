@@ -9,6 +9,7 @@ getTrainingResultsOfOneClique <- function(qs) {
   
   for(target in colnames(qs)) {   
     df <- takeSamples(qs, target)
+    df <- unique(df)
     model <- trainSVMModel(df, target)
     trainError <- c(trainError, model$getTrainingError())
     crossError <- c(crossError, model$getCrossValidationError())
@@ -31,18 +32,21 @@ getTrainingResultsOfOneClique <- function(qs) {
 trainSVMModel <- function(qs, target) {
 
   formulastr <- as.formula(paste(target, "~."))
-  model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
-                C = 10, prob.model = TRUE)
   
-  getTrainingError <- function() {
-    error(model)
-  }
+  # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
+  #               C = 10, prob.model = TRUE)
+  library(e1071)
+  model <- svm(formulastr, data = qs)
+  # getTrainingError <- function() {
+  #   error(model)
+  # }
   
-  getCrossValidationError <- function() {
-    cross(model)
-  }
+  # getCrossValidationError <- function() {
+  #   cross(model)
+  # }
   
-  list(model = model, getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
+  # list(model = model, getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
+  list(model = model, target = target)
 }
 
 getAvgError <- function(error) {
@@ -54,4 +58,18 @@ getAvgError <- function(error) {
   return(res)
 }
 
-
+getTestingError <- function(trainls, testing) {
+  
+  model <- trainls$model
+  target <- trainls$target
+  pred <- predict(model, newdata = testing)
+  
+  testing$predicted <- pred
+  err <- 0
+  for(i in 1:nrow(testing)) {
+    if(testing[i, target] != testing[i, 'predicted']) {
+      err <- err + 1
+    }
+  }
+  return(err / nrow(testing))
+}
