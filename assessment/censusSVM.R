@@ -1,8 +1,11 @@
-getResultsOfOneClique <- function(qs) {
+loopTrainingTesting <- function(qs) {
   
   library(e1071)
+  library(caTools)
   errVec <- NULL
   tarVec <- NULL
+  
+  print(names(qs))
   
   for(target in colnames(qs)) {   
     data <- takeSamples(qs, target)
@@ -12,6 +15,9 @@ getResultsOfOneClique <- function(qs) {
     model <- trainSVMModel(training, target)
     err <- getTestingError(model, testing)
     
+    print(target)
+    print(err)
+    
     # trainError <- c(trainError, model$getTrainingError())
     # crossError <- c(crossError, model$getCrossValidationError())
     errVec <- c(errVec, err)
@@ -19,35 +25,23 @@ getResultsOfOneClique <- function(qs) {
   }
   
   thres <- getErrorThreshold(errVec)
-  # report <- paste('avg training error: ', avgTrainError)
-  cliq <- paste(colnames(qs), collapse = '--')
-  df <- data.frame(quasi_clique = c(cliq, rep(NA, ncol(qs) - 1)), training_error = trainError,
-                                    crossvalidation_error = crossError, target_value = tar, 
-                                    avg_train_error = c(avgTrainError, rep(NA, ncol(qs) - 1)))
-  return(df)
+  cliq <- paste(colnames(qs), collapse = '--') 
+  df <- data.frame(target_column = tarVec, testing_error = errVec)
+  list(clique = cliq, details = df, threshold = thres, avg_error = mean(errVec))
 }
 
 
-# train a svm model for a specific target value
-# input: preprocessed data frame (quasi clique)
-# output: training and cross validation errors
-trainSVMModel <- function(qs, target) {
+trainSVMModel <- function(training, target) {
 
   formulastr <- as.formula(paste(target, "~."))
   
   # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
   #               C = 10, prob.model = TRUE)
-  model <- svm(formulastr, data = qs)
-  # getTrainingError <- function() {
-  #   error(model)
-  # }
+  # model <- svm(formulastr, data = qs)
+  obj <- tune(svm, formulastr, data = training, ranges = list(gamma = c(0.1, 1, 10), cost = c(1, 10, 50)), 
+              tunecontrol = tune.control(sampling = "fix"))
   
-  # getCrossValidationError <- function() {
-  #   cross(model)
-  # }
-  
-  # list(model = model, getTrainingError = getTrainingError, getCrossValidationError = getCrossValidationError)
-  list(model = model, target = target)
+  list(model = obj$best.model, target = target)
 }
 
 getTestingError <- function(trainls, testing) {

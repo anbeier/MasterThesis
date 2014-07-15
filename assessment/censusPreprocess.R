@@ -124,10 +124,8 @@ getOneClique <- function(dataset, fqs, index) {
 takeSamples <- function(qs, targetcol) {
   
   ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
-  samples <- qs  
-  ## install.packages("caTools")
-  library(caTools)
-  split <- sample.split(samples[, targetcol], SplitRatio = 0.3)
+  samples <- qs
+  split <- sample.split(samples[, targetcol], SplitRatio = 0.5)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
   
