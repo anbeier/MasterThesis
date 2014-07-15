@@ -1,26 +1,97 @@
 getDataset <- function(csvfp, colnameFile, alpha) {
-  # reading in dataset
+  # Reading in dataset
   census <- readingdataset(csvfp, colnameFile)
-  # preprocessing the origin data
+  # Coverting some of integer columns to categorical columns
+  census <- convertSpecialIntegerColumnToFactor(census)
+  # Bucketizing values of a numeric column to bins and convert it to a factor column
   census <- bucketizeNumericColumns(census, alpha)
   return(census)
 }
 
-# returns a quasi clique regarding to the given index, without duplicated entries
-getOneClique <- function(dataset, fqs, index) { 
-  qs <- subset(dataset, select = fqs[[index]])   
-  qs <- unique(qs)
-  return(qs)
-}
 
-
-# read in data, modify column names
+# read in data, modify column names, eliminate NAs.
 readingdataset <- function(csvFile, colnameFile) {
   
   df <- read.csv(csvFile, sep = ";")  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
   df <- na.omit(df)    ## remove rows containing NAs
+  return(df)
+}
+
+
+# Indices of columns start with 1. 
+# Convert integer columns 3, 4, 36, 38, 40 to factor columns.
+convertSpecialIntegerColumnToFactor <- function(df, specialColumns = c(3, 4, 36, 38, 40)) {
+  for(i in specialColumns) {
+    df[, i] <- as.factor(df[, i])
+  }
+  return(df)
+}
+
+
+# Bucketize values of numeric columns to bins and map them onto levels of a factor.
+# Convert numeric columns to factor columns.
+bucketizeNumericColumns <- function(df, alpha, specialColumns = c(3, 4, 36, 38, 40)) {
+  
+  x <- calculateBins(df, alpha)  
+  bin <- x$bin
+  binsize <- x$binsize 
+  
+  # special treatment for column[3, 4, 36, 38, 40]
+  # numericColumnsAsCategory <- c(3, 4, 36, 38, 40)
+  dd <- df
+  for(i in 1:ncol(dd)) {
+    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
+      if(!(i %in% specialColumns)) {
+        colname = colnames(dd)[i]
+        df <- mapBinsOntoColumn(df, colname, bin, binsize)
+      }
+    }
+  }
+  return(df)
+}
+
+
+calculateBins <- function(df, alpha) {
+  
+  n <- nrow(df)
+  b <- n^alpha
+  if(b > 128) {
+    b <- 128
+  }  
+  if(b > n) {
+    b <- n
+  }
+  bs <- floor(n / b)
+  
+  bin <- function() {b}
+  binsize <- function() {bs}
+  list(bin = b, binsize = bs)
+}
+
+
+mapBinsOntoColumn <- function(df, colname, bin, binsize){
+  
+  df <- df[order(df[, colname]), ]
+  
+  i <- 1
+  vec <- NULL
+  while(i <= bin) {
+    tmp <- rep(paste(colname, 'bin', i, sep = '_'), binsize)
+    vec <- c(vec, tmp)
+    i  = i + 1
+  }
+  
+  if(length(vec) < nrow(df)) {
+    tmp <- rep(paste(colname, 'bin', i, sep = '_'), nrow(df) - length(vec))
+    vec <- c(vec, tmp) 
+  }
+  
+  if(length(vec) == nrow(df)) {
+    df[, colname] <- vec
+  }
+  df[, colname] <- as.factor(df[, colname])
   return(df)
 }
 
@@ -39,32 +110,28 @@ readingQuasiCliques <- function(dataset, fp) {
   return(qs)
 }
 
-# not used
-preprocessingMatrix <- function(qs, targetval) {
-  qs <- takeSamples(qs, targetval)
-  m <- dummycodeFactors(qs, targetval)
-  return(m)
-}
 
+# returns a quasi clique regarding to the given index, without duplicated entries
+getOneClique <- function(dataset, fqs, index) { 
+  qs <- subset(dataset, select = fqs[[index]])   
+  qs <- unique(qs)
+  return(qs)
+}
 
 # choose a few samples from a clique w.r.t a specific target value
 # input: a quasi clique, a target value
 # output: a list of sensible size of samples for training and testing, respectively
-takeSamples <- function(qs, targetval) {
+takeSamples <- function(qs, targetcol) {
   
   ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
-  samples <- qs
-  ## targetval <- modifySingleString(targetval)
-  
+  samples <- qs  
   ## install.packages("caTools")
   library(caTools)
-  split <- sample.split(samples[, targetval], SplitRatio = 0.4)
+  split <- sample.split(samples[, targetcol], SplitRatio = 0.3)
   training <- subset(samples, split == TRUE)
-  ## testing <- subset(samples, split == FALSE)
+  testing <- subset(samples, split == FALSE)
   
-  ## ls <- list(training = training, testing = testing)
-  ## return(ls)
-  return(training)
+  list(training = training, testing = testing)
 }
 
 
@@ -78,12 +145,14 @@ modifyColnames <- function(qs) {
   return(qs)
 }
 
+
 modifySingleString <- function(str) {
   
   str <- gsub(" ", "_", str, fixed = TRUE)
   str <- gsub("-", "_", str, fixed = TRUE)
   return(str)
 }
+
 
 # not used
 # dummy code the factors except for the target value
@@ -207,81 +276,6 @@ convertCategories <- function(qs) {
   return(df)
 }
 
-
-# calculate bins
-# input: a data frame without NAs, alpha
-# output: bin
-getBins <- function(df, alpha) {
-  
-  n <- nrow(df)
-  b <- n^alpha
-  if(b > 128) {
-    b <- 128
-  }  
-  if(b > n) {
-    b <- n
-  }
-  bs <- floor(n / b)
-  
-  getBin <- function() {b}
-  getBinsize <- function() {bs}
-  list(getBin = b, getBinsize = bs)
-}
-
-
-# bucketize the column values and return the sorted data frame
-applyBinToColumn <- function(df, colname, bin, binsize){
-  
-  df <- df[order(df[, colname]), ]
-  
-  i <- 1
-  vec <- NULL
-  while(i <= bin) {
-    tmp <- rep(paste(colname, 'bin', i, sep = '_'), binsize)
-    vec <- c(vec, tmp)
-    i  = i + 1
-  }
-  
-  if(length(vec) < nrow(df)) {
-    tmp <- rep(paste(colname, 'bin', i, sep = '_'), nrow(df) - length(vec))
-    vec <- c(vec, tmp) 
-  }
-  
-  if(length(vec) == nrow(df)) {
-    df[, colname] <- vec
-  }
- 
-  return(df)
-}
-
-# bucketize numeric values in a column
-bucketizeNumericColumns <- function(df, alpha, specialColumns = c(3, 4, 36, 38, 40)) {
-  
-  x <- getBins(df, alpha)  
-  bin <- x$getBin
-  binsize <- x$getBinsize 
-  
-  # special treatment for column[3, 4, 36, 38, 40]
-  # numericColumnsAsCategory <- c(3, 4, 36, 38, 40)
-  dd <- df
-  for(i in 1:ncol(dd)) {
-    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
-      if(!(i %in% specialColumns)) {
-        colname = colnames(dd)[i]
-        df <- applyBinToColumn(df, colname, bin, binsize)
-      }
-    }
-  }
-  return(df)
-}
-
-
-convertSpecialNumericColumnToFactor <- function(df, indices) {
-  for(i in indices) {
-    df[, i] <- as.factor(df[, i])
-  }
-  return(df)
-}
 
 makeSamplesForEachTarget <- function(qs, cliqueColnames) {
   ls <- NULL
