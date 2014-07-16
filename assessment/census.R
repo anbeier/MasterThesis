@@ -1,21 +1,23 @@
-# returns a quasi clique by giving its index
 library(parallel)
+library(e1071)
+library(caTools)
 source('censusPreprocess.R')
 source('censusSVM.R')
 
-getCsvFile <- function() { "census.csv" }
-getColnameFile <- function() { "census_colnames.txt" }
-getFqsFile <- function() { "census_fqs_delta0.7_alpha0.5.txt" }
+csvfp = 'census.csv'
+colnamefp = 'census_colnames.txt'
+fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
 
-main <- function(index, alpha = 0.5, csvFile = getCsvFile(), colnameFile = getColnameFile(), fqsFile = getFqsFile()) {
+main <- function(index, delta = 0.7, alpha = 0.5, 
+                 csvFile = csvpf, colnameFile = colnamefp, fqsFile = fqsfp) {
   
   census <- getDataset(csvFile, colnameFile, alpha)
   cliques <- readingQuasiCliques(census, fqsFile)
   
   # A loop where models for each clique, i.e. for each column in this clique are built.
   clique <- getOneClique(census, cliques, index)  
-  res <- loopTrainingTesting(clique)
-  return(res)
+  # save result of each clique in a RData file
+  loopTrainingTesting(clique, index, delta, alpha)
 }
 
 worker <- function(input) {
@@ -31,7 +33,7 @@ worker <- function(input) {
   ret
 }
 
-parallelMain <- function(indexStart, indexEnd, alpha = 0.5, csvFile = getCsvFile(), colnameFile = getColnameFile(), fqsFile = getFqsFile()) {
+parallelMain <- function(indexStart, indexEnd, alpha = 0.5, csvFile = csvpf, colnameFile = colnamefp, fqsFile = fqsfp) {
   
   census <- getDataset(csvFile, colnameFile, alpha)
   cliques <- readingQuasiCliques(census, fqsFile)
