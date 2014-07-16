@@ -1,11 +1,7 @@
-loopTrainingTesting <- function(qs) {
-  
-  library(e1071)
-  library(caTools)
+loopTrainingTesting <- function(qs, index, delta, alpha) {
+  fn <- makeFilename(index, delta, alpha)
   errVec <- NULL
   tarVec <- NULL
-  
-  print(names(qs))
   
   for(target in colnames(qs)) {   
     data <- takeSamples(qs, target)
@@ -14,20 +10,18 @@ loopTrainingTesting <- function(qs) {
     
     model <- trainSVMModel(training, target)
     err <- getTestingError(model, testing)
-    
-    print(target)
-    print(err)
-    
-    # trainError <- c(trainError, model$getTrainingError())
-    # crossError <- c(crossError, model$getCrossValidationError())
     errVec <- c(errVec, err)
     tarVec <- c(tarVec, target)
+    
+    save(index, tarVec, errVec, file = fn)
   }
   
+  # cliq <- paste(colnames(qs), collapse = '--') 
   thres <- getErrorThreshold(errVec)
-  cliq <- paste(colnames(qs), collapse = '--') 
   df <- data.frame(target_column = tarVec, testing_error = errVec)
-  list(clique = cliq, details = df, threshold = thres, avg_error = mean(errVec))
+  rslt <- list(clique_index = index, details = df, threshold = thres, 
+       min_error = min(errVec), avg_error = mean(errVec))
+  save(rslt, file = fn)
 }
 
 
@@ -71,4 +65,11 @@ getErrorThreshold <- function(errors) {
   }
   t <- err[which.max(dif)]
   return(t)
+}
+
+makeFilename <- function(i, delta, alpha) {
+  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
+  fn <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
+  fn <- paste(fn, 'RData', sep = '.')
+  return(fn)
 }
