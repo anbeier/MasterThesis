@@ -1,9 +1,14 @@
+source('log.R')
+
 loopTrainingTesting <- function(qs, index, delta, alpha) {
-  fn <- makeFilename(index, delta, alpha)
+  fileNames <- makeFilenames(index, delta, alpha)
   errVec <- NULL
   tarVec <- NULL
   
+  i <- 1
+  l <- length(colnames(qs))
   for(target in colnames(qs)) {   
+    log(paste(index, paste(i, l, sep='/'), target))
     data <- takeSamples(qs, target)
     training <- data$training
     testing <- data$testing   
@@ -13,7 +18,8 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
     errVec <- c(errVec, err)
     tarVec <- c(tarVec, target)
     
-    save(index, tarVec, errVec, file = fn)
+    save(index, tarVec, errVec, file = fileNames$temporaryName)
+    i <- i + 1
   }
   
   # cliq <- paste(colnames(qs), collapse = '--') 
@@ -21,7 +27,9 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   df <- data.frame(target_column = tarVec, testing_error = errVec)
   rslt <- list(clique_index = index, details = df, threshold = thres, 
        min_error = min(errVec), avg_error = mean(errVec))
-  save(rslt, file = fn)
+  save(rslt, file = fileNames$finalName)
+  unlink(fileNames$temporaryName)
+  log(paste(index, "done"))
 }
 
 
@@ -67,9 +75,10 @@ getErrorThreshold <- function(errors) {
   return(t)
 }
 
-makeFilename <- function(i, delta, alpha) {
+makeFilenames <- function(i, delta, alpha) {
   prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
   fn <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
   fn <- paste(fn, 'RData', sep = '.')
-  return(fn)
+  tfn <- paste(paste('tmp-', fn, sep=''), 'RData', sep = '.')
+  return(list(finalName=fn, temporaryName=tfn))
 }

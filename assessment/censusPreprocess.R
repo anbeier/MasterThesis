@@ -1,3 +1,5 @@
+source('log.R')
+
 getDataset <- function(csvfp, colnameFile, alpha) {
   # Reading in dataset
   census <- readingdataset(csvfp, colnameFile)
@@ -125,7 +127,14 @@ takeSamples <- function(qs, targetcol) {
   
   ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
   samples <- qs
-  split <- sample.split(samples[, targetcol], SplitRatio = 0.5)
+  ratio <- 0.4
+  alpha <- 0.5
+  trainingSize <- nrow(samples)^alpha + 500
+  if (nrow(samples) > trainingSize) {
+    ratio <- trainingSize / nrow(samples)
+  }
+  log(paste("choosing ratio", ratio, "sample training size", trainingSize))
+  split <- sample.split(samples[, targetcol], SplitRatio = ratio)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
   
