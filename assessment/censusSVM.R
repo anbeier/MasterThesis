@@ -4,6 +4,7 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   fileNames <- makeFilenames(index, delta, alpha)
   errVec <- NULL
   tarVec <- NULL
+  levelVec <- NULL
   
   i <- 1
   l <- length(colnames(qs))
@@ -15,10 +16,12 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
     
     model <- trainSVMModel(training, target)
     err <- getTestingError(model, testing)
+    factorLevels <- levels(qs[, target])
+    levelVec <- c(levelVec, factorLevels)
     errVec <- c(errVec, err)
     tarVec <- c(tarVec, target)
     
-    save(index, tarVec, errVec, file = fileNames$temporaryName)
+    save(index, tarVec, errVec, levelVec, file = fileNames$temporaryName)
     i <- i + 1
   }
   
@@ -26,7 +29,7 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   thres <- getErrorThreshold(errVec)
   df <- data.frame(target_column = tarVec, testing_error = errVec)
   rslt <- list(clique_index = index, details = df, threshold = thres, 
-       min_error = min(errVec), avg_error = mean(errVec))
+               min_error = min(errVec), avg_error = mean(errVec), levels_of_factor = levelVec)
   save(rslt, file = fileNames$finalName)
   unlink(fileNames$temporaryName)
   log(paste(index, "done"))
