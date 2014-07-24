@@ -129,7 +129,7 @@ takeSamples <- function(qs, targetcol) {
   samples <- qs
   ratio <- 0.4
   alpha <- 0.5
-  trainingSize <- nrow(samples)^alpha + 500
+  trainingSize <- nrow(samples)^alpha + 1000
   if (nrow(samples) > trainingSize) {
     ratio <- trainingSize / nrow(samples)
   }
@@ -185,74 +185,6 @@ dummycodeFactors <- function(qs, target) {
 }
 
 # not used
-# categorize age into group and make it factor
-makeAgeIntervalFactor <- function(df) {
-  
-  for(i in 0:9) {
-    df$age[df$age >= i * 10 & df$age < i * 10 + 10] <- paste("under", i * 10 + 10, sep = " ")
-  }
-  df$age <- as.factor(df$age)
-  return(df)
-}
-
-# not used
-# categorize worked weeks into group and make it factor
-makeWeekIntervalFactor <- function(df) {
-  
-  i <- 0
-  
-  while(i <= 50) {
-    
-    if(i == 0) {
-      df[, "weeks worked in year"][df[, "weeks worked in year"] == 0] <- "no work"
-      i <- i + 1
-    } else if(i == 50) {
-      df[, "weeks worked in year"][df[, "weeks worked in year"] >= 50] <- "over 50 weeks"
-      i <- i + 1
-    } else if(i == 1) {
-      df[, "weeks worked in year"][df[, "weeks worked in year"] >= i & df[, "weeks worked in year"] < i + 4] <- 
-        paste("under", i + 4, "weeks", sep = " ")
-      i <- i + 4
-    } else {
-      df[, "weeks worked in year"][df[, "weeks worked in year"] >= i & df[, "weeks worked in year"] < i + 5] <- 
-        paste("under", i + 5, "weeks", sep = " ")  
-      i <- i + 5
-    }  
-  }
-  
-  df[, "weeks worked in year"] <- as.factor(df[, "weeks worked in year"])
-  return(df)
-}
-
-# not used
-# categorize working weeks into group
-makeWeekInterval <- function(qs) {
-  
-  qs$newcol <- findInterval(qs[, "weeks_worked_in_year"], seq(0, 50, 10))
-  colnames(qs)[ncol(qs)] <- "weeks_worked_in_year.cat"
-  qs[, "weeks_worked_in_year"] <- NULL
-  return(qs)
-}
-
-# not used
-# convert education factor to integers by hand
-makeEducationCat <- function(qs) {
-  
-  lsedu = list("Children" = 1, "Less than 1st grade" = 2,"1st 2nd 3rd or 4th grade" = 3, "5th or 6th grade" = 4, 
-                     "7th and 8th grade" = 5, "9th grade" = 6, "10th grade" = 7, "11th grade" = 8, 
-                     "12th grade no diploma" = 9, "High school graduate" = 10, "Some college but no degree" = 11, 
-                     "Associates degree-occup /vocational" = 12, "Associates degree-academic program" = 13, 
-                     "Bachelors degree(BA AB BS)" = 14, "Masters degree(MA MS MEng MEd MSW MBA)" = 15, 
-                     "Prof school degree (MD DDS DVM LLB JD)" = 16, "Doctorate degree(PhD EdD)" = 17)
-  
-  for(i in 1:17) {
-    qs$education.cat[qs$education == names(lsedu)[i]] <- lsedu[[i]]
-  }
-  qs$education <- NULL
-  return(qs)
-}
-
-# not used
 # convert factors to integers using mapLevels()
 convertCategories <- function(qs) {
   
@@ -293,10 +225,63 @@ makeSamplesForEachTarget <- function(qs, cliqueColnames) {
   return(ls)
 }
 
-writeCSVForEachSamples <- function(ls) {
-  for(i in 1:length(ls)) {
-    fp <- paste(paste('data', i, sep = '_'), 'csv', sep = '.')
-    df <- ls[[i]]
-    write.csv(df, file = fp, row.names = FALSE)
+convertNumericToFactor <- function(df) {
+  dd <- df
+  for(i in 1:ncol(dd)) {
+    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
+      colname = colnames(dd)[i]
+      df <- categorizeNumericValuesIntoIntervals(df, colname)
+    }
   }
+}
+
+categorizeNumericValuesIntoIntervals <- function(df, colname) {
+  df[, colname] <- as.numeric(df[, colname])
+  columnVector <- df[, colname]
+  ## Get the .2th and .8th quantile of values in this column
+  q <- quantile(columnVector, probs = c(0.2, 0.8))  
+  ## Divide the entire set of values into max. 10 subsets
+  range <- (q['80%'] - q['20%']) / 6
+  df <- rangeMiddlePart(df, colname, q['20%'], range)
+  df <- rangeLeftPart(df, colname, q['20%'], range)
+  df <- rangeRightPart(df, colname, q['80%'], range)
+  return(df)
+}
+
+rangeMiddlePart <- function(df, colname, lowerBound, range) {
+  for (i in 1:6) {
+    label <- paste(colname, 'middle', i, sep = '_')
+    upperBound <- lowerBound + range
+    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
+    lowerBound <- upperBound
+  }
+  return(df)
+}
+
+rangeLeftPart <- function(df, colname, upperBound, range) {
+  lowerBound <- upperBound - range
+  i = 1
+  while(lowerBound >= min(columnVector)) {
+    label <- paste(colname, 'low', i, sep = '_')
+    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
+    upperBound <- lowerBound
+    lowerBound <- upperBound - range  
+    i <- i + 1
+  }
+  df[, colname][df[, colname] < upperBound] <- paste(colname, 'low', i, sep = '_')
+  return(df)
+}
+
+rangeRightPart <- function(df, colname, lowerBound, range) {
+  upperBound <- lowerBound + range
+  i = 1
+  while(upperBound <= max(columnVector)) {
+    label <- paste(colname, 'high', i, sep = '_')
+    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
+    lowerBound <- upperBound
+    upperBound <- lowerBound + range  
+    i <- i + 1
+  }
+  df[, colname][df[, colname] >= lowerBound] <- paste(colname, 'high', i, sep = '_')
+  return(df)
 }
