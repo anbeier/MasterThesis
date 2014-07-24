@@ -1,6 +1,7 @@
 library(parallel)
 library(e1071)
 library(caTools)
+library(arules)
 source('censusPreprocess.R')
 source('censusSVM.R')
 source('log.R')
