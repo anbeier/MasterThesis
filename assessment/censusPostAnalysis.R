@@ -30,3 +30,19 @@ readExperimentResults <- function(delta, alpha) {
   filenames <- list.files(dir, full.names = TRUE)  # only 98 files, it should be 102
   results <- getFileContents(filenames)
 }
+
+getColumnsWithinThreshold <- function(resultsList) {
+  errorOfEachColumn <- resultsList$ErrorOfEachColumn
+  criticalErrorOfEachClique <- resultsList$CriticalErrorOfEachClique
+  # Cliques whose minimal error is greater than 0.4 is considered as bad.
+  criticalErrorOfEachClique <- criticalErrorOfEachClique[criticalErrorOfEachClique$min_error < 0.4, ]
+  listOfCliques <- split(errorOfEachColumn, errorOfEachColumn$clique_index)
+  df <- NULL
+  for(qs in listOfCliques) {
+    i <- qs$clique_index[1]
+    threshold <- criticalErrorOfEachClique$error_threshold[which(criticalErrorOfEachClique$clique_index == i)]
+    qs <- qs[qs$testing_error <= threshold, ]
+    df <- rbind(df, qs)
+  }
+  return(df)
+}
