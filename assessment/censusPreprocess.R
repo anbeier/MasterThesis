@@ -1,12 +1,14 @@
 source('log.R')
 
-getDataset <- function(csvfp, colnameFile, alpha) {
+getDataset <- function(csvfp, colnameFile) {
   # Reading in dataset
   census <- readingdataset(csvfp, colnameFile)
   # Coverting some of integer columns to categorical columns
   census <- convertSpecialIntegerColumnToFactor(census)
   # Bucketizing values of a numeric column to bins and convert it to a factor column
-  census <- bucketizeNumericColumns(census, alpha)
+  # census <- bucketizeNumericColumns(census, alpha)
+  # Mapping numeric values within a range to a specific category
+  census <- convertNumericColumnToFactor(census)
   return(census)
 }
 
@@ -225,7 +227,7 @@ makeSamplesForEachTarget <- function(qs, cliqueColnames) {
   return(ls)
 }
 
-convertNumericToFactor <- function(df) {
+convertNumericColumnToFactor <- function(df) {
   dd <- df
   for(i in 1:ncol(dd)) {
     if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
@@ -233,6 +235,7 @@ convertNumericToFactor <- function(df) {
       df <- categorizeNumericValuesIntoIntervals(df, colname)
     }
   }
+  return(df)
 }
 
 categorizeNumericValuesIntoIntervals <- function(df, colname) {
@@ -242,46 +245,12 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
   q <- quantile(columnVector, probs = c(0.2, 0.8))  
   ## Divide the entire set of values into max. 10 subsets
   range <- (q['80%'] - q['20%']) / 6
-  df <- rangeMiddlePart(df, colname, q['20%'], range)
-  df <- rangeLeftPart(df, colname, q['20%'], range)
-  df <- rangeRightPart(df, colname, q['80%'], range)
-  return(df)
-}
-
-rangeMiddlePart <- function(df, colname, lowerBound, range) {
-  for (i in 1:6) {
-    label <- paste(colname, 'middle', i, sep = '_')
-    upperBound <- lowerBound + range
-    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
-    lowerBound <- upperBound
-  }
-  return(df)
-}
-
-rangeLeftPart <- function(df, colname, upperBound, range) {
-  lowerBound <- upperBound - range
-  i = 1
-  while(lowerBound >= min(columnVector)) {
-    label <- paste(colname, 'low', i, sep = '_')
-    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
-    upperBound <- lowerBound
-    lowerBound <- upperBound - range  
-    i <- i + 1
-  }
-  df[, colname][df[, colname] < upperBound] <- paste(colname, 'low', i, sep = '_')
-  return(df)
-}
-
-rangeRightPart <- function(df, colname, lowerBound, range) {
-  upperBound <- lowerBound + range
-  i = 1
-  while(upperBound <= max(columnVector)) {
-    label <- paste(colname, 'high', i, sep = '_')
-    df[, colname][df[, colname] >= lowerBound & df[, colname] < upperBound] <- label
-    lowerBound <- upperBound
-    upperBound <- lowerBound + range  
-    i <- i + 1
-  }
-  df[, colname][df[, colname] >= lowerBound] <- paste(colname, 'high', i, sep = '_')
+  df[, colname] <- unlist(lapply(df[, colname], 
+                                 function(x) {
+                                   i <- (x - q['20%']) %/% range
+                                   label <- paste(colname, i, sep = '_')
+                                   return(label)
+                                 }))
+  df[, colname] <- as.factor(df[, colname])
   return(df)
 }
