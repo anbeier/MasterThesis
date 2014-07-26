@@ -1,21 +1,20 @@
 source('log.R')
 
-getDataset <- function(csvfp, colnameFile) {
+getCensusData <- function(csvFilePath, colnameFilePath) {
   # Reading in dataset
-  census <- readingdataset(csvfp, colnameFile)
-  # Coverting some of integer columns to categorical columns
+  census <- readingData(csvFilePath, colnameFilePath)
+  # Coverting some of integer columns directly to categorical columns
   census <- convertSpecialIntegerColumnToFactor(census)
-  # Bucketizing values of a numeric column to bins and convert it to a factor column
-  # census <- bucketizeNumericColumns(census, alpha)
-  # Mapping numeric values within a range to a specific category
+  # Mapping numeric values to a specific categorial label w.r.t. a specific range
   census <- convertNumericColumnToFactor(census)
+  ## Bucketizing values of a numeric column to bins and convert it to a factor column
+  ## census <- bucketizeNumericColumns(census, alpha)
   return(census)
 }
 
 
 # read in data, modify column names, eliminate NAs.
-readingdataset <- function(csvFile, colnameFile) {
-  
+readingData <- function(csvFile, colnameFile) { 
   df <- read.csv(csvFile, sep = ";")  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
@@ -101,15 +100,13 @@ mapBinsOntoColumn <- function(df, colname, bin, binsize){
 
 
 # read in quasi clique file
-readingQuasiCliques <- function(dataset, fp) {
-  
-  fqs <- readLines(fp, encoding = "UTF-8") 
+readingQuasiCliques <- function(fqsFile) {
+  cliques <- readLines(fqsFile, encoding = "UTF-8") 
   qs <- NULL  
-  for(i in 1:length(fqs)) {
-    tmp <- unlist(strsplit(fqs[i], "--"))
-    qs <- append(qs, list(tmp))
+  for(aClique in cliques) {
+    temp <- unlist(strsplit(aClique, "--"))
+    qs <- append(qs, list(temp))
   }
-  
   qs <- lapply(qs, function(x) modifySingleString(x))  
   return(qs)
 }
@@ -144,21 +141,21 @@ takeSamples <- function(qs, targetcol) {
 }
 
 
-# replace invalid symbols in column names with "_"
+# replace invalid symbols in column names with "_" and "."
 # input: a quasi clique
 # output: a quasi clique with all valid column names
-modifyColnames <- function(qs) {
-  
+modifyColnames <- function(qs) {  
   colnames(qs) <- gsub(" ", "_", colnames(qs), fixed = TRUE)
   colnames(qs) <- gsub("-", "_", colnames(qs), fixed = TRUE)
+  colnames(qs) <- gsub("'", ".", colnames(qs), fixed = TRUE)
   return(qs)
 }
 
 
-modifySingleString <- function(str) {
-  
+modifySingleString <- function(str) {  
   str <- gsub(" ", "_", str, fixed = TRUE)
   str <- gsub("-", "_", str, fixed = TRUE)
+  str <- gsub("'", ".", str, fixed = TRUE)
   return(str)
 }
 

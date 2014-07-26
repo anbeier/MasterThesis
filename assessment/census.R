@@ -10,14 +10,13 @@ csvfp = 'census.csv'
 colnamefp = 'census_colnames.txt'
 fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
 
-main <- function(index, delta = 0.7, alpha = 0.5, 
+main <- function(cliqueIndex, delta = 0.7, alpha = 0.5, 
                  csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
-  census <- getDataset(csvFile, colnameFile, alpha)
-  cliques <- readingQuasiCliques(census, fqsFile)
-  
+  data <- getCensusData(csvFile, colnameFile)
+  allCliques <- readingQuasiCliques(fqsFile) 
   # A loop where models for each clique, i.e. for each column in this clique are built.
-  clique <- getOneClique(census, cliques, index)  
+  clique <- getOneClique(data, allCliques, cliqueIndex)  
   # save result of each clique in a RData file
   loopTrainingTesting(clique, index, delta, alpha)
 }
@@ -35,7 +34,7 @@ worker <- function(input) {
 parallelMain <- function(indexStart, indexEnd, delta = 0.7, alpha = 0.5, 
                          csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
-  census <- getDataset(csvFile, colnameFile, alpha)
+  census <- getDataset(csvFile, colnameFile)
   cliques <- readingQuasiCliques(census, fqsFile)
   
   # A loop where models for each clique, i.e. for each column in this clique are built.

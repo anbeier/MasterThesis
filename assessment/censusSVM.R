@@ -10,7 +10,7 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   l <- length(colnames(qs))
   for(target in colnames(qs)) {   
     log(paste(index, paste(i, l, sep='/'), target))
-    data <- takeSamples(qs, target)
+    data <- takeSamples(qs, target)  ## Should not be used any more!!
     training <- data$training
     testing <- data$testing   
     
