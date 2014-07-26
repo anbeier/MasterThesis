@@ -1,4 +1,5 @@
-main <- function(qs, qsIndex) {
+# For-loop in a quasi clique; for each column do calculate association rules
+loopAssociationRules <- function(qs, qsIndex) {
   result <- NULL
   for(colname in names(qs)) {
     rules <- getRules(qs, colname)

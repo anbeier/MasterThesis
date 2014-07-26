@@ -1,5 +1,7 @@
 source('log.R')
 
+# For-loop in a quasi clique; for each column as outcome value train a SVM model
+# using training dataset and apply this model on testing dataset
 loopTrainingTesting <- function(qs, index, delta, alpha) {
   fileNames <- makeFilenames(index, delta, alpha)
   errVec <- NULL
@@ -10,7 +12,7 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   l <- length(colnames(qs))
   for(target in colnames(qs)) {   
     log(paste(index, paste(i, l, sep='/'), target))
-    data <- takeSamples(qs, target)  ## Should not be used any more!!
+    data <- takeSamples(qs, target) 
     training <- data$training
     testing <- data$testing   
     
