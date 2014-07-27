@@ -251,3 +251,11 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
   df[, colname] <- as.factor(df[, colname])
   return(df)
 }
+
+# Make a sharing part of file name that can be used for results from all methods
+makeFileName <- function(i, delta, alpha) {
+  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
+  string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
+  string <- paste(string, 'RData', sep = '.')
+  return(string)
+}

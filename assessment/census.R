@@ -19,6 +19,7 @@ main <- function(cliqueIndex, delta = 0.7, alpha = 0.5,
   clique <- getOneClique(data, allCliques, cliqueIndex)  
   # save result of each clique in a RData file
   loopTrainingTesting(clique, index, delta, alpha)
+  loopAssociationRules(clique, index)
 }
 
 worker <- function(input) {

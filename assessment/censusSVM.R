@@ -3,7 +3,7 @@ source('log.R')
 # For-loop in a quasi clique; for each column as outcome value train a SVM model
 # using training dataset and apply this model on testing dataset
 loopTrainingTesting <- function(qs, index, delta, alpha) {
-  fileNames <- makeFilenames(index, delta, alpha)
+  fileNames <- makeFileNameForResultsFromSVM(index, delta, alpha)
   errVec <- NULL
   tarVec <- NULL
   levelVec <- NULL
@@ -18,7 +18,7 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
     
     model <- trainSVMModel(training, target)
     err <- getTestingError(model, testing)
-    factorLevels <- levels(qs[, target])
+    factorLevels <- (1 - 1/levels(qs[, target])) / 5
     levelVec <- c(levelVec, factorLevels)
     errVec <- c(errVec, err)
     tarVec <- c(tarVec, target)
@@ -30,13 +30,19 @@ loopTrainingTesting <- function(qs, index, delta, alpha) {
   # cliq <- paste(colnames(qs), collapse = '--') 
   thres <- getErrorThreshold(errVec)
   df <- data.frame(target_column = tarVec, testing_error = errVec)
-  rslt <- list(clique_index = index, details = df, threshold = thres, 
-               min_error = min(errVec), avg_error = mean(errVec), levels_of_factor = levelVec)
-  save(rslt, file = fileNames$finalName)
+  result.svm <- list(clique_index = index, details = df, threshold = thres, 
+               min_error = min(errVec), avg_error = mean(errVec), expected_error_in_factor = levelVec)
+  save(result.svm, file = fileNames$finalName)
   unlink(fileNames$temporaryName)
   log(paste(index, "done"))
 }
 
+makeFileNameForResultsFromSVM <- function(i, delta, alpha) {
+  sharingPart <- makeFileName(i, delta, alpha)
+  fn <- paste('svm', sharingPart, sep = '-')
+  tfn <- paste('tmp', fn, sep='-')
+  list(finalName=fn, temporaryName=tfn)
+}
 
 trainSVMModel <- function(training, target) {
 
@@ -78,12 +84,4 @@ getErrorThreshold <- function(errors) {
   }
   t <- err[which.max(dif)]
   return(t)
-}
-
-makeFilenames <- function(i, delta, alpha) {
-  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
-  fn <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
-  fn <- paste(fn, 'RData', sep = '.')
-  tfn <- paste(paste('tmp-', fn, sep=''), 'RData', sep = '.')
-  return(list(finalName=fn, temporaryName=tfn))
 }
