@@ -1,34 +1,65 @@
-getDirectory <- function(delta, alpha) {
-  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '_')
-  foldername <- paste('census', prefix, sep = '_')
-  return(foldername)
+readExperimentResults <- function(dataset, delta, alpha) {
+  dir <- getDirectory(dataset, delta, alpha)
+  filenames <- getFileNames(dir)
+  res.rules <- getRulesReport(filenames$rules)
+  res.svm <- getSVMReport(filenames$svm)
 }
 
+getDirectory <- function(dataset, delta, alpha) {
+  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '_')
+  folderName <- paste(dataset, prefix, sep = '_')
+  return(folderName)
+}
+
+# Return a list of filenames w.r.t. experiment methods
 getFileNames <- function(directory) {
-  filenames <- 
+  folderpaths <- list.files(directory, full.names=TRUE)
+  foldernames <- list.files(directory)
+  filenames <- NULL
+  i <- 1  ## initial folder index
+  while(i <= length(foldernames)) {
+    files <- list.files(folderpaths[i], full.names=TRUE)
+    if(foldernames[i] == 'rules') {
+      if(is.null(filenames)) {
+        filenames <- list(svm = files)
+      } else {
+        filenames <- list(filenames, svm = files)
+      }
+    } else if(foldernames[i] == 'svm') {
+      if(is.null(filenames)) {
+        filenames <- list(svm = files)
+      } else {
+        filenames <- list(filenames, svm = files)
+      }
+    }
+    i = i + 1
+  }
   return(filenames)
 }
 
-getFileContents <- function(filenames) {
-  dfErrorOfEachColumn <- NULL
-  dfCriticalErrorOfEachClique <- NULL
+getRulesReport <- function(filenames) {
+  dfExperimentsDetails <- NULL
   for(fn in filenames) {
-    load(fn)    # Will have a rslt value in the environment after loading a file
-    index <- rep(rslt$clique_index, nrow(rslt$details))
-    df <- data.frame(clique_index = index, rslt$details)
-    dfErrorOfEachColumn <- rbind(dfErrorOfEachColumn, df)
-    df <- data.frame(clique_index = rslt$clique_index, min_error = rslt$min_error, 
-                     error_threshold = rslt$threshold, avg_error = rslt$avg_error)
-    dfCriticalErrorOfEachClique <- rbind(dfCriticalErrorOfEachClique, df)
+    load(fn) # Will have a result.rules variable in the environment after loading a file
+    dfExperimentsDetails <- rbind(dfExperimentsDetails, result.rules)
   }
-  list(ErrorOfEachColumn = dfErrorOfEachColumn, 
-       CriticalErrorOfEachClique = dfCriticalErrorOfEachClique)
+  return(dfExperimentsDetails)
 }
 
-readExperimentResults <- function(delta, alpha) {
-  dir <- getDirectory(delta, alpha)
-  filenames <- list.files(dir, full.names = TRUE)  # only 98 files, it should be 102
-  results <- getFileContents(filenames)
+getSVMReport <- function(filenames) {
+  dfExperimentsDetails <- NULL
+  dfCriticalErrorOfEachClique <- NULL
+  for(fn in filenames) {
+    load(fn)    # Will have a result.svm variable in the environment after loading a file
+    ## index <- rep(rslt$clique_index, nrow(rslt$details))
+    df <- data.frame(clique_index = result.svm$clique_index, result.svm$details)
+    dfExperimentsDetails <- rbind(dfExperimentsDetails, df)
+    df <- data.frame(clique_index = result.svm$clique_index, min_error = result.svm$min_error, 
+                     error_threshold = result.svm$threshold, avg_error = result.svm$avg_error)
+    dfCriticalErrorOfEachClique <- rbind(dfCriticalErrorOfEachClique, df)
+  }
+  list(dfExperimentsDetails = dfExperimentsDetails, 
+       CriticalErrorOfEachClique = dfCriticalErrorOfEachClique)
 }
 
 getColumnsWithinThreshold <- function(resultsList) {

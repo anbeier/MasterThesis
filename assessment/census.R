@@ -4,6 +4,7 @@ library(caTools)
 library(arules)
 source('censusPreprocess.R')
 source('censusSVM.R')
+source('censusAssociationRules.R')
 source('log.R')
 
 csvfp = 'census.csv'
@@ -18,14 +19,15 @@ main <- function(cliqueIndex, delta = 0.7, alpha = 0.5,
   # A loop where models for each clique, i.e. for each column in this clique are built.
   clique <- getOneClique(data, allCliques, cliqueIndex)  
   # save result of each clique in a RData file
-  loopTrainingTesting(clique, index, delta, alpha)
-  loopAssociationRules(clique, index)
+  loopTrainingTestingSVM(clique, index, delta, alpha)
+  loopAssociationRules(clique, index, delta, alpha)
 }
 
 worker <- function(input) {
   log(paste("processing", input$index))
   tryCatch({
     loopTrainingTesting(input$clique, input$index, input$delta, input$alpha)
+    loopAssociationRules(input$clique, input$index, input$delta, input$alpha)
   }, error=function(e) {
     log(paste("error processing", input$index, e))
     e
@@ -35,8 +37,8 @@ worker <- function(input) {
 parallelMain <- function(indexStart, indexEnd, delta = 0.7, alpha = 0.5, 
                          csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
-  census <- getDataset(csvFile, colnameFile)
-  cliques <- readingQuasiCliques(census, fqsFile)
+  census <- getCensusData(csvFile, colnameFile)
+  cliques <- readingQuasiCliques(fqsFile)
   
   # A loop where models for each clique, i.e. for each column in this clique are built.
   inputs <- lapply(seq(indexStart, indexEnd), function(i) {

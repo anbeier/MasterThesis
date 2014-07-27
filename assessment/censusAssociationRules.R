@@ -7,14 +7,14 @@ loopAssociationRules <- function(qs, qsIndex, delta, alpha) {
     df <- transformRulesToDataframe(rules, qsIndex)
     result <- rbind(result, df)
   }
-  result.rules <- getRulesItems(result)
-  save(result.rules, file = fileName)
+  result.rules <- separateRulesItems(result)
+  save(result.rules, file = fileName)  ## result.rules variable can be reloaded in post analysis
 }
 
 getRules <- function(df, colname) {
   rhs.vector <- getAllLevelsOfTargetColumn(df, colname)
   trans <- as(df, 'transactions')  ## Convert data frame to transactions
-  rules <- apriori(trans, parameter = list(minlen = 2, support = 0.01, confidence = 0.5), 
+  rules <- apriori(trans, parameter = list(minlen = 2, support = 0.1, confidence = 0.5), 
                    appearance = list(rhs = rhs.vector, default = 'lhs'), 
                    control = list(verbose = FALSE))
   if(length(rules) > 0) {
@@ -53,7 +53,7 @@ transformRulesToDataframe <- function(rules, cliqueIndex) {
   return(df)
 }
 
-getRulesItems <- function(df) {
+separateRulesItems <- function(df) {
   df <- na.omit(df)
   outcome <- NULL
   outcomeValue <- NULL
@@ -75,7 +75,7 @@ getRulesItems <- function(df) {
 }
 
 makeFileNameForResultsFromRules <- function(i, delta, alpha) {
-  sharingPart <- makeFileName(i, delta, alpha)
+  sharingPart <- makeFileName(delta, alpha, i)
   fn <- paste('rules', sharingPart, sep = '-')
   return(fn)
 }

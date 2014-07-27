@@ -1,14 +1,12 @@
 source('log.R')
 
 getCensusData <- function(csvFilePath, colnameFilePath) {
-  # Reading in dataset
+  # Reading in dataset, eliminating rows with NAs
   census <- readingData(csvFilePath, colnameFilePath)
   # Coverting some of integer columns directly to categorical columns
   census <- convertSpecialIntegerColumnToFactor(census)
-  # Mapping numeric values to a specific categorial label w.r.t. a specific range
+  # Mapping numeric values to a specific level of factor w.r.t. a specific range of values
   census <- convertNumericColumnToFactor(census)
-  ## Bucketizing values of a numeric column to bins and convert it to a factor column
-  ## census <- bucketizeNumericColumns(census, alpha)
   return(census)
 }
 
@@ -123,10 +121,9 @@ getOneClique <- function(dataset, fqs, index) {
 # input: a quasi clique, a target value
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetcol) {
-  
   ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
   samples <- qs
-  ratio <- 0.4
+  ratio <- 0.65
   alpha <- 0.5
   trainingSize <- nrow(samples)^alpha + 1000
   if (nrow(samples) > trainingSize) {
@@ -135,8 +132,7 @@ takeSamples <- function(qs, targetcol) {
   log(paste("choosing ratio", ratio, "sample training size", trainingSize))
   split <- sample.split(samples[, targetcol], SplitRatio = ratio)
   training <- subset(samples, split == TRUE)
-  testing <- subset(samples, split == FALSE)
-  
+  testing <- subset(samples, split == FALSE) 
   list(training = training, testing = testing)
 }
 
@@ -214,16 +210,6 @@ convertCategories <- function(qs) {
   return(df)
 }
 
-
-makeSamplesForEachTarget <- function(qs, cliqueColnames) {
-  ls <- NULL
-  for(target in cliqueColnames) {
-    df <- takeSamples(qs, target)
-    ls <- append(ls, list(df))
-  }
-  return(ls)
-}
-
 convertNumericColumnToFactor <- function(df) {
   dd <- df
   for(i in 1:ncol(dd)) {
@@ -253,7 +239,7 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
 }
 
 # Make a sharing part of file name that can be used for results from all methods
-makeFileName <- function(i, delta, alpha) {
+makeFileName <- function(delta, alpha, i) {
   prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
   string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
   string <- paste(string, 'RData', sep = '.')

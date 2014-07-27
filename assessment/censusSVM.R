@@ -2,43 +2,38 @@ source('log.R')
 
 # For-loop in a quasi clique; for each column as outcome value train a SVM model
 # using training dataset and apply this model on testing dataset
-loopTrainingTesting <- function(qs, index, delta, alpha) {
+loopTrainingTestingSVM <- function(qs, index, delta, alpha) {
   fileNames <- makeFileNameForResultsFromSVM(index, delta, alpha)
   errVec <- NULL
   tarVec <- NULL
   levelVec <- NULL
   
-  i <- 1
+  i <- 1  ## log
   l <- length(colnames(qs))
   for(target in colnames(qs)) {   
     log(paste(index, paste(i, l, sep='/'), target))
     data <- takeSamples(qs, target) 
-    training <- data$training
-    testing <- data$testing   
-    
-    model <- trainSVMModel(training, target)
-    err <- getTestingError(model, testing)
-    factorLevels <- (1 - 1/levels(qs[, target])) / 5
-    levelVec <- c(levelVec, factorLevels)
-    errVec <- c(errVec, err)
-    tarVec <- c(tarVec, target)
-    
-    save(index, tarVec, errVec, levelVec, file = fileNames$temporaryName)
+    model <- trainSVMModel(data$training, target)
+    testingError <- getTestingError(model, data$testing)
+    expected.level.ratio <- (1 - 1/length(levels(qs[, target]))) / 2
+    level.vector <- c(levelVec, expected.level.ratio)
+    error.vector <- c(errVec, testingError)
+    targart.vector <- c(tarVec, target)
+    save(index, targart.vector, error.vector, level.vector, file = fileNames$temporaryName)
     i <- i + 1
   }
   
-  # cliq <- paste(colnames(qs), collapse = '--') 
-  thres <- getErrorThreshold(errVec)
-  df <- data.frame(target_column = tarVec, testing_error = errVec)
+  thres <- getErrorThreshold(error.vector)
+  df <- data.frame(target_column = targart.vector, testing_error = error.vector, expected_error_in_factor = level.vector)
   result.svm <- list(clique_index = index, details = df, threshold = thres, 
-               min_error = min(errVec), avg_error = mean(errVec), expected_error_in_factor = levelVec)
-  save(result.svm, file = fileNames$finalName)
+                     min_error = min(error.vector), avg_error = mean(error.vector))
+  save(result.svm, file = fileNames$finalName)  ## result.svm variable can be reloaded in post analysis
   unlink(fileNames$temporaryName)
   log(paste(index, "done"))
 }
 
 makeFileNameForResultsFromSVM <- function(i, delta, alpha) {
-  sharingPart <- makeFileName(i, delta, alpha)
+  sharingPart <- makeFileName(delta, alpha, i)
   fn <- paste('svm', sharingPart, sep = '-')
   tfn <- paste('tmp', fn, sep='-')
   list(finalName=fn, temporaryName=tfn)
