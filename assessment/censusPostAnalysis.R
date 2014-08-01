@@ -63,13 +63,18 @@ getSVMResults <- function(filenames) {
        critical.errors = critical.errors)
 }
 
-# Consider columns of which testing error smaller than or equals expected error as good columns
+# expected_error_in_factor is set to validate predictions that are a little better than a random guessing.
+# Columns of which testing error smaller than/equals expected error are considerd good
 findGoodCliquesFromSVM <- function(resultsFromSVM) {
   data <- resultsFromSVM$experiment.details
   df.expected <- data[data$testing_error <= data$expected_error_in_factor, ]
   return(df.expected)
 }
 
+# If some rule had a lift of 1, it would imply that the probability of occurrence of the antecedent and 
+# that of the consequent are independent of each other. 
+# If the lift is > 1, that lets us know the degree to which those two occurrences are dependent on one another, 
+# and makes those rules potentially useful for predicting the consequent in future data sets.
 findGoodCliquesFromRules <- function(resultsFromRules) {
   
 }
