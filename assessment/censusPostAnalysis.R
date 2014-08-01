@@ -1,11 +1,12 @@
 findGoodCliques <- function() {
-  ls <- readExperimentResults(dataset, delta, alpha)
-  goodFromRules <- findGoodCliquesFromRules(ls$association.rules)
-  goodFromSVM <- findGoodCliquesFromSVM(ls$support.vector.machine)
+  dataset <- getCensusData(csvFile, colnameFile)
+  ls <- readExperimentResults(datasetName, delta, alpha)
+  good.rules <- findGoodCliquesFromRules(ls$association.rules)
+  good.svm <- findGoodCliquesFromSVM(ls$support.vector.machine)
 }
 
-readExperimentResults <- function(dataset, delta, alpha) {
-  dir <- getDirectory(dataset, delta, alpha)
+readExperimentResults <- function(datasetName, delta, alpha) {
+  dir <- getDirectory(datasetName, delta, alpha)
   filenames <- getFileNames(dir)
   res.rules <- getRulesResults(filenames$rules)
   res.svm <- getSVMResults(filenames$svm)
@@ -75,7 +76,104 @@ findGoodCliquesFromSVM <- function(resultsFromSVM) {
 # that of the consequent are independent of each other. 
 # If the lift is > 1, that lets us know the degree to which those two occurrences are dependent on one another, 
 # and makes those rules potentially useful for predicting the consequent in future data sets.
-findGoodCliquesFromRules <- function(resultsFromRules) {
+findGoodCliquesFromRules <- function(resultsFromRules, dataset) {
+  dominators <- getAllDominantColumnValues(dataset)
+  data <- resultsFromRules[resultsFromRules$lift >= 1.1, ]
+  dfs <- split(data, f = data[, 'clique_index'])  ## Split data into data frames w.r.t. clique_index
+  res <- unlist(lapply(dfs, 
+                       function(x, dominators) {
+                         temp <- isGoodClique(x, dominators)
+                         if(temp$isGood) {
+                           return(temp$goodRules)
+                         } else {
+                           x <- NULL
+                           return(x)
+                         }
+                       }))
+  return(res)
+}
+
+# A clique is considered good if there is at least one column fulfilling the conditions.
+isGoodClique <- function(qs, dominators) {
+  dfs <- split(qs, f = qs[, 'outcome_column'])  ## Split data into data frames w.r.t. outcome_column
+  isGood <- FALSE
+  res.df <- NULL
+  for(df in dfs) {
+    if(nrow(df) == 1) {
+      if(!isColumnValueDominant(df$outcome_column[1], df$outcome_value[1], dominators)) {
+        isGood <- TRUE
+        res.df <- rbind(res.df, df)
+      }      
+    } else if(nrow(df) > 1){
+      variance = length(levels(as.factor(df$outcome_value))) - 1
+      if(variance > 0) {
+        for(lvl in levels(as.factor(df$outcome_value))) {
+          if(!isColumnValueDominant(df$outcome_column[1], lvl, dominators)) {
+            isGood <- isGood | TRUE
+            res.df <- rbind(res.df, df)
+          }
+        }
+      }
+    }
+  }
+  list(isGood = isGood, goodRules = res.df)
+}
+
+# Return a list of data frames indicating the dominant values according to each column in the dataset.
+getAllDominantColumnValues <- function(dataset) {
+  rowNum = nrow(dataset)
+  ls <- NULL
+  for(column in colnames(dataset)) {
+    ls.level <- split(dataset[, column], f = dataset[, column])
+    df.level.prop <- calculateLevelProprotions(ls.level, rowNum)
+    df.level.dominant <- getDominantLevels(df.level.prop)
+    if(length(ls) == 0) {
+      ls <- list(column = df.level.dominant)
+      names(ls) = column
+    } else if(length(ls) > 0) {
+      temp <- list(column = df.level.dominant)
+      names(temp) = column
+      ls <- list(ls, temp)
+    }
+  }
+  return(ls)
+}
+
+calculateLevelProprotions <- function(list.of.levels, dim.rows) {
+  level.names <- NULL
+  level.proportions <- NULL
+  for(v in list.of.levels) {
+    level.names <- c(level.names, v[1])
+    level.proportions <- c(level.proportions, round(length(v) / dim.rows, 4))
+  }
+  data.frame(level = level.names, proportion = level.proportions)
+}
+
+# The levels of which proportions are greater than a threshold proportion are considerd dominant.
+getDominantLevels <- function(df) {
+  prop <- sort(df$proportion)
+  diff <- NULL
+  i <- 1  ## initial index
+  while(i < length(prop)) {
+    temp <- prop[i+1] - prop[i]
+    diff <- c(dif, temp)
+    i <- i + 1
+  }
+  thres <- prop[which.max(diff)]  ## Mark the index of the highest differece
+  df <- df[df$proportion > thres, ]
+  return(df)
+}
+
+isColumnValueDominant <- function(col, val, dominators) {
+  df <- dominators[[col]]
+  if(val %in% df$level) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+getGoodRules <- function(qs) {
   
 }
 
