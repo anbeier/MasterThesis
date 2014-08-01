@@ -4,9 +4,9 @@ source('log.R')
 # using training dataset and apply this model on testing dataset
 loopTrainingTestingSVM <- function(qs, index, delta, alpha) {
   fileNames <- makeFileNameForResultsFromSVM(index, delta, alpha)
-  errVec <- NULL
-  tarVec <- NULL
-  levelVec <- NULL
+  error.vector <- NULL
+  targart.vector <- NULL
+  level.vector <- NULL
   
   i <- 1  ## log
   l <- length(colnames(qs))
@@ -15,10 +15,10 @@ loopTrainingTestingSVM <- function(qs, index, delta, alpha) {
     data <- takeSamples(qs, target) 
     model <- trainSVMModel(data$training, target)
     testingError <- getTestingError(model, data$testing)
-    expected.level.ratio <- (1 - 1/length(levels(qs[, target]))) / 2
-    level.vector <- c(levelVec, expected.level.ratio)
-    error.vector <- c(errVec, testingError)
-    targart.vector <- c(tarVec, target)
+    expected.level.ratio <- (1 - 1/length(levels(qs[, target]))) / 2.5
+    level.vector <- c(level.vector, expected.level.ratio)
+    error.vector <- c(error.vector, testingError)
+    targart.vector <- c(targart.vector, target)
     save(index, targart.vector, error.vector, level.vector, file = fileNames$temporaryName)
     i <- i + 1
   }

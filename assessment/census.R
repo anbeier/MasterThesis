@@ -26,7 +26,7 @@ main <- function(cliqueIndex, delta = 0.7, alpha = 0.5,
 worker <- function(input) {
   log(paste("processing", input$index))
   tryCatch({
-    loopTrainingTesting(input$clique, input$index, input$delta, input$alpha)
+    loopTrainingTestingSVM(input$clique, input$index, input$delta, input$alpha)
     loopAssociationRules(input$clique, input$index, input$delta, input$alpha)
   }, error=function(e) {
     log(paste("error processing", input$index, e))
