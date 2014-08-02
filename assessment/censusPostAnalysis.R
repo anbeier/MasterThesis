@@ -80,16 +80,15 @@ findGoodCliquesFromRules <- function(resultsFromRules, dataset) {
   dominators <- getAllDominantColumnValues(dataset)
   data <- resultsFromRules[resultsFromRules$lift >= 1.1, ]
   dfs <- split(data, f = data[, 'clique_index'])  ## Split data into data frames w.r.t. clique_index
-  res <- unlist(lapply(dfs, 
-                       function(x, dominators) {
-                         temp <- isGoodClique(x, dominators)
-                         if(temp$isGood) {
-                           return(temp$goodRules)
-                         } else {
-                           x <- NULL
-                           return(x)
-                         }
-                       }))
+  res <- lapply(dfs, 
+                function(x, doms = dominators) {
+                  temp <- isGoodClique(x, doms)
+                  if(temp$isGood) {
+                    temp$goodRules
+                  } else {
+                    NA
+                  }
+                })
   return(res)
 }
 
@@ -108,8 +107,9 @@ isGoodClique <- function(qs, dominators) {
       variance = length(levels(as.factor(df$outcome_value))) - 1
       if(variance > 0) {
         for(lvl in levels(as.factor(df$outcome_value))) {
-          if(!isColumnValueDominant(df$outcome_column[1], lvl, dominators)) {
-            isGood <- isGood | TRUE
+          col = df$outcome_column[1]
+          if(!isColumnValueDominant(col, lvl, dominators)) {
+            isGood <- TRUE
             res.df <- rbind(res.df, df)
           }
         }
@@ -119,36 +119,38 @@ isGoodClique <- function(qs, dominators) {
   list(isGood = isGood, goodRules = res.df)
 }
 
+# Tested
 # Return a list of data frames indicating the dominant values according to each column in the dataset.
 getAllDominantColumnValues <- function(dataset) {
   rowNum = nrow(dataset)
   ls <- NULL
   for(column in colnames(dataset)) {
-    ls.level <- split(dataset[, column], f = dataset[, column])
-    df.level.prop <- calculateLevelProprotions(ls.level, rowNum)
+    ls.level <- split(dataset[, column], f = dataset[, column])  ## a list of vectors w.r.t. a specific level of this column
+    df.level.prop <- calculateLevelProportions(ls.level, rowNum)
     df.level.dominant <- getDominantLevels(df.level.prop)
     if(length(ls) == 0) {
       ls <- list(column = df.level.dominant)
       names(ls) = column
     } else if(length(ls) > 0) {
-      temp <- list(column = df.level.dominant)
-      names(temp) = column
-      ls <- list(ls, temp)
+      ls <- c(ls, list(column = df.level.dominant))
+      names(ls)[length(ls)] = column     
     }
   }
   return(ls)
 }
 
-calculateLevelProprotions <- function(list.of.levels, dim.rows) {
+# Tested
+calculateLevelProportions <- function(list.of.levels, dim.rows) {
   level.names <- NULL
   level.proportions <- NULL
   for(v in list.of.levels) {
-    level.names <- c(level.names, v[1])
+    level.names <- c(level.names, as.character(v[1]))
     level.proportions <- c(level.proportions, round(length(v) / dim.rows, 4))
   }
   data.frame(level = level.names, proportion = level.proportions)
 }
 
+# Tested
 # The levels of which proportions are greater than a threshold proportion are considerd dominant.
 getDominantLevels <- function(df) {
   prop <- sort(df$proportion)
@@ -156,7 +158,7 @@ getDominantLevels <- function(df) {
   i <- 1  ## initial index
   while(i < length(prop)) {
     temp <- prop[i+1] - prop[i]
-    diff <- c(dif, temp)
+    diff <- c(diff, temp)
     i <- i + 1
   }
   thres <- prop[which.max(diff)]  ## Mark the index of the highest differece
@@ -171,25 +173,4 @@ isColumnValueDominant <- function(col, val, dominators) {
   } else {
     return(FALSE)
   }
-}
-
-getGoodRules <- function(qs) {
-  
-}
-
-# To be continued
-getColumnsWithinThreshold <- function(resultsList) {
-  errorOfEachColumn <- resultsList$ErrorOfEachColumn
-  criticalErrorOfEachClique <- resultsList$CriticalErrorOfEachClique
-  # Cliques whose minimal error is greater than 0.4 is considered as bad.
-  criticalErrorOfEachClique <- criticalErrorOfEachClique[criticalErrorOfEachClique$min_error < 0.4, ]
-  listOfCliques <- split(errorOfEachColumn, errorOfEachColumn$clique_index)
-  df <- NULL
-  for(qs in listOfCliques) {
-    i <- qs$clique_index[1]
-    threshold <- criticalErrorOfEachClique$error_threshold[which(criticalErrorOfEachClique$clique_index == i)]
-    qs <- qs[qs$testing_error <= threshold, ]
-    df <- rbind(df, qs)
-  }
-  return(df)
 }
