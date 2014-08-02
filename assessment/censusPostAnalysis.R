@@ -96,27 +96,17 @@ findGoodCliquesFromRules <- function(resultsFromRules, dataset) {
 isGoodClique <- function(qs, dominators) {
   dfs <- split(qs, f = qs[, 'outcome_column'])  ## Split data into data frames w.r.t. outcome_column
   isGood <- FALSE
-  res.df <- NULL
+  columns <- NULL
   for(df in dfs) {
-    if(nrow(df) == 1) {
-      if(!isColumnValueDominant(df$outcome_column[1], df$outcome_value[1], dominators)) {
+    for(lvl in levels(as.factor(df$outcome_value))) {
+      if(!isColumnValueDominant(df$outcome_column[1], lvl, dominators)) {
         isGood <- TRUE
-        res.df <- rbind(res.df, df)
+        columns <- c(columns, df$outcome_column[1])
       }      
-    } else if(nrow(df) > 1){
-      variance = length(levels(as.factor(df$outcome_value))) - 1
-      if(variance > 0) {
-        for(lvl in levels(as.factor(df$outcome_value))) {
-          col = df$outcome_column[1]
-          if(!isColumnValueDominant(col, lvl, dominators)) {
-            isGood <- TRUE
-            res.df <- rbind(res.df, df)
-          }
-        }
-      }
     }
   }
-  list(isGood = isGood, goodRules = res.df)
+  df <- qs[qs$outcome_column %in% unique(columns), ]   
+  list(isGood = isGood, goodRules = df)
 }
 
 # Tested
