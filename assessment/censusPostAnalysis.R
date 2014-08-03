@@ -7,7 +7,7 @@ calculateQuality <- function(dataset, delta, alpha, fqsFile) {
   result <- readExperimentResults(delta, alpha)
   good.rules <- findGoodCliquesFromRules(result$association.rules, dataset)  ## 1478 vs 1981?
   good.svm <- findGoodCliquesFromSVM(result$support.vector.machine) 
-  good.cliques <- getCliqueIntersection(good.rules, good.svm)
+  good.cliques <- cliquesFulfillingAllCriterion(good.rules, good.svm)
   return(length(good.cliques) / length(all.cliques))
 }
 
@@ -88,8 +88,8 @@ findGoodCliquesFromRules <- function(resultsFromRules, dataset) {
   dfs <- split(data, f = data[, 'clique_index'])  ## Split data into data frames w.r.t. clique_index
   res <- Reduce(function(...) merge(..., all=T), 
                 lapply(dfs, 
-                       function(x, doms = dominators) {
-                         temp <- isGoodClique(x, doms)
+                       function(x, dom = dominators) {
+                         temp <- isGoodClique(x, dom)
                          if(temp$isGood) {
                            temp$goodRules
                          } else {
@@ -174,7 +174,7 @@ isColumnValueDominant <- function(col, val, dominators) {
   }
 }
 
-getCliqueIntersection <- function(result1, result2) {
+cliquesFulfillingAllCriterion <- function(result1, result2) {
   cliques1 <- unique(result1$clique_index)
   cliques2 <- unique(result2$clique_index)
   res <- Reduce(intersect, list(cliques1, cliques2))
