@@ -12,8 +12,8 @@ calculateQuality <- function(dataset, delta, alpha, fqsFile) {
 }
 
 readExperimentResults <- function(delta, alpha) {
-  dir <- getDirectory('census', delta, alpha)
-  filenames <- getFileNames(dir)
+  directory <- getDirectory('census', delta, alpha)
+  filenames <- getFileNames(directory)
   res.rules <- getRulesResults(filenames$rules)
   res.svm <- getSVMResults(filenames$svm)  ## res.svm is a list of two data frames
   list(association.rules = res.rules,
