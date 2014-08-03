@@ -1,15 +1,18 @@
-findGoodCliques <- function() {
+calculateQuality <- function(delta, alpha, csvFile, colnameFile, fqsFile) {
   dataset <- getCensusData(csvFile, colnameFile)
-  ls <- readExperimentResults(datasetName, delta, alpha)
-  good.rules <- findGoodCliquesFromRules(ls$association.rules)
-  good.svm <- findGoodCliquesFromSVM(ls$support.vector.machine)
+  all.cliques <- readingQuasiCliques(fqsFile)
+  result <- readExperimentResults(delta, alpha)
+  good.rules <- findGoodCliquesFromRules(result$association.rules, dataset)  ## 1478 vs 1981?
+  good.svm <- findGoodCliquesFromSVM(result$support.vector.machine) 
+  good.cliques <- getCliqueIntersection(good.rules, good.svm)
+  return(length(good.cliques) / length(all.cliques))
 }
 
-readExperimentResults <- function(datasetName, delta, alpha) {
-  dir <- getDirectory(datasetName, delta, alpha)
+readExperimentResults <- function(delta, alpha) {
+  dir <- getDirectory('census', delta, alpha)
   filenames <- getFileNames(dir)
   res.rules <- getRulesResults(filenames$rules)
-  res.svm <- getSVMResults(filenames$svm)
+  res.svm <- getSVMResults(filenames$svm)  ## res.svm is a list of two data frames
   list(association.rules = res.rules,
        support.vector.machine = res.svm)
 }
@@ -80,18 +83,21 @@ findGoodCliquesFromRules <- function(resultsFromRules, dataset) {
   dominators <- getAllDominantColumnValues(dataset)
   data <- resultsFromRules[resultsFromRules$lift >= 1.1, ]
   dfs <- split(data, f = data[, 'clique_index'])  ## Split data into data frames w.r.t. clique_index
-  res <- lapply(dfs, 
-                function(x, doms = dominators) {
-                  temp <- isGoodClique(x, doms)
-                  if(temp$isGood) {
-                    temp$goodRules
-                  } else {
-                    NA
-                  }
-                })
+  res <- Reduce(function(...) merge(..., all=T), 
+                lapply(dfs, 
+                       function(x, doms = dominators) {
+                         temp <- isGoodClique(x, doms)
+                         if(temp$isGood) {
+                           temp$goodRules
+                         } else {
+                           NA
+                         }
+                       }))
+  res$y <- NULL
   return(res)
 }
 
+# Tested
 # A clique is considered good if there is at least one column fulfilling the conditions.
 isGoodClique <- function(qs, dominators) {
   dfs <- split(qs, f = qs[, 'outcome_column'])  ## Split data into data frames w.r.t. outcome_column
@@ -163,4 +169,11 @@ isColumnValueDominant <- function(col, val, dominators) {
   } else {
     return(FALSE)
   }
+}
+
+getCliqueIntersection <- function(result1, result2) {
+  cliques1 <- unique(result1$clique_index)
+  cliques2 <- unique(result2$clique_index)
+  res <- Reduce(intersect, list(cliques1, cliques2))
+  return(res)
 }
