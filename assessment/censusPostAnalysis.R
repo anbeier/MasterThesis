@@ -1,5 +1,8 @@
-calculateQuality <- function(delta, alpha, csvFile, colnameFile, fqsFile) {
-  dataset <- getCensusData(csvFile, colnameFile)
+csvfp = 'census.csv'
+colnamefp = 'census_colnames.txt'
+dataset <- getCensusData(csvfp, colnamefp)
+
+calculateQuality <- function(dataset, delta, alpha, fqsFile) {
   all.cliques <- readingQuasiCliques(fqsFile)
   result <- readExperimentResults(delta, alpha)
   good.rules <- findGoodCliquesFromRules(result$association.rules, dataset)  ## 1478 vs 1981?
