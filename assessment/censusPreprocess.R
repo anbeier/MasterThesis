@@ -13,7 +13,7 @@ getCensusData <- function(csvFilePath, colnameFilePath) {
 
 # read in data, modify column names, eliminate NAs.
 readingData <- function(csvFile, colnameFile) { 
-  df <- read.csv(csvFile, sep = ";")  
+  df <- read.csv(csvFile, sep = ";", header = FALSE)  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
   df <- na.omit(df)    ## remove rows containing NAs
