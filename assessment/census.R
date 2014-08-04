@@ -21,6 +21,7 @@ main <- function(cliqueIndex, delta = 0.7, alpha = 0.5,
   # save result of each clique in a RData file
   loopTrainingTestingSVM(clique, index, delta, alpha)
   loopAssociationRules(clique, index, delta, alpha)
+  rm(list = ls())  ## remove all user-defined objects
 }
 
 worker <- function(input) {

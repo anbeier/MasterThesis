@@ -11,7 +11,7 @@ loopTrainingTestingLM <- function(clique, index, delta, alpha) {
     vector.predicted.rsquare <- c(vector.predicted.rsquare, predicted.r.square)
     vector.column <- c(vector.column, targetColumn)
   }
-  results.lm <- data.frame(clique_index = index, outcome_column = vector.column, 
+  result.lm <- data.frame(clique_index = index, outcome_column = vector.column, 
                            r_square = vector.rsquare, predicted_r_square = vector.predicted.rsquare)
   fn <- makeFileNameForResultsFromLM(index, delta, alpha)
   save(result.lm, file = fn)
