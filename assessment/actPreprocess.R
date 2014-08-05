@@ -31,7 +31,7 @@ splitData <- function(data, seed = 100) {
   if (!is.null(seed)) {
     set.seed(seed)
   }
-  sampleSize <- floor(0.65 * nrow(data))  ## 65% of the dataset size
+  sampleSize <- floor(0.60 * nrow(data))  ## 60% of the dataset size
   trainIndex <- sample(seq_len(nrow(data)), size = sampleSize)
   trainset <- data[trainIndex, ]
   testset <- data[-trainIndex, ]

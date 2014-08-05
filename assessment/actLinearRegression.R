@@ -6,8 +6,8 @@ loopTrainingTestingLM <- function(clique, index, delta, alpha) {
   
   for(targetColumn in colnames(clique)) {
     model <- trainLinearModel(data$trainset, targetColumn)
-    predicted.r.square <- getCoefficientDetermination(data, model, targetColumn)
-    vector.rsquare <- c(vector.rsquare, summary(model)$r.square)
+    predicted.r.square <- getPredictedCoefficientDetermination(data, model, targetColumn)
+    vector.rsquare <- c(vector.rsquare, summary(model)$r.square)  ## regular r square
     vector.predicted.rsquare <- c(vector.predicted.rsquare, predicted.r.square)
     vector.column <- c(vector.column, targetColumn)
   }
@@ -23,16 +23,17 @@ trainLinearModel <- function(trainset, columnname) {
   return(model)
 }
 
-getCoefficientDetermination <- function(data, model, columnname) {
+getPredictedCoefficientDetermination <- function(data, model, columnname) {
   trainset <- data$trainset
   testset <- data$testset
   y <- mean(trainset[, columnname])
   prediction <- predict(model, newdata = testset)
   SSE = sum((testset[, columnname] - prediction)^2)  ## Sum of Squared Errors
   SST = sum((testset[, columnname] - y)^2)  ## Total sum of squares
-  return(1 - SSE/SST)
+  return(1 - SSE/SST)  ## predicted r square
 }
 
+# returns a file name in form of deltaX_alphaX_qsX.RData
 makeFileName <- function(delta, alpha, i) {
   prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
   string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
