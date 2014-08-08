@@ -28,8 +28,8 @@ getLinearRegressionResults <- function(filenames) {
   return(df.results)
 }
 
-# Cliques of which both regular r square and predicted r square >= 0.6 are considered good
+# Cliques of which both regular r square and predicted r square >= 0.65 are considered good
 findGoodCliquesFromLinearRegreassion <- function(df) {
-  res <- df[df$r_square >= 0.6 & df$predicted_r_square >= 0.6, ]
+  res <- df[df$r_square >= 0.65 & df$predicted_r_square >= 0.65, ]
   return(res)
 }

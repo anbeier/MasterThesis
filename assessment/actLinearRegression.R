@@ -26,7 +26,7 @@ trainLinearModel <- function(trainset, columnname) {
 getPredictedCoefficientDetermination <- function(data, model, columnname) {
   trainset <- data$trainset
   testset <- data$testset
-  y <- mean(trainset[, columnname])
+  y <- mean(testset[, columnname])
   prediction <- predict(model, newdata = testset)
   SSE = sum((testset[, columnname] - prediction)^2)  ## Sum of Squared Errors
   SST = sum((testset[, columnname] - y)^2)  ## Total sum of squares

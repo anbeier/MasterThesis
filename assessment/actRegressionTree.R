@@ -15,9 +15,8 @@ loopTrainingTestingCART <- function(clique, index, delta, alpha) {
   result.cart <- data.frame(clique_index = index, outcome_column = vector.column, 
                             predicted_r_square = vector.predicted.rsquare)
   
-  #fn <- makeFileNameForResultsFromCART(index, delta, alpha)
-  #save(result.cart, file = fn)  
-  return(result.cart)
+  fn <- makeFileNameForResultsFromCART(index, delta, alpha)
+  save(result.cart, file = fn)  
 }
 
 trainRegressionTree <- function(trainset, target) {
