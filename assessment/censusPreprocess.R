@@ -121,9 +121,9 @@ getOneClique <- function(dataset, fqs, index) {
 # input: a quasi clique, a target value
 # output: a list of sensible size of samples for training and testing, respectively
 takeSamples <- function(qs, targetcol) {
-  ## samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.04 * nrow(qs)), ]  
+  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]  
   samples <- qs
-  ratio <- 0.65
+  ratio <- 0.6
   alpha <- 0.5
   trainingSize <- nrow(samples)^alpha + 1000
   if (nrow(samples) > trainingSize) {

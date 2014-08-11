@@ -1,5 +1,6 @@
 csvfp = 'census.csv'
 colnamefp = 'census_colnames.txt'
+fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
 dataset <- getCensusData(csvfp, colnamefp)
 
 calculateQuality <- function(dataset, delta, alpha, fqsFile) {
