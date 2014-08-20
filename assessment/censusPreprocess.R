@@ -136,17 +136,13 @@ takeSamples <- function(qs, targetcol) {
   list(training = training, testing = testing)
 }
 
-
-# replace invalid symbols in column names with "_" and "."
-# input: a quasi clique
-# output: a quasi clique with all valid column names
+# elinimate invalid symbols in column names
 modifyColnames <- function(qs) {  
-  colnames(qs) <- gsub(" ", "_", colnames(qs), fixed = TRUE)
-  colnames(qs) <- gsub("-", "_", colnames(qs), fixed = TRUE)
-  colnames(qs) <- gsub("'", ".", colnames(qs), fixed = TRUE)
+  colnames(qs) <- gsub(" ", "", colnames(qs), fixed = TRUE)
+  colnames(qs) <- gsub("-", "", colnames(qs), fixed = TRUE)
+  colnames(qs) <- gsub("'", "", colnames(qs), fixed = TRUE)
   return(qs)
 }
-
 
 modifySingleString <- function(str) {  
   str <- gsub(" ", "_", str, fixed = TRUE)
