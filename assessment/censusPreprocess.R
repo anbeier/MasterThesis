@@ -1,6 +1,5 @@
 source('log.R')
 
-# Tested
 getCensusData <- function(csvFilePath, colnameFilePath) {
   # Read in dataset, modify column names, eliminate rows with NAs
   data <- readingData(csvFilePath, colnameFilePath)
@@ -57,6 +56,7 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
   return(df)
 }
 
+# not used
 # Bucketize values of numeric columns to bins and map them onto levels of a factor.
 # Convert numeric columns to factor columns.
 bucketizeNumericColumns <- function(df, alpha, specialColumns = c(3, 4, 36, 38, 40)) {
@@ -120,47 +120,7 @@ mapBinsOntoColumn <- function(df, colname, bin, binsize){
   }
   df[, colname] <- as.factor(df[, colname])
   return(df)
-}
-
-
-# read in quasi clique file
-readingQuasiCliques <- function(fqsFile) {
-  cliques <- readLines(fqsFile, encoding = "UTF-8") 
-  qs <- NULL  
-  for(aClique in cliques) {
-    temp <- unlist(strsplit(aClique, "--"))
-    qs <- append(qs, list(temp))
-  }
-  qs <- lapply(qs, function(x) modifySingleString(x))  
-  return(qs)
-}
-
-
-# returns a quasi clique regarding to the given index, without duplicated entries
-getOneClique <- function(dataset, fqs, index) { 
-  qs <- subset(dataset, select = fqs[[index]])   
-  qs <- unique(qs)
-  return(qs)
-}
-
-# choose a few samples from a clique w.r.t a specific target value
-# input: a quasi clique, a target value
-# output: a list of sensible size of samples for training and testing, respectively
-takeSamples <- function(qs, targetcol) {
-  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]  
-  samples <- qs
-  ratio <- 0.6
-  alpha <- 0.5
-  trainingSize <- nrow(samples)^alpha + 1000
-  if (nrow(samples) > trainingSize) {
-    ratio <- trainingSize / nrow(samples)
-  }
-  log(paste("choosing ratio", ratio, "sample training size", trainingSize))
-  split <- sample.split(samples[, targetcol], SplitRatio = ratio)
-  training <- subset(samples, split == TRUE)
-  testing <- subset(samples, split == FALSE) 
-  list(training = training, testing = testing)
-}
+} 
 
 # elinimate invalid symbols in column names
 modifyColnames <- function(qs) {  
@@ -177,6 +137,40 @@ modifySingleString <- function(str) {
   return(str)
 }
 
+readingQuasiCliques <- function(fqsFile) {
+  cliques <- readLines(fqsFile, encoding = "UTF-8") 
+  qs <- NULL  
+  for(aClique in cliques) {
+    temp <- unlist(strsplit(aClique, "--"))
+    qs <- append(qs, list(temp))
+  }
+  qs <- lapply(qs, function(x) modifySingleString(x))  
+  return(qs)
+}
+
+# returns a quasi clique a according to the given index without duplicated rows
+getOneClique <- function(dataset, cliqueList, cliqueIndex) { 
+  qs <- subset(dataset, select = cliqueList[[cliqueIndex]])   
+  qs <- unique(qs)
+  return(qs)
+}
+
+# Extract a few samples from a quasi clique w.r.t a specific target value
+takeSamples <- function(qs, targetcol) {
+  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]  
+  samples <- qs
+  ratio <- 0.6
+  #alpha <- 0.5
+  #trainingSize <- nrow(samples)^alpha + 1000
+  #if (nrow(samples) > trainingSize) {
+  #  ratio <- trainingSize / nrow(samples)
+  #}
+  log(paste("choosing ratio", ratio, "sample training size", trainingSize))
+  split <- sample.split(samples[, targetcol], SplitRatio = ratio)
+  training <- subset(samples, split == TRUE)
+  testing <- subset(samples, split == FALSE) 
+  list(training = training, testing = testing)
+}
 
 # not used
 # dummy code the factors except for the target value
@@ -232,12 +226,10 @@ convertCategories <- function(qs) {
   return(df)
 }
 
-
-
-# Make a sharing part of file name that can be used for results from all methods
-makeFileName <- function(delta, alpha, i) {
+# Will return a sharing part of all file names
+makeFileIndicator <- function(delta, alpha, i) {
   prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
   string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
-  string <- paste(string, 'RData', sep = '.')
+  string <- paste(string, 'rdata', sep = '.')
   return(string)
 }
