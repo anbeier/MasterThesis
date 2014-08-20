@@ -1,25 +1,24 @@
 source('log.R')
 
+# Tested
 getCensusData <- function(csvFilePath, colnameFilePath) {
-  # Reading in dataset, eliminating rows with NAs
-  census <- readingData(csvFilePath, colnameFilePath)
+  # Read in dataset, modify column names, eliminate rows with NAs
+  data <- readingData(csvFilePath, colnameFilePath)
   # Coverting some of integer columns directly to categorical columns
-  census <- convertSpecialIntegerColumnToFactor(census)
+  data <- convertSpecialIntegerColumnToFactor(data)
   # Mapping numeric values to a specific level of factor w.r.t. a specific range of values
-  census <- convertNumericColumnToFactor(census)
-  return(census)
+  data <- convertNumericColumnToFactor(data)
+  return(data)
 }
 
-
-# read in data, modify column names, eliminate NAs.
 readingData <- function(csvFile, colnameFile) { 
   df <- read.csv(csvFile, sep = ";", header = FALSE)  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
-  df <- na.omit(df)    ## remove rows containing NAs
+  # remove rows containing NAs
+  df <- na.omit(df)    
   return(df)
 }
-
 
 # Indices of columns start with 1. 
 # Convert integer columns 3, 4, 36, 38, 40 to factor columns.
@@ -30,6 +29,33 @@ convertSpecialIntegerColumnToFactor <- function(df, specialColumns = c(3, 4, 36,
   return(df)
 }
 
+convertNumericColumnToFactor <- function(df) {
+  dd <- df
+  for(i in 1:ncol(dd)) {
+    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
+      colname = colnames(dd)[i]
+      df <- categorizeNumericValuesIntoIntervals(df, colname)
+    }
+  }
+  return(df)
+}
+
+categorizeNumericValuesIntoIntervals <- function(df, colname) {
+  df[, colname] <- as.numeric(df[, colname])
+  columnVector <- df[, colname]
+  ## Get the .2th and .8th quantile of values in this column
+  q <- quantile(columnVector, probs = c(0.2, 0.8))  
+  ## Divide the set of values into max. 10 subsets (user defined)
+  range <- (q['80%'] - q['20%']) / 10
+  df[, colname] <- unlist(lapply(df[, colname], 
+                                 function(x) {
+                                   i <- (x - q['20%']) %/% range
+                                   label <- paste(colname, i, sep = '')
+                                   return(label)
+                                 }))
+  df[, colname] <- as.factor(df[, colname])
+  return(df)
+}
 
 # Bucketize values of numeric columns to bins and map them onto levels of a factor.
 # Convert numeric columns to factor columns.
@@ -145,9 +171,9 @@ modifyColnames <- function(qs) {
 }
 
 modifySingleString <- function(str) {  
-  str <- gsub(" ", "_", str, fixed = TRUE)
-  str <- gsub("-", "_", str, fixed = TRUE)
-  str <- gsub("'", ".", str, fixed = TRUE)
+  str <- gsub(" ", "", str, fixed = TRUE)
+  str <- gsub("-", "", str, fixed = TRUE)
+  str <- gsub("'", "", str, fixed = TRUE)
   return(str)
 }
 
@@ -206,33 +232,7 @@ convertCategories <- function(qs) {
   return(df)
 }
 
-convertNumericColumnToFactor <- function(df) {
-  dd <- df
-  for(i in 1:ncol(dd)) {
-    if(class(dd[, i]) == 'numeric' | class(dd[, i]) == 'integer') {      
-      colname = colnames(dd)[i]
-      df <- categorizeNumericValuesIntoIntervals(df, colname)
-    }
-  }
-  return(df)
-}
 
-categorizeNumericValuesIntoIntervals <- function(df, colname) {
-  df[, colname] <- as.numeric(df[, colname])
-  columnVector <- df[, colname]
-  ## Get the .2th and .8th quantile of values in this column
-  q <- quantile(columnVector, probs = c(0.2, 0.8))  
-  ## Divide the entire set of values into max. 10 subsets
-  range <- (q['80%'] - q['20%']) / 6
-  df[, colname] <- unlist(lapply(df[, colname], 
-                                 function(x) {
-                                   i <- (x - q['20%']) %/% range
-                                   label <- paste(colname, i, sep = '_')
-                                   return(label)
-                                 }))
-  df[, colname] <- as.factor(df[, colname])
-  return(df)
-}
 
 # Make a sharing part of file name that can be used for results from all methods
 makeFileName <- function(delta, alpha, i) {
