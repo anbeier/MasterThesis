@@ -165,7 +165,7 @@ takeSamples <- function(qs, targetcol) {
   #if (nrow(samples) > trainingSize) {
   #  ratio <- trainingSize / nrow(samples)
   #}
-  log(paste("choosing ratio", ratio, "sample training size", trainingSize))
+  #log(paste("choosing ratio", ratio, "sample training size", trainingSize))
   split <- sample.split(samples[, targetcol], SplitRatio = ratio)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE) 

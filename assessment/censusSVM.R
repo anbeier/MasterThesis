@@ -1,53 +1,41 @@
-source('log.R')
-
-# For-loop in a quasi clique; for each column as outcome value train a SVM model
-# using training dataset and apply this model on testing dataset
-loopTrainingTestingSVM <- function(qs, index, delta, alpha) {
-  fileNames <- makeFileNameForResultsFromSVM(index, delta, alpha)
-  target.vector <- NULL
-  acc.vector <- NULL
-  dor.vector <- NULL
-  f1.vector <- NULL
-  # level.vector <- NULL
+# For-loop in one quasi clique
+# For each column, as outcome value, train a SVM model and apply this model on testing set
+loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'svm')
+  df <- NULL
+  # target.vector <- NULL
   
-  i <- 1  ## log
-  l <- length(colnames(qs))
   for(target in colnames(qs)) {   
-    log(paste(index, paste(i, l, sep='/'), target))
-    
     data <- takeSamples(qs, target) 
     model <- trainSupportVectorMachine(data$training, target) 
     pred <- predict(model, newdata = data$testing)
-    stats <- getStatistic(data$testing, pred, target)
+    # data frame with 3 columns: 
+    # target (outcome value), actual (actual values), predicted (predicted values)
+    df <- rbind(df, data.frame(target = target, 
+                               actual = data$testing[, target], 
+                               predicted = pred))
+    # stats <- getStatistic(data$testing, pred, target)
     # testingError <- getTestingError(model, data$testing)
     # expected.level.ratio <- (1 - 1/length(levels(qs[, target]))) / 2.5
     # level.vector <- c(level.vector, expected.level.ratio)
     # error.vector <- c(error.vector, testingError)
-    target.vector <- c(target.vector, target)
-    acc.vector <- c(acc.vector, stats$ACC)
-    dor.vector <- c(dor.vector, stats$DOR)
-    f1.vector <- c(f1.vector, stats$F1Score)
+    # target.vector <- c(target.vector, target)
     # save(index, targart.vector, error.vector, level.vector, file = fileNames$temporaryName)
-    save(index, target.vector, acc.vector, dor.vector, f1.vector, file = fileNames$temporaryName)
-    i <- i + 1
+    # save(index, target.vector, acc.vector, dor.vector, f1.vector, file = fileNames$temporaryName)
   }
-  
+  result.svm <- list(index = index, result = df)
+  save(result.svm, file = fileName) 
   # thres <- getErrorThreshold(error.vector)
   # df <- data.frame(target_column = targart.vector, testing_error = error.vector, expected_error_in_factor = level.vector)
   # result.svm <- list(clique_index = index, details = df, threshold = thres, 
   #                    min_error = min(error.vector), avg_error = mean(error.vector))
-  result.svm <- data.frame(clique_index = index, target_column = target.vector, 
-                           accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
-  save(result.svm, file = fileNames$finalName)  ## result.svm variable can be reloaded in post analysis
-  unlink(fileNames$temporaryName)
-  log(paste(index, "done"))
+  #result.svm <- data.frame(clique_index = index, target_column = target.vector, 
+  #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
 }
 
-makeFileNameForResultsFromSVM <- function(i, delta, alpha) {
-  sharingPart <- makeFileName(delta, alpha, i)
-  fn <- paste('svm', sharingPart, sep = '-')
-  tfn <- paste('tmp', fn, sep='-')
-  list(finalName=fn, temporaryName=tfn)
+makeFileNameForExperimentResults <- function(fileIndicator, method) {
+  fn <- paste(method, fileIndicator, sep = '-')
+  return(fn)
 }
 
 trainSupportVectorMachine <- function(training, target) {
@@ -57,8 +45,6 @@ trainSupportVectorMachine <- function(training, target) {
   # model <- svm(formulastr, data = qs)
   obj <- tune(svm, formulastr, data = training, ranges = list(gamma = c(0.1, 1, 10), cost = c(1, 10, 50)), 
               tunecontrol = tune.control(sampling = "fix"))
-  
-  list(model = obj$best.model, target = target)
   return(obj$best.model)
 }
 
