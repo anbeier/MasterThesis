@@ -9,11 +9,12 @@ source('log.R')
 
 csvfp = 'census.csv'
 colnamefp = 'census_colnames.txt'
-delta = 0.7
-alpha = 0.5
 fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
+d = 0.7
+a = 0.5
 
-main <- function(cliqueIndex, delta = delta, alpha = alpha, 
+
+main <- function(cliqueIndex, delta = d, alpha = a, 
                  csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
   data <- getCensusData(csvFile, colnameFile)
@@ -38,7 +39,7 @@ worker <- function(input) {
   })
 }
 
-parallelMain <- function(indexStart, indexEnd, delta = delta, alpha = alpha, 
+parallelMain <- function(indexStart, indexEnd, delta = d, alpha = a, 
                          csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
   census <- getCensusData(csvFile, colnameFile)
@@ -46,6 +47,7 @@ parallelMain <- function(indexStart, indexEnd, delta = delta, alpha = alpha,
   
   inputs <- lapply(seq(indexStart, indexEnd), function(i) {
     #log(paste("prepare input for", i))
+    
     list(index = i, 
          clique = getOneClique(census, cliques, i), 
          filename = makeFileIndicator(delta, alpha, i))
