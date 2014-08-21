@@ -1,4 +1,4 @@
-source('log.R')
+#source('log.R')
 
 getCensusData <- function(csvFilePath, colnameFilePath) {
   # Read in dataset, modify column names, eliminate rows with NAs

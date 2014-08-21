@@ -1,15 +1,79 @@
-csvfp = 'census.csv'
-colnamefp = 'census_colnames.txt'
-fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
-dataset <- getCensusData(csvfp, colnamefp)
+analysing <- function() {
+  census <- getCensusData(csvFile, colnameFile)
+  # for each experiment situation, calculate quality score
+    # input: a list of fqsFile, resultFolder (there will be at least svm, rules in this folder)
+    # output: quality score
+  # a data frame of all quality scores
+}
 
-calculateQuality <- function(dataset, delta, alpha, fqsFile) {
-  all.cliques <- readingQuasiCliques(fqsFile)
+calculateQualityScore <- function(folderName) {
+  # for each method, find out a set of good cliques, then get the intersection
+  good.svm <- findGoodCliquesFromSVM(folderName)
+  
+  for(method in methods) {
+    fileNames <- list.files(paste(folderName, method, sep = '/'), full.names = TRUE)
+    
+  }
+  
   result <- readExperimentResults(delta, alpha)
   good.rules <- findGoodCliquesFromRules(result$association.rules, dataset)  ## 1478 vs 1981?
   good.svm <- findGoodCliquesFromSVM(result$support.vector.machine) 
   good.cliques <- cliquesFulfillingAllCriterion(good.rules, good.svm)
   return(length(good.cliques) / length(all.cliques))
+}
+
+# expected_error_in_factor is set to validate predictions that are a little better than a random guessing.
+# Columns of which testing error smaller than/equals expected error are considerd good
+findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
+  indices <- NULL
+  for(fn in fileNames) {
+    # Load result.svm variable: 
+    # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
+    load(fn)
+    if(isGoodSVMClique(result.svm$result)) {
+      indices <- c(indices, result.svm$index)
+    }
+  }
+  return(indices)
+  
+  
+  data <- resultsFromSVM$experiment.details
+  df.expected <- data[data$testing_error <= data$expected_error_in_factor, ]
+  return(df.expected)
+}
+
+isGoodSVMClique <- function(dataframe, dataset) {
+  error.thresholds <- calculateExpectedTestingErrors(dataset)
+  proved.error <- assessTestingError(dataframe, error.thresholds)
+  accuracy <- calculateAccurary(dataframe)
+  dor <- calculateDiagnosticOddsRatio(dataframe)
+  f1 <- calculateF1Score(dataframe)
+}
+
+assessTestingError <- function(dataframe, error.thresholds) {
+  # Calculate for each target column a testing error: Compare the predicted value to the actual value
+  dfs <- split(dataframe, dataframe$target)
+  dfs <- lapply(dfs,
+                function(x) {
+                  errors <- unlist(apply(x, 1, 
+                                         function(y) {
+                                           if(y[2] != y[3]) {
+                                             'error'
+                                           }}))
+                  error <- length(errors) / nrow(x)
+                  data.frame(target = x$target[1], testingerror = error)
+                })
+  
+  # A data frame with 2 columns: target, testing error
+  df <- Reduce(function(...) merge(..., all=TRUE), dfs)
+  
+  thresholds <- getErrorThresholds(df$target, error.thresholds)
+}
+
+# Calculate for each target column a expected error rate
+calculateExpectedTestingErrors <- function(dataset) {
+  
 }
 
 readExperimentResults <- function(delta, alpha) {
@@ -71,13 +135,7 @@ getSVMResults <- function(filenames) {
        critical.errors = critical.errors)
 }
 
-# expected_error_in_factor is set to validate predictions that are a little better than a random guessing.
-# Columns of which testing error smaller than/equals expected error are considerd good
-findGoodCliquesFromSVM <- function(resultsFromSVM) {
-  data <- resultsFromSVM$experiment.details
-  df.expected <- data[data$testing_error <= data$expected_error_in_factor, ]
-  return(df.expected)
-}
+
 
 # If some rule had a lift of 1, it would imply that the probability of occurrence of the antecedent and 
 # that of the consequent are independent of each other. 
