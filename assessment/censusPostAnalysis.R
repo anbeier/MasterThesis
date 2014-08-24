@@ -1,5 +1,4 @@
-analysing <- function() {
-  census <- getCensusData(csvFile, colnameFile)
+analysing <- function(dataset, inputs) {
   # for each experiment situation, calculate quality score
     # input: a list of fqsFile, resultFolder (there will be at least svm, rules in this folder)
     # output: quality score
@@ -22,16 +21,18 @@ calculateQualityScore <- function(folderName) {
   return(length(good.cliques) / length(all.cliques))
 }
 
-# expected_error_in_factor is set to validate predictions that are a little better than a random guessing.
-# Columns of which testing error smaller than/equals expected error are considerd good
-findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
+findGoodCliquesFromSVM <- function(folderName, method = 'svm', dataset) {
   fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
+  # A data frame with 3 columns: column, randomguess, threshold
+  maxErrors <- calculateErrorThresholds(dataset)
+  
+  # For each quasi clique, assess its SVM experiment results
   indices <- NULL
   for(fn in fileNames) {
     # Load result.svm variable: 
     # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
     load(fn)
-    if(isGoodSVMClique(result.svm$result)) {
+    if(isGoodSVMClique(result.svm$result, maxErrors)) {
       indices <- c(indices, result.svm$index)
     }
   }
@@ -43,17 +44,33 @@ findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
   return(df.expected)
 }
 
-isGoodSVMClique <- function(dataframe, dataset) {
-  error.thresholds <- calculateExpectedTestingErrors(dataset)
-  proved.error <- assessTestingError(dataframe, error.thresholds)
+calculateErrorThresholds <- function(dataset) {
+  temp <- lapply(colnames(dataset), 
+                 function(x, data = dataset) {
+                   cat <- length(levels(data[, x]))
+                   randomguess <- (cat - 1)/cat
+                   # Assumed that 50% of an error rate from random guessing is 
+                   # considered as a corresponding threshold
+                   threshold <- randomguess/2
+                   data.frame(column = x, 
+                              randomguess = randomguess, 
+                              threshold = threshold)
+                 })
+  # A data frame with 3 columns: column, randomguess, threshold
+  Reduce(function(...) merge(..., all = TRUE), temp)
+}
+
+isGoodSVMClique <- function(experimentResult, errorThresholds) {
+  provedTestingError <- assessTestingError(experimentResult, errorThresholds)
   accuracy <- calculateAccurary(dataframe)
   dor <- calculateDiagnosticOddsRatio(dataframe)
   f1 <- calculateF1Score(dataframe)
 }
 
-assessTestingError <- function(dataframe, error.thresholds) {
-  # Calculate for each target column a testing error: Compare the predicted value to the actual value
-  dfs <- split(dataframe, dataframe$target)
+assessTestingError <- function(experimentResult, errorThresholds) {
+  # Calculate for each target column a testing error
+  # by comparing the predicted value to the actual value
+  dfs <- split(experimentResult, experimentResult$target)
   dfs <- lapply(dfs,
                 function(x) {
                   errors <- unlist(apply(x, 1, 
@@ -62,18 +79,31 @@ assessTestingError <- function(dataframe, error.thresholds) {
                                              'error'
                                            }}))
                   error <- length(errors) / nrow(x)
-                  data.frame(target = x$target[1], testingerror = error)
+                  data.frame(target = x$target[1], testerror = error)
                 })
   
-  # A data frame with 2 columns: target, testing error
+  # A data frame with 2 columns: target, testerror
   df <- Reduce(function(...) merge(..., all=TRUE), dfs)
   
-  thresholds <- getErrorThresholds(df$target, error.thresholds)
+  # Find out target columns of which the test error <= threshold
+  dfs <- apply(df, 1,
+               function(x, thres = errorThresholds) {
+                 testerror <- round(as.numeric(x[2]), 2)
+                 t <- round(as.numeric(thres[thres$column == x[1],][3]), 2)
+                 if(testerror <= t) {
+                   data.frame(target=x[1], testerror=x[2], thres[thres$column == x[1],][3])
+                 }
+               })
+  dfs <- delete.Nulls(dfs)
+  # If there exists at least one target column fulfilling the criteria mentioned above,
+  # it will return a data frame with 3 columns: target, testerror, threshold.
+  # If not, NULL will be returned.
+  Reduce(function(...) merge(..., all=TRUE), dfs)
 }
 
-# Calculate for each target column a expected error rate
-calculateExpectedTestingErrors <- function(dataset) {
-  
+# Delete NULL entries in a list
+delete.Nulls <- function(aList) {
+  aList[unlist(lapply(aList, length) != 0)]
 }
 
 readExperimentResults <- function(delta, alpha) {
