@@ -6,7 +6,7 @@ analysing <- function(dataset, inputs) {
 }
 
 calculateQualityScore <- function(folderName) {
-  # for each method, find out a set of good cliques, then get the intersection
+  # For each method, find out a set of good cliques, then get the intersection
   good.svm <- findGoodCliquesFromSVM(folderName)
   
   for(method in methods) {
@@ -61,17 +61,23 @@ calculateErrorThresholds <- function(dataset) {
 }
 
 isGoodSVMClique <- function(experimentResult, errorThresholds) {
-  provedTestingError <- assessTestingError(experimentResult, errorThresholds)
+  
+  # Do assessment for each target column 
+  dfs <- split(experimentResult, experimentResult$target)
+  
+  provedTestError <- assessTestingError(dfs, errorThresholds)
+  if(!is.null(provedTestError)) {
+    provedF1Score <- assessF1Score(dfs)
+  } else {
+    return(FALSE)
+  }
   accuracy <- calculateAccurary(dataframe)
   dor <- calculateDiagnosticOddsRatio(dataframe)
   f1 <- calculateF1Score(dataframe)
 }
 
-assessTestingError <- function(experimentResult, errorThresholds) {
-  # Calculate for each target column a testing error
-  # by comparing the predicted value to the actual value
-  dfs <- split(experimentResult, experimentResult$target)
-  dfs <- lapply(dfs,
+assessTestingError <- function(result.list.by.target, errorThresholds) {
+  dfs <- lapply(result.list.by.target,
                 function(x) {
                   errors <- unlist(apply(x, 1, 
                                          function(y) {
@@ -104,6 +110,31 @@ assessTestingError <- function(experimentResult, errorThresholds) {
 # Delete NULL entries in a list
 delete.Nulls <- function(aList) {
   aList[unlist(lapply(aList, length) != 0)]
+}
+
+assessF1Score <- function(result.list.by.target) {
+  f1.list <- unlist(lapply(result.list.by.target,
+                           function(x) {
+                             cm <- confusionMatrix(x$predicted, x$actual)
+                             y <- as.data.frame(cm$byClass)
+                             y <- modifyColnames(y)
+                             precision.u <- sum(y$PosPredValue)
+                             recall.u <- sum(y$Sensitivity)
+                             2* precision.u * recall.u / (precision.u + recall.u)
+                           }))
+  
+  # Return F1 scores that are > 0.5
+  f1.list <- unlist(lapply(f1.list,
+                           function(x) {
+                             if(!is.na(x)) {
+                               if(x > 0.5) {
+                                 return(x)
+                               }
+                             } else {
+                               NULL
+                             }
+                           }))
+  return(f1.list)
 }
 
 readExperimentResults <- function(delta, alpha) {
