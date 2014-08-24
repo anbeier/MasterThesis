@@ -137,40 +137,6 @@ assessF1Score <- function(result.list.by.target) {
   return(f1.list)
 }
 
-readExperimentResults <- function(delta, alpha) {
-  directory <- getDirectory('census', delta, alpha)
-  filenames <- getFileNames(directory)
-  res.rules <- getRulesResults(filenames$rules)
-  res.svm <- getSVMResults(filenames$svm)  ## res.svm is a list of two data frames
-  list(association.rules = res.rules,
-       support.vector.machine = res.svm)
-}
-
-getDirectory <- function(dataset, delta, alpha) {
-  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '_')
-  folderName <- paste(dataset, prefix, sep = '_')
-  return(folderName)
-}
-
-# Return a list of filenames w.r.t. experiment methods, e.g. rules, svm
-getFileNames <- function(directory) {
-  folderpaths <- list.files(directory, full.names=TRUE)
-  foldernames <- list.files(directory)
-  rules.fn <- NULL  ## initial file names
-  svm.fn <- NULL
-  i <- 1  ## initial folder index
-  while(i <= length(foldernames)) {
-    fs <- list.files(folderpaths[i], full.names=TRUE)
-    if(foldernames[i] == 'rules') {
-      rules.fn <- fs
-    } else if(foldernames[i] == 'svm') {
-      svm.fn <- fs
-    }
-    i = i + 1
-  }
-  list(rules = rules.fn, svm = svm.fn)
-}
-
 getRulesResults <- function(filenames) {
   dfExperimentsDetails <- NULL
   for(fn in filenames) {
