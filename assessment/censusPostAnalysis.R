@@ -1,7 +1,11 @@
+library("caret")
+fqs.list <- 'census_fqs_delta0.7_alpha0.5'
+folder.list <- 'census_delta0.7_alpha0.5'
+
 analysing <- function(dataset, inputs) {
   # for each experiment situation, calculate quality score
     # input: a list of fqsFile, resultFolder (there will be at least svm, rules in this folder)
-    # output: quality score
+    # output: quality score, qualified cliques
   # a data frame of all quality scores
 }
 
@@ -66,17 +70,25 @@ isGoodSVMClique <- function(experimentResult, errorThresholds) {
   dfs <- split(experimentResult, experimentResult$target)
   
   provedTestError <- assessTestingError(dfs, errorThresholds)
+  
   if(!is.null(provedTestError)) {
+    
     provedF1Score <- assessF1Score(dfs)
+    
+    if(!is.null(provedF1Score)) {
+      
+      return(TRUE)
+      
+    } else {
+      return(FALSE)
+    }
   } else {
     return(FALSE)
   }
-  accuracy <- calculateAccurary(dataframe)
-  dor <- calculateDiagnosticOddsRatio(dataframe)
-  f1 <- calculateF1Score(dataframe)
 }
 
 assessTestingError <- function(result.list.by.target, errorThresholds) {
+  # If predicted does not equal actual, mark an error.
   dfs <- lapply(result.list.by.target,
                 function(x) {
                   errors <- unlist(apply(x, 1, 
@@ -112,29 +124,54 @@ delete.Nulls <- function(aList) {
   aList[unlist(lapply(aList, length) != 0)]
 }
 
-assessF1Score <- function(result.list.by.target) {
-  f1.list <- unlist(lapply(result.list.by.target,
-                           function(x) {
-                             cm <- confusionMatrix(x$predicted, x$actual)
-                             y <- as.data.frame(cm$byClass)
-                             y <- modifyColnames(y)
-                             precision.u <- sum(y$PosPredValue)
-                             recall.u <- sum(y$Sensitivity)
-                             2* precision.u * recall.u / (precision.u + recall.u)
-                           }))
+getConfusionMatrixOfOneLabel <- function(classLabel, data) {
+  condition.pos <- subset(data, actual == classLabel)  ## data frame of condition positives
+  condition.neg <- subset(data, !actual == classLabel) ## data frame of condition negatives
   
-  # Return F1 scores that are > 0.5
-  f1.list <- unlist(lapply(f1.list,
-                           function(x) {
-                             if(!is.na(x)) {
-                               if(x > 0.5) {
-                                 return(x)
-                               }
-                             } else {
-                               NULL
-                             }
-                           }))
-  return(f1.list)
+  tp <- length(condition.pos$pred[condition.pos$pred == classLabel])
+  tn <- length(condition.neg$pred[!condition.neg$pred == classLabel])
+  fp <- length(condition.neg$pred[condition.neg$pred == classLabel])
+  fn <- length(condition.pos$pred[!condition.pos$pred == classLabel])
+  
+  data.frame(TP=tp, TN=tn, FP=fp, FN=fn)
+}
+
+calculateF1ScoreMulticlass <- function(data) {
+  # Correct the levels of factors in actual, predicted columns
+  df <- correctFactorLevels(data)
+  # Get all categories
+  cat <- levels(df$actual)
+  lp <- lapply(cat,
+               function(x, data=df) getConfusionMatrixOfOneLabel(x, data=df))
+  df <- Reduce(function(...) merge(..., all=TRUE), lp)
+  
+  precision.u <- sum(df$TP)/sum(df$TP + df$FP)
+  recall.u <- sum(df$TP)/sum(df$TP + df$FN)
+  2 * precision.u * recall.u / (precision.u + recall.u)
+}
+
+assessF1Score <- function(result.list.by.target) {
+  # For each data frame (w.r.t a target column), calculate F1 score.
+  f1.list <- unlist(lapply(result.list.by.target,
+                           function(x) calculateF1ScoreMulticlass(x)))
+  
+  # Return F1 scores that are > 0.6
+  res <- NULL
+  for(i in 1:length(f1.list)) {
+    if(f1.list[i] > 0.6) {
+      res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
+                                   f1score = f1.list[i]))
+    }
+  }
+  return(res)
+}
+
+correctFactorLevels <- function(df) {
+  # Drop levels that do not appear.
+  df$actual = factor(df$actual)
+  # Relevel df$predicted and let them be the same as df$actual.
+  df$predicted = factor(df$predicted, levels=levels(df$actual))
+  return(df)
 }
 
 getRulesResults <- function(filenames) {
