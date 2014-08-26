@@ -1,51 +1,41 @@
-library("caret")
-fqs.list <- 'census_fqs_delta0.7_alpha0.5'
-folder.list <- 'census_delta0.7_alpha0.5'
+fqsFileList <- function() {
+  ls <- NULL
+  f <- 'census_fqs_delta0.7_alpha0.5.txt'
+  ls <- append(ls, f)
+  f <- 'census_fqs_delta0.8_alpha0.5.txt'
+  ls <- append(ls, f)
+  f <- 'census_fqs_delta0.9_alpha0.5.txt'
+  ls <- append(ls, f)
+  return(ls)
+}
 
-analysing <- function(dataset, inputs) {
+folderList <- function() {
+  ls <- NULL
+  f <- 'census_delta0.7_alpha0.5'
+  ls <- append(ls, f)
+  f <- 'census_delta0.8_alpha0.5'
+  ls <- append(ls, f)
+  f <- 'census_delta0.9_alpha0.5'
+  ls <- append(ls, f)
+  return(ls)
+}
+
+analysing <- function(dataset, fqsFiles, folders) {
+  # A data frame with 3 columns: column, randomguess, threshold
+  maxErrors <- calculateErrorThresholds(dataset)
+  
+  # Get numbers of fqs files
+  num <- length(fqsFileList)
+  
+  for (i in 1:num) {
+    x <- calculateQualityScore(folders[i], fqsFiles[i], maxErrors)
+    quality <- x$QualityScore
+    qualifiedCliques <- x$QualifiedCliques
+  }
   # for each experiment situation, calculate quality score
     # input: a list of fqsFile, resultFolder (there will be at least svm, rules in this folder)
     # output: quality score, qualified cliques
   # a data frame of all quality scores
-}
-
-calculateQualityScore <- function(folderName) {
-  # For each method, find out a set of good cliques, then get the intersection
-  good.svm <- findGoodCliquesFromSVM(folderName)
-  
-  for(method in methods) {
-    fileNames <- list.files(paste(folderName, method, sep = '/'), full.names = TRUE)
-    
-  }
-  
-  result <- readExperimentResults(delta, alpha)
-  good.rules <- findGoodCliquesFromRules(result$association.rules, dataset)  ## 1478 vs 1981?
-  good.svm <- findGoodCliquesFromSVM(result$support.vector.machine) 
-  good.cliques <- cliquesFulfillingAllCriterion(good.rules, good.svm)
-  return(length(good.cliques) / length(all.cliques))
-}
-
-findGoodCliquesFromSVM <- function(folderName, method = 'svm', dataset) {
-  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
-  # A data frame with 3 columns: column, randomguess, threshold
-  maxErrors <- calculateErrorThresholds(dataset)
-  
-  # For each quasi clique, assess its SVM experiment results
-  indices <- NULL
-  for(fn in fileNames) {
-    # Load result.svm variable: 
-    # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
-    load(fn)
-    if(isGoodSVMClique(result.svm$result, maxErrors)) {
-      indices <- c(indices, result.svm$index)
-    }
-  }
-  return(indices)
-  
-  
-  data <- resultsFromSVM$experiment.details
-  df.expected <- data[data$testing_error <= data$expected_error_in_factor, ]
-  return(df.expected)
 }
 
 calculateErrorThresholds <- function(dataset) {
@@ -64,27 +54,99 @@ calculateErrorThresholds <- function(dataset) {
   Reduce(function(...) merge(..., all = TRUE), temp)
 }
 
+# Return list(QualityScore, QualifiedCliques)
+calculateQuality <- function(folderName, fqsFile, errorThresholds) {
+  # For each method, find out a set of good cliques, then get the intersection
+  good.svm <- findGoodCliquesFromSVM(folderName, errorThresholds)
+  #good.bayes <- findGoodCliquesFromBayes(folderName)
+  
+  #good.all <- merge(good.svm, good.bayes, "index")
+  good.all <- good.svm
+  
+  allCliques <- readingQuasiCliques(fqsFile)
+  quality <- nrow(good.all) / length(allCliques)
+  list(QualityScore=quality, QualifiedCliques=good.all)
+}
+
+# Return data.frame(index, target)
+findGoodCliquesFromSVM <- function(folderName, errorThresholds, method = 'svm') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
+  
+  # For each quasi clique, assess its SVM experiment results
+  good <- NULL
+  for(fn in fileNames) {
+    # Load result.svm variable: 
+    # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
+    load(fn)
+    x <- isGoodSVMClique(result.svm$result, errorThresholds)
+    if(x$boolean) {
+      good <- rbind(good, data.frame(index = result.svm$index,
+                                     target = x$target))
+    }
+  }
+  return(good)
+}
+
+# Return data.frame(index, target)
+findGoodCliquesFromBayes <- function(folderName, method='bayes') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
+  good <- NULL
+  for(fn in fileNames) {
+    # Load result.bayes variable
+    load(fn)
+    x <- isGoodBayesClique(result.bayes$result)
+    if(x$boolean) {
+      good <- rbind(good, data.frame(index = result.svm$index,
+                                     target = x$target))
+    }
+  }
+  return(good)
+}
+
+# Return list(boolean, target)
 isGoodSVMClique <- function(experimentResult, errorThresholds) {
   
   # Do assessment for each target column 
   dfs <- split(experimentResult, experimentResult$target)
   
+  boolean <- FALSE
+  best <- NULL
+  
   provedTestError <- assessTestingError(dfs, errorThresholds)
   
   if(!is.null(provedTestError)) {
-    
+    provedTestError <- as.character(provedTestError[which.min(provedTestError$testerror), 'target'])
     provedF1Score <- assessF1Score(dfs)
     
     if(!is.null(provedF1Score)) {
-      
-      return(TRUE)
-      
-    } else {
-      return(FALSE)
-    }
-  } else {
-    return(FALSE)
+      boolean <- TRUE
+      provedF1Score <- as.character(provedF1Score[which.max(provedF1Score$f1score), 'target'])
+    } 
   }
+  
+  if(boolean) {
+    if(!provedTestError == provedF1Score) {
+      best <- paste(provedTestError, provedF1Score, sep = ',')
+    } else {
+      best <- provedTestError
+    }
+  }
+  
+  list(boolean=boolean, target=best)
+}
+
+# Return list(boolean, target)
+isGoodBayesClique <- function(experimentResult) {
+  dfs <- split(experimentResult, experimentResult$target)
+  boolean <- FALSE
+  best <- NULL
+  provedF1Score <- assessF1Score(dfs)
+  if(!is.null(provedF1Score)) {
+    boolean <- TRUE
+    # Get the best F1 score with its target column
+    best <- provedF1Score[which.max(provedF1Score$f1score), 'target']
+  }
+  list(boolean=boolean, target=best)
 }
 
 assessTestingError <- function(result.list.by.target, errorThresholds) {
@@ -174,6 +236,16 @@ correctFactorLevels <- function(df) {
   return(df)
 }
 
+
+
+
+
+
+
+
+
+
+
 getRulesResults <- function(filenames) {
   dfExperimentsDetails <- NULL
   for(fn in filenames) {
@@ -182,23 +254,6 @@ getRulesResults <- function(filenames) {
   }
   return(dfExperimentsDetails)
 }
-
-getSVMResults <- function(filenames) {
-  experiment.details <- NULL
-  critical.errors <- NULL
-  for(fn in filenames) {
-    load(fn)    # Will have a result.svm variable in the environment after loading a file
-    ## index <- rep(rslt$clique_index, nrow(rslt$details))
-    df <- data.frame(clique_index = result.svm$clique_index, result.svm$details)
-    experiment.details <- rbind(experiment.details, df)
-    df <- data.frame(clique_index = result.svm$clique_index, min_error = result.svm$min_error, 
-                     error_threshold = result.svm$threshold, avg_error = result.svm$avg_error)
-    critical.errors <- rbind(critical.errors, df)
-  }
-  list(experiment.details = experiment.details, 
-       critical.errors = critical.errors)
-}
-
 
 
 # If some rule had a lift of 1, it would imply that the probability of occurrence of the antecedent and 
