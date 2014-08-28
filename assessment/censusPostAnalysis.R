@@ -22,13 +22,13 @@ folderList <- function() {
 
 analysing <- function(dataset, fqsFiles, folders) {
   # A data frame with 3 columns: column, randomguess, threshold
-  maxErrors <- calculateErrorThresholds(dataset)
+  # maxErrors <- calculateErrorThresholds(dataset)
   
   # Get numbers of fqs files
   num <- length(fqsFileList)
   
   for (i in 1:num) {
-    x <- calculateQuality(folders[i], fqsFiles[i], maxErrors)
+    x <- calculateQuality(folders[i], fqsFiles[i])
     quality <- x$QualityScore
     qualifiedCliques <- x$QualifiedCliques
   }
@@ -38,26 +38,10 @@ analysing <- function(dataset, fqsFiles, folders) {
   # a data frame of all quality scores
 }
 
-calculateErrorThresholds <- function(dataset) {
-  temp <- lapply(colnames(dataset), 
-                 function(x, data = dataset) {
-                   cat <- length(levels(data[, x]))
-                   randomguess <- (cat - 1)/cat
-                   # Assumed that 50% of an error rate from random guessing is 
-                   # considered as a corresponding threshold
-                   threshold <- randomguess/2
-                   data.frame(column = x, 
-                              randomguess = randomguess, 
-                              threshold = threshold)
-                 })
-  # A data frame with 3 columns: column, randomguess, threshold
-  Reduce(function(...) merge(..., all = TRUE), temp)
-}
-
 # Return list(QualityScore, QualifiedCliques)
-calculateQuality <- function(folderName, fqsFile, errorThresholds) {
+calculateQuality <- function(folderName, fqsFile) {
   # For each method, find out a set of good cliques, then get the intersection
-  good.svm <- findGoodCliquesFromSVM(folderName, errorThresholds)
+  good.svm <- findGoodCliquesFromSVM(folderName)
   good.bayes <- findGoodCliquesFromBayes(folderName)
   
   good.all <- intersectGoodResults(good.svm, good.bayes)
@@ -69,16 +53,15 @@ calculateQuality <- function(folderName, fqsFile, errorThresholds) {
 }
 
 # Return data.frame(index, target)
-findGoodCliquesFromSVM <- function(folderName, errorThresholds, method = 'svm') {
-  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
-  
+findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
   # For each quasi clique, assess its SVM experiment results
   good <- NULL
   for(fn in fileNames) {
     # Load result.svm variable: 
     # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
     load(fn)
-    x <- isGoodSVMClique(result.svm$result, errorThresholds)
+    x <- isGoodFactorClique(result.svm$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.svm$index,
                                      target = x$target))
@@ -94,16 +77,15 @@ findGoodCliquesFromBayes <- function(folderName, method='bayes') {
   for(fn in fileNames) {
     # Load result.bayes variable
     load(fn)
-    x <- isGoodBayesClique(result.bayes$result)
+    x <- isGoodFactorClique(result.bayes$result)
     if(x$boolean) {
-      good <- rbind(good, data.frame(index = result.svm$index,
+      good <- rbind(good, data.frame(index = result.bayes$index,
                                      target = x$target))
     }
   }
   return(good)
 }
 
-# Return list(boolean, target)
 isGoodSVMClique <- function(experimentResult, errorThresholds) {
   
   # Do assessment for each target column 
@@ -136,7 +118,7 @@ isGoodSVMClique <- function(experimentResult, errorThresholds) {
 }
 
 # Return list(boolean, target)
-isGoodBayesClique <- function(experimentResult) {
+isGoodFactorClique <- function(experimentResult) {
   dfs <- split(experimentResult, experimentResult$target)
   boolean <- FALSE
   best <- NULL
@@ -325,6 +307,21 @@ intersectGoodResults <- function(res1, res2) {
 
 
 
+calculateErrorThresholds <- function(dataset) {
+  temp <- lapply(colnames(dataset), 
+                 function(x, data = dataset) {
+                   cat <- length(levels(data[, x]))
+                   randomguess <- (cat - 1)/cat
+                   # Assumed that 50% of an error rate from random guessing is 
+                   # considered as a corresponding threshold
+                   threshold <- randomguess/2
+                   data.frame(column = x, 
+                              randomguess = randomguess, 
+                              threshold = threshold)
+                 })
+  # A data frame with 3 columns: column, randomguess, threshold
+  Reduce(function(...) merge(..., all = TRUE), temp)
+}
 
 getRulesResults <- function(filenames) {
   dfExperimentsDetails <- NULL
