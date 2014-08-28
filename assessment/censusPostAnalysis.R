@@ -28,7 +28,7 @@ analysing <- function(dataset, fqsFiles, folders) {
   num <- length(fqsFileList)
   
   for (i in 1:num) {
-    x <- calculateQualityScore(folders[i], fqsFiles[i], maxErrors)
+    x <- calculateQuality(folders[i], fqsFiles[i], maxErrors)
     quality <- x$QualityScore
     qualifiedCliques <- x$QualifiedCliques
   }
@@ -58,13 +58,13 @@ calculateErrorThresholds <- function(dataset) {
 calculateQuality <- function(folderName, fqsFile, errorThresholds) {
   # For each method, find out a set of good cliques, then get the intersection
   good.svm <- findGoodCliquesFromSVM(folderName, errorThresholds)
-  #good.bayes <- findGoodCliquesFromBayes(folderName)
+  good.bayes <- findGoodCliquesFromBayes(folderName)
   
-  #good.all <- merge(good.svm, good.bayes, "index")
-  good.all <- good.svm
+  good.all <- intersectGoodResults(good.svm, good.bayes)
   
   allCliques <- readingQuasiCliques(fqsFile)
   quality <- nrow(good.all) / length(allCliques)
+  
   list(QualityScore=quality, QualifiedCliques=good.all)
 }
 
@@ -140,13 +140,40 @@ isGoodBayesClique <- function(experimentResult) {
   dfs <- split(experimentResult, experimentResult$target)
   boolean <- FALSE
   best <- NULL
+  
   provedF1Score <- assessF1Score(dfs)
+  
   if(!is.null(provedF1Score)) {
-    boolean <- TRUE
     # Get the best F1 score with its target column
-    best <- provedF1Score[which.max(provedF1Score$f1score), 'target']
+    bestF1Score <- provedF1Score[which.max(provedF1Score$f1score),]
+    
+    provedMCC <- assessMatthewsCorrelationCoefficient(dfs)
+    if(!is.null(provedMCC)) {
+      boolean <- TRUE
+      bestMCC <- provedMCC[which.max(provedMCC$mcc),]
+    }
+  }
+  
+  if(boolean) {
+    best <- getBestTargetColumn(bestF1Score, bestMCC)
   }
   list(boolean=boolean, target=best)
+}
+
+getBestTargetColumn <- function(best1, best2) {
+  best <- NULL
+  if(!best1[,'target'] == best2[,'target']) {
+    if(best1[,2] == best2[,2]) {
+      best <- paste(best1[,'target'], best2[,'target'], sep = ',')
+    } else if(best1[,2] > best2[,2]) {
+      best <- best1[,'target']
+    } else {
+      best <- best2[,'target']
+    }
+  } else {
+    best <- best2[,'target']
+  }
+  return(best)
 }
 
 assessTestingError <- function(result.list.by.target, errorThresholds) {
@@ -181,30 +208,65 @@ assessTestingError <- function(result.list.by.target, errorThresholds) {
   Reduce(function(...) merge(..., all=TRUE), dfs)
 }
 
+# Return a data frame with 2 columns: target, f1score (proved)
+assessF1Score <- function(result.list.by.target) {
+  
+  f1.threshold <- 0.8
+  # For each data frame (w.r.t a target column), calculate F1 score.
+  f1.list <- unlist(lapply(result.list.by.target,
+                           function(x) computeF1ScoreMulticlass(x)))
+  
+  res <- NULL
+  for(i in 1:length(f1.list)) {
+    if(f1.list[i] >= f1.threshold & f1.list[i] <= 1) {
+        res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
+                                     f1score = f1.list[i]))
+    }
+  }
+  return(res)
+}
+
+# Return a data frame with 2 columns: target, mcc (proved)
+assessMatthewsCorrelationCoefficient <- function(result.list.by.target) {
+  mcc.threshold <- 0.5
+  mcc.list <- unlist(lapply(result.list.by.target,
+                            function(x) computeMCCMutliclass(x)))
+  res <- NULL
+  for(i in 1:length(mcc.list)) {
+    if(mcc.list[i] >= mcc.threshold & mcc.list[i] <= 1) {
+      res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
+                                   mcc = mcc.list[i]))
+    }
+  }
+  return(res)
+}
+
 # Delete NULL entries in a list
 delete.Nulls <- function(aList) {
   aList[unlist(lapply(aList, length) != 0)]
 }
 
-getConfusionMatrixOfOneLabel <- function(classLabel, data) {
+# Return a data frame with 4 columns: TP, TN, FP, FN
+computeConfusionMatrixOfOneLabel <- function(classLabel, data) {
   condition.pos <- subset(data, actual == classLabel)  ## data frame of condition positives
   condition.neg <- subset(data, !actual == classLabel) ## data frame of condition negatives
   
-  tp <- length(condition.pos$pred[condition.pos$pred == classLabel])
-  tn <- length(condition.neg$pred[!condition.neg$pred == classLabel])
-  fp <- length(condition.neg$pred[condition.neg$pred == classLabel])
-  fn <- length(condition.pos$pred[!condition.pos$pred == classLabel])
+  tp <- length(condition.pos$predicted[condition.pos$predicted == classLabel])
+  tn <- length(condition.neg$predicted[!condition.neg$predicted == classLabel])
+  fp <- length(condition.neg$predicted[condition.neg$predicted == classLabel])
+  fn <- length(condition.pos$predicted[!condition.pos$predicted == classLabel])
   
   data.frame(TP=tp, TN=tn, FP=fp, FN=fn)
 }
 
-calculateF1ScoreMulticlass <- function(data) {
+computeF1ScoreMulticlass <- function(data) {
   # Correct the levels of factors in actual, predicted columns
   df <- correctFactorLevels(data)
   # Get all categories
   cat <- levels(df$actual)
+  # Compute confusion matrix for each category
   lp <- lapply(cat,
-               function(x, data=df) getConfusionMatrixOfOneLabel(x, data=df))
+               function(x, data=df) computeConfusionMatrixOfOneLabel(x, data=df))
   df <- Reduce(function(...) merge(..., all=TRUE), lp)
   
   precision.u <- sum(df$TP)/sum(df$TP + df$FP)
@@ -212,20 +274,20 @@ calculateF1ScoreMulticlass <- function(data) {
   2 * precision.u * recall.u / (precision.u + recall.u)
 }
 
-assessF1Score <- function(result.list.by.target) {
-  # For each data frame (w.r.t a target column), calculate F1 score.
-  f1.list <- unlist(lapply(result.list.by.target,
-                           function(x) calculateF1ScoreMulticlass(x)))
+computeMCCMutliclass <- function(data) {
+  # Correct the levels of factors in actual, predicted columns
+  df <- correctFactorLevels(data)
+  # Get all categories
+  cat <- levels(df$actual)
+  # Compute confusion matrix for each category
+  lp <- lapply(cat,
+               function(x, data=df) computeConfusionMatrixOfOneLabel(x, data=df))
+  df <- Reduce(function(...) merge(..., all=TRUE), lp)
   
-  # Return F1 scores that are > 0.6
-  res <- NULL
-  for(i in 1:length(f1.list)) {
-    if(f1.list[i] > 0.6) {
-      res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
-                                   f1score = f1.list[i]))
-    }
-  }
-  return(res)
+  dividend <- sum(df$TP)*sum(df$TN) - sum(df$FP)*sum(df$FN)
+  #divisor <- sum(df$TP+df$FP) * sum(df$TP+df$FN) * sum(df$TN+df$FP) * sum(df$TN+df$FN)
+  divisor <- sqrt(sum(df$TP+df$FP)) * sqrt(sum(df$TP+df$FN)) * sqrt(sum(df$TN+df$FP)) * sqrt(sum(df$TN+df$FN))
+  dividend / divisor
 }
 
 correctFactorLevels <- function(df) {
@@ -235,6 +297,24 @@ correctFactorLevels <- function(df) {
   df$predicted = factor(df$predicted, levels=levels(df$actual))
   return(df)
 }
+
+# Return a data frame with 2 columns: index, target (the one and only)
+intersectGoodResults <- function(res1, res2) {
+  # Inner join on index
+  df <- merge(res1, res2, by = 'index')
+  # Find common value in target
+  df$target <- Reduce(function(...) intersect(...), 
+                      list(unlist(strsplit(as.character(df[,2]), ',')), 
+                           unlist(strsplit(as.character(df[,3]), ','))))
+  # Delete target.x column
+  df[,2] <- NULL
+  # Delete target.y column
+  df[,2] <- NULL
+  return(df)
+}
+
+
+
 
 
 
