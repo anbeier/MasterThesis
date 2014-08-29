@@ -61,6 +61,7 @@ findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
     # Load result.svm variable: 
     # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
     load(fn)
+    log(paste("Examing svm clique", result.svm$index))
     x <- isGoodFactorClique(result.svm$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.svm$index,
@@ -77,6 +78,7 @@ findGoodCliquesFromBayes <- function(folderName, method='bayes') {
   for(fn in fileNames) {
     # Load result.bayes variable
     load(fn)
+    log(paste("Examing bayes clique", result.bayes$index))
     x <- isGoodFactorClique(result.bayes$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.bayes$index,
