@@ -217,7 +217,7 @@ assessF1Score <- function(result.list.by.target) {
 
 # Return a data frame with 2 columns: target, mcc (proved)
 assessMatthewsCorrelationCoefficient <- function(result.list.by.target) {
-  mcc.threshold <- 0.5
+  mcc.threshold <- 0.6
   mcc.list <- unlist(lapply(result.list.by.target,
                             function(x) computeMCCMutliclass(x)))
   res <- NULL
@@ -273,7 +273,7 @@ computeMCCMutliclass <- function(data) {
                function(x, data=df) computeConfusionMatrixOfOneLabel(x, data=df))
   df <- Reduce(function(...) merge(..., all=TRUE), lp)
   
-  dividend <- sum(df$TP)*sum(df$TN) - sum(df$FP)*sum(df$FN)
+  dividend <- as.numeric(sum(df$TP)) * as.numeric(sum(df$TN)) - as.numeric(sum(df$FP)) * as.numeric(sum(df$FN))
   #divisor <- sum(df$TP+df$FP) * sum(df$TP+df$FN) * sum(df$TN+df$FP) * sum(df$TN+df$FN)
   divisor <- sqrt(sum(df$TP+df$FP)) * sqrt(sum(df$TP+df$FN)) * sqrt(sum(df$TN+df$FP)) * sqrt(sum(df$TN+df$FN))
   dividend / divisor
