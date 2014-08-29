@@ -6,7 +6,7 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   # target.vector <- NULL
   
   for(target in colnames(qs)) {   
-    data <- takeSamples(qs, target) 
+    data <- takeSmallSamples(qs, target) 
     model <- trainSupportVectorMachine(data$training, target) 
     pred <- predict(model, newdata = data$testing)
     # data frame with 3 columns: 
@@ -33,11 +33,6 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
 }
 
-makeFileNameForExperimentResults <- function(fileIndicator, method) {
-  fn <- paste(method, fileIndicator, sep = '-')
-  return(fn)
-}
-
 trainSupportVectorMachine <- function(training, target) {
   formulastr <- as.formula(paste(target, "~.")) 
   # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
@@ -48,16 +43,14 @@ trainSupportVectorMachine <- function(training, target) {
   return(obj$best.model)
 }
 
-# Tested!
-getConfusionMatrix <- function(data, classLabel) {
-  condition.pos <- data[data$actual == classLabel, ]  ## data frame of condition positives
-  condition.neg <- data[!data$actual == classLabel, ]  ## data frame of condition negatives
-  tp <- sum(condition.pos$predicted == classLabel)
-  fn <- sum(!condition.pos$predicted == classLabel)
-  tn <- sum(!condition.neg$predicted == classLabel)
-  fp <- sum(condition.neg$predicted == classLabel)
-  list(tp = tp, fn = fn, tn = tn, fp = fp)
-}
+
+
+
+
+
+
+
+
 
 getStatistic <- function(testset, predicted, targetColumn) {
   df <- data.frame(actual = testset[, targetColumn], predicted = predicted)
