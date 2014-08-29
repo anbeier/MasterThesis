@@ -142,6 +142,7 @@ isGoodFactorClique <- function(experimentResult) {
   list(boolean=boolean, target=best)
 }
 
+# Return the best target(s)
 getBestTargetColumn <- function(best1, best2) {
   best <- NULL
   if(!best1[,'target'] == best2[,'target']) {
@@ -283,11 +284,25 @@ correctFactorLevels <- function(df) {
 # Return a data frame with 2 columns: index, target (the one and only)
 intersectGoodResults <- function(res1, res2) {
   # Inner join on index
-  df <- merge(res1, res2, by = 'index')
+  df <- merge(res1, res2, by = 'i')
   # Find common value in target
-  df$target <- Reduce(function(...) intersect(...), 
-                      list(unlist(strsplit(as.character(df[,2]), ',')), 
-                           unlist(strsplit(as.character(df[,3]), ','))))
+  #df$target <- Reduce(function(...) intersect(...), 
+  #                    list(unlist(strsplit(as.character(df[,2]), ',')), 
+  #                         unlist(strsplit(as.character(df[,3]), ','))))
+  df$target <- unlist(apply(df, 1, 
+                            function(x) {
+                              y <- intersect(x[2], x[3])
+                              if(length(y) == 0) {
+                                NA
+                              } else if(length(y) == 1) {
+                                y
+                              } else if(length(y) > 1) {
+                                paste(y, collapse = ',')
+                              }
+                            }))
+  
+  # Remove NAs resulting from intersection
+  df <- na.omit(df)
   # Delete target.x column
   df[,2] <- NULL
   # Delete target.y column
