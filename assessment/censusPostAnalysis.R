@@ -203,9 +203,13 @@ assessF1Score <- function(result.list.by.target) {
   
   res <- NULL
   for(i in 1:length(f1.list)) {
-    if(f1.list[i] >= f1.threshold & f1.list[i] <= 1) {
+    f <- f1.list[i]
+    # F1 score could be NaN, because precision.u and recall.u could both be zero
+    if(!is.nan(f)) {
+      if(f >= f1.threshold & f <= 1) {
         res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
-                                     f1score = f1.list[i]))
+                                     f1score = f))
+      }
     }
   }
   return(res)
