@@ -20,7 +20,7 @@ folderList <- function() {
   return(ls)
 }
 
-analysing <- function(dataset, fqsFiles, folders) {
+analysing <- function(fqsFiles, folders) {
   # A data frame with 3 columns: column, randomguess, threshold
   # maxErrors <- calculateErrorThresholds(dataset)
   
@@ -42,14 +42,14 @@ analysing <- function(dataset, fqsFiles, folders) {
 calculateQuality <- function(folderName, fqsFile) {
   # For each method, find out a set of good cliques, then get the intersection
   good.svm <- findGoodCliquesFromSVM(folderName)
-  good.bayes <- findGoodCliquesFromBayes(folderName)
+  #good.bayes <- findGoodCliquesFromBayes(folderName)
   
-  good.all <- intersectGoodResults(good.svm, good.bayes)
+  #good.all <- intersectGoodResults(good.svm, good.bayes)
   
   allCliques <- readingQuasiCliques(fqsFile)
-  quality <- nrow(good.all) / length(allCliques)
+  quality <- nrow(good.svm) / length(allCliques)
   
-  list(QualityScore=quality, QualifiedCliques=good.all)
+  list(QualityScore=quality, QualifiedCliques=good.svm)
 }
 
 # Return data.frame(index, target)
@@ -65,7 +65,8 @@ findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
     x <- isGoodFactorClique(result.svm$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.svm$index,
-                                     target = x$target))
+                                     target = x$best$target,
+                                     mcc <- x$best$mcc))
     }
   }
   return(good)
@@ -119,29 +120,19 @@ isGoodSVMClique <- function(experimentResult, errorThresholds) {
   list(boolean=boolean, target=best)
 }
 
-# Return list(boolean, target)
+# Return list(boolean, best)
 isGoodFactorClique <- function(experimentResult) {
   dfs <- split(experimentResult, experimentResult$target)
   boolean <- FALSE
   best <- NULL
   
-  provedF1Score <- assessF1Score(dfs)
-  
-  if(!is.null(provedF1Score)) {
-    # Get the best F1 score with its target column
-    bestF1Score <- provedF1Score[which.max(provedF1Score$f1score),]
-    
-    provedMCC <- assessMatthewsCorrelationCoefficient(dfs)
-    if(!is.null(provedMCC)) {
-      boolean <- TRUE
-      bestMCC <- provedMCC[which.max(provedMCC$mcc),]
-    }
+  proved <- assessMatthewsCorrelationCoefficient(dfs)
+  if(!is.null(proved)) {
+    boolean <- TRUE
+    best <- proved[which.max(proved$mcc),]
   }
   
-  if(boolean) {
-    best <- getBestTargetColumn(bestF1Score, bestMCC)
-  }
-  list(boolean=boolean, target=best)
+  list(boolean=boolean, best=best)
 }
 
 # Return the best target(s)
@@ -279,6 +270,20 @@ computeMCCMutliclass <- function(data) {
   dividend / divisor
 }
 
+returnMCCTable <- function(experimentResult) {
+  dfs <- split(experimentResult, experimentResult$target)
+  mcc.list <- unlist(lapply(dfs,
+                            function(x) computeMCCMutliclass(x)))
+  f1.list <- unlist(lapply(dfs,
+                           function(x) computeF1ScoreMulticlass(x)))
+  # A matrix of which each row indicates a MCC score of one column.
+  mcc <- data.frame(target = row.names(as.matrix(mcc.list)), MCC = as.matrix(mcc.list)[,1])
+  f1 <- data.frame(target = row.names(as.matrix(f1.list)), F1 = as.matrix(f1.list)[,1])
+  df <- merge(f1, mcc, by= 'target')
+  colnames(df) <- c('target', 'F1', 'MCC')
+  return(df)
+}
+
 correctFactorLevels <- function(df) {
   # Drop levels that do not appear.
   df$actual = factor(df$actual)
@@ -290,7 +295,7 @@ correctFactorLevels <- function(df) {
 # Return a data frame with 2 columns: index, target (the one and only)
 intersectGoodResults <- function(res1, res2) {
   # Inner join on index
-  df <- merge(res1, res2, by = 'i')
+  df <- merge(res1, res2, by = 'index')
   # Find common value in target
   #df$target <- Reduce(function(...) intersect(...), 
   #                    list(unlist(strsplit(as.character(df[,2]), ',')), 
