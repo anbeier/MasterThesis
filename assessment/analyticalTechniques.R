@@ -1,3 +1,4 @@
+# Naive bayes
 loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
@@ -17,6 +18,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   return(result.bayes)
 }
 
+# Support vector machine
 loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'svm')
   df <- NULL
@@ -51,6 +53,38 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
 }
 
+loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'cart')
+  df <- NULL
+  for(target in colnames(qs)) {
+    data <- takeSamples(qs, target)
+    model <- trainTree(data$training, target)
+    pred <- predict(model, data$testing)
+    df <- rbind(df, data.frame(target = target, 
+                               actual = data$testing[, target], 
+                               predicted = pred))
+  }
+  result.cart <- list(index = index, result = df)
+  save(result.cart, file = fileName) 
+  return(result.cart)
+}
+
+loopTrainLinearRegressionForOneClique <- function(clique, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'lm')
+  df <- NULL
+  for(targetColumn in colnames(clique)) {
+    data <- takeSamples(clique, targetColumn)
+    model <- trainLinearModel(data$training, targetColumn)
+    pred <- predict(model, newdata = data$testing)
+    df <- rbind(df, data.frame(target = targetColumn, 
+                               actual = data$testing[, targetColumn], 
+                               predicted = pred))
+  }
+  result.lm <- list(index = index, result = df)
+  save(result.lm, file = fileName) 
+  return(result.lm)
+}
+
 trainSupportVectorMachine <- function(training, target) {
   formulastr <- as.formula(paste(target, "~.")) 
   # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
@@ -61,9 +95,26 @@ trainSupportVectorMachine <- function(training, target) {
   return(obj$best.model)
 }
 
-trainNaiveBayes <- function(trainset, targetColumn) {
-  formulastr <- as.formula(paste(targetColumn, "~.")) 
+trainNaiveBayes <- function(trainset, target) {
+  formulastr <- as.formula(paste(target, "~.")) 
   model <- naiveBayes(formulastr, data = trainset)
+  return(model)
+}
+
+# With cross validation with 10 folds
+trainTree <- function(trainset, target) {
+  formulastr <- as.formula(paste(target, "~.")) 
+  tr.control = trainControl(method = "cv", number = 10)  ## cross-valiadation with 10 folds
+  cp.grid = expand.grid( .cp = (0:10)*0.001)  ## cp values
+  tr = train(formulastr, data = trainset, method = 'rpart', 
+             trControl = tr.control, tuneGrid = cp.grid) 
+  tr <- train(formulastr, data = trainset, method = 'rpart')
+  return(tr$finalModel)
+}
+
+trainLinearModel <- function(trainset, columnname) {
+  formulastr <- as.formula(paste(columnname, '~.'))
+  model <- lm(formulastr, data = trainset)
   return(model)
 }
 
@@ -86,10 +137,9 @@ takeSmallSamples <- function(qs, targetcol) {
 
 # Will take 60% of data as training set and 40% as testing set w.r.t a specific target column
 takeSamples <- function(qs, targetcol) {
-  split <- sample.split(qs[, targetcol], SplitRatio = 0.6)
-  training <- subset(qs, split == TRUE)
-  testing <- subset(qs, split == FALSE) 
-  list(training = training, testing = testing)
+  inTrain <- createDataPartition(y = qs[, targetcol], p = 0.6, list=FALSE)
+  list(training = qs[inTrain,], 
+       testing = qs[-inTrain,])
 }
 
 # Will return a sharing part of all file names
