@@ -69,6 +69,7 @@ loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
   return(result.cart)
 }
 
+# Linear regression
 loopTrainLinearRegressionForOneClique <- function(clique, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'lm')
   df <- NULL
@@ -83,6 +84,22 @@ loopTrainLinearRegressionForOneClique <- function(clique, index, fileIndicator) 
   result.lm <- list(index = index, result = df)
   save(result.lm, file = fileName) 
   return(result.lm)
+}
+
+loopTrainMultilayerPerceptron <- function(qs, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'percp')
+  df <- NULL
+  for(target in colnames(qs)) {
+    data <- prepareDataForPerceptron(qs, target)
+    w <- monmlp.fit(data$independentVal, data$dependentVal, hidden1 = 10)
+    p <- monmlp.predict(x = data$testset, weights = w)
+    df <- rbind(df, data.frame(target = targetColumn, 
+                               actual = data$actualVal, 
+                               predicted = p))
+  }
+  result.percp <- list(index = index, result = df)
+  save(result.percp, file = fileName) 
+  return(result.percp)
 }
 
 trainSupportVectorMachine <- function(training, target) {
@@ -140,6 +157,32 @@ takeSamples <- function(qs, targetcol) {
   inTrain <- createDataPartition(y = qs[, targetcol], p = 0.6, list=FALSE)
   list(training = qs[inTrain,], 
        testing = qs[-inTrain,])
+}
+
+prepareDataForPerceptron <- function(qs, targetColumn) {
+  inTrain <- createDataPartition(y = qs[, targetColumn], p = 0.5, list=FALSE)
+  trainset <- qs[inTrain,]
+  testset <- qs[-inTrain,]
+  
+  if(nrow(trainset) > nrow(testset)) {
+    diff <- nrow(trainset) - nrow(testset)
+    trainset <- trainset[1: nrow(trainset) - diff, ]
+  } else if(nrow(trainset) < nrow(testset)) {
+    diff <- nrow(testset) - nrow(trainset)
+    testset <- testset[1: nrow(testset) - diff, ]
+  }
+  
+  if(nrow(trainset) == nrow(testset)) {
+    dependentVal <- as.matrix(trainset[, targetColumn])
+    trainset[, targetColumn] <- NULL
+    independentVal <- as.matrix(trainset)
+    actualVal <- testset[, targetColumn]
+    testset[, targetColumn] <- NULL
+    testset <- as.matrix(testset)
+  }
+  
+  list(independentVal = independentVal, dependentVal = dependentVal, 
+       testset = testset, actualVal = actualVal)
 }
 
 # Will return a sharing part of all file names
