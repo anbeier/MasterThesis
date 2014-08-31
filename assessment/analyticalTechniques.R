@@ -86,6 +86,7 @@ loopTrainLinearRegressionForOneClique <- function(clique, index, fileIndicator) 
   return(result.lm)
 }
 
+# Multi-layer Perceptron
 loopTrainMultilayerPerceptron <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'percp')
   df <- NULL
@@ -93,13 +94,44 @@ loopTrainMultilayerPerceptron <- function(qs, index, fileIndicator) {
     data <- prepareDataForPerceptron(qs, target)
     w <- monmlp.fit(data$independentVal, data$dependentVal, hidden1 = 10)
     p <- monmlp.predict(x = data$testset, weights = w)
-    df <- rbind(df, data.frame(target = targetColumn, 
+    df <- rbind(df, data.frame(target = target, 
                                actual = data$actualVal, 
                                predicted = p))
   }
   result.percp <- list(index = index, result = df)
   save(result.percp, file = fileName) 
   return(result.percp)
+}
+
+# Bayesian Regularized Neural Networks
+loopTrainNeuralNetwork <- function(qs, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'nn')
+  df <- NULL
+  for(targetColumn in colnames(qs)) {
+    data <- takeSamples(qs, targetColumn)
+    model <- trainNeuralNetwork(data$training, targetColumn)
+    pred <- predictNeuralNetwork(model, data$testing, targetColumn)
+    df <- rbind(df, data.frame(target = targetColumn, 
+                               actual = data$testing[, targetColumn], 
+                               predicted = pred))
+  }
+  result.nn <- list(index = index, result = df)
+  save(result.nn, file = fileName) 
+}
+
+trainNeuralNetwork <- function(trainset, columnname) {
+  #estimators <- paste(setdiff(colnames(trainset), columnname), collapse = '+')
+  #formulastr <- as.formula(paste(columnname, estimators, sep='~'))
+  formulastr <- as.formula(paste(columnname, '~.'))
+  #nn <- neuralnet(formulastr, trainset, hidden = 10, algorithm = 'backprop', 
+  #                learningrate = 0.01,linear.output = FALSE)
+  model <- train(formulastr, data = trainset, method = 'brnn')
+  return(model$finalModel)
+}
+
+predictNeuralNetwork <- function(model, testset, target) {
+  testset[, target] <- NULL
+  predict(model, testset)
 }
 
 trainSupportVectorMachine <- function(training, target) {
@@ -166,10 +198,10 @@ prepareDataForPerceptron <- function(qs, targetColumn) {
   
   if(nrow(trainset) > nrow(testset)) {
     diff <- nrow(trainset) - nrow(testset)
-    trainset <- trainset[1: nrow(trainset) - diff, ]
+    trainset <- trainset[1: (nrow(trainset) - diff), ]
   } else if(nrow(trainset) < nrow(testset)) {
     diff <- nrow(testset) - nrow(trainset)
-    testset <- testset[1: nrow(testset) - diff, ]
+    testset <- testset[1: (nrow(testset) - diff), ]
   }
   
   if(nrow(trainset) == nrow(testset)) {
