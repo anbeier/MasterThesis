@@ -1,3 +1,50 @@
+# Return list(QualityScore, QualifiedCliques)
+calculateQuality <- function(folderName, fqsFile) {
+  good.? <- findGoodCliquesFrom?(folderName)
+  # use MAPE
+  
+  allCliques <- readingQuasiCliques(fqsFile)
+  quality <- nrow(good.?) / length(allCliques)
+  
+  list(QualityScore=quality, QualifiedCliques=good.?)
+}
+
+computeRootMeanSquareDeviation<- function(df) {
+  numerator <- sum((df$actual - df$predicted)^2)
+  RMSD <- sqrt(numerator/nrow(df))
+  return(RMSD)
+}
+
+returnRMSDTable <- function(experimentResult) {
+  dfs <- split(experimentResult, experimentResult$target)
+  rmsd.list <- unlist(lapply(dfs,
+                            function(x) computeRootMeanSquareDeviation(x)))
+  x <- as.matrix(rmsd.list)
+  data.frame(target = row.names(x), RMSD = x[,1])
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 calculateQuality <- function(delta, alpha) {
   data <- readExperimentResults(delta, alpha)
   good.lm <- findGoodCliquesFromLinearRegreassion(data)
