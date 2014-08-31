@@ -53,6 +53,7 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
 }
 
+# Classification and Regression Tree
 loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'cart')
   df <- NULL
@@ -65,7 +66,7 @@ loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
                                predicted = pred))
   }
   result.cart <- list(index = index, result = df)
-  save(result.cart, file = fileName) 
+  #save(result.cart, file = fileName) 
   return(result.cart)
 }
 
@@ -117,6 +118,23 @@ loopTrainNeuralNetwork <- function(qs, index, fileIndicator) {
   }
   result.nn <- list(index = index, result = df)
   save(result.nn, file = fileName) 
+  return(result.nn)
+}
+
+loopTrainRandomForest <- function(qs, index, fileIndicator) {
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'rf')
+  df <- NULL
+  for(targetColumn in colnames(qs)) {
+    data <- takeSamples(qs, targetColumn)
+    model <- trainRandomForest(data$training, targetColumn)
+    pred <- predictRF(model, data$testing, targetColumn)
+    df <- rbind(df, data.frame(target = targetColumn, 
+                               actual = data$testing[, targetColumn], 
+                               predicted = pred))
+  }
+  result.rf <- list(index = index, result = df)
+  save(result.rf, file = fileName) 
+  return(result.rf)
 }
 
 trainNeuralNetwork <- function(trainset, columnname) {
@@ -157,7 +175,7 @@ trainTree <- function(trainset, target) {
   cp.grid = expand.grid( .cp = (0:10)*0.001)  ## cp values
   tr = train(formulastr, data = trainset, method = 'rpart', 
              trControl = tr.control, tuneGrid = cp.grid) 
-  tr <- train(formulastr, data = trainset, method = 'rpart')
+  #tr <- train(formulastr, data = trainset, method = 'rpart')
   return(tr$finalModel)
 }
 
@@ -165,6 +183,23 @@ trainLinearModel <- function(trainset, columnname) {
   formulastr <- as.formula(paste(columnname, '~.'))
   model <- lm(formulastr, data = trainset)
   return(model)
+}
+
+trainRandomForest <- function(trainset, target) {
+  formulastr <- as.formula(paste(target, '~.'))
+  outcomeVal <- trainset[, target]
+  independentVal <- trainset
+  independentVal[, target] <- NULL
+  bestmtry=tuneRF(independentVal, outcomeVal, ntreeTry=100, stepFactor=1.5,
+                  improve=0.01, trace=TRUE, plot=TRUE, dobest=FALSE)
+  rf <-randomForest(formulastr, data=trainset, mtry=2, ntree=1000,
+                    keep.forest=TRUE, importance=TRUE, proximity=TRUE)
+  return(rf)
+}
+
+predictRF <- function(model, testset, target) {
+  testset[, target] <- NULL
+  predict(model, newdata = testset)
 }
 
 # Extract a few samples from a quasi clique w.r.t a specific target column
