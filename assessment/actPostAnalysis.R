@@ -1,12 +1,13 @@
-# Return list(QualityScore, QualifiedCliques)
+library("data.table")
+
 calculateQuality <- function(folderName, fqsFile) {
-  good.? <- findGoodCliquesFrom?(folderName)
+  good.cart <- findGoodCliquesFromCart(folderName)
   # use MAPE
   
   allCliques <- readingQuasiCliques(fqsFile)
-  quality <- nrow(good.?) / length(allCliques)
+  quality <- nrow(good.cart) / length(allCliques)
   
-  list(QualityScore=quality, QualifiedCliques=good.?)
+  list(QualityScore=quality, QualifiedCliques=good.cart)
 }
 
 computeRootMeanSquareDeviation<- function(df) {
@@ -23,7 +24,55 @@ returnRMSDTable <- function(experimentResult) {
   data.frame(target = row.names(x), RMSD = x[,1])
 }
 
+findGoodCliquesFromCart <- function(folderName, method='cart') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
+  # For each quasi clique, assess its CART experiment results
+  good <- NULL
+  for(fn in fileNames) {
+    # Load result.cart variable: 
+    # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
+    load(fn)
+    #log(paste("Examing cart clique", result.cart$index))
+    x <- isGoodRealValueClique(result.cart$result)
+    if(x$boolean) {
+      good <- rbind(good, data.frame(index = result.cart$index,
+                                     target = x$best$target,
+                                     SMAPE <- x$best$SMAPE))
+    }
+  }
+  return(good)
+}
 
+isGoodRealValueClique <- function(experimentResult) {
+  boolean <- FALSE
+  best <- NULL
+  smape.threshold = 10
+  
+  smape <- computeSymmetrMeanAbsPercentageError(experimentResult)
+  smape.min = min(smape$SMAPE)
+  if(smape.min <= smape.threshold) {
+    boolean <- TRUE
+    best <- smape[which.min(smape$SMAPE),]
+  }
+  
+  list(boolean=boolean, best=best)
+}
+
+computeSymmetrMeanAbsPercentageError <- function(experimentResult) {
+  computeSMAPE <- function(actual, predicted) {
+    df <- data.frame(acutal=actual, predicted=predicted)
+    lp <- unlist(apply(df, 1,
+                       function(x) {
+                         abs(x[1] - x[2]) / (x[1] + x[2])
+                       }))
+    sum(lp) * 100 / nrow(df)
+  }
+  
+  dt <- data.table(experimentResult)
+  smape <- as.data.frame(dt[, computeSMAPE(actual, predicted), by=list(target)])
+  colnames(smape) = c('target', 'SMAPE')
+  return(smape)  # data.frame(target, SMAPE)
+}
 
 
 
