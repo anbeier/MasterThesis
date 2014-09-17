@@ -35,9 +35,9 @@ findGoodCliquesFromCart <- function(folderName, method='cart') {
     #log(paste("Examing cart clique", result.cart$index))
     x <- isGoodRealValueClique(result.cart$result)
     if(x$boolean) {
-      good <- rbind(good, data.frame(index = result.cart$index,
+      good <- rbind(good, data.frame(index = result.lm$index,
                                      target = x$best$target,
-                                     SMAPE <- x$best$SMAPE))
+                                     NRMSD <- x$best$NRMSD))
     }
   }
   return(good)
@@ -46,32 +46,38 @@ findGoodCliquesFromCart <- function(folderName, method='cart') {
 isGoodRealValueClique <- function(experimentResult) {
   boolean <- FALSE
   best <- NULL
-  smape.threshold = 10
+  nrmsd.threshold = 0.1
   
-  smape <- computeSymmetrMeanAbsPercentageError(experimentResult)
-  smape.min = min(smape$SMAPE)
-  if(smape.min <= smape.threshold) {
+  nrmsd <- computeNormalizedRootMeanSquareDeviation(experimentResult)
+  nrmsd.min = min(nrmsd$NRMSD)
+  
+  if(nrmsd.min < nrmsd.threshold) {
     boolean <- TRUE
-    best <- smape[which.min(smape$SMAPE),]
+    best <- nrmsd[which.min(nrmsd$NRMSD),]
   }
   
   list(boolean=boolean, best=best)
 }
 
-computeSymmetrMeanAbsPercentageError <- function(experimentResult) {
-  computeSMAPE <- function(actual, predicted) {
-    df <- data.frame(acutal=actual, predicted=predicted)
-    lp <- unlist(apply(df, 1,
-                       function(x) {
-                         abs(x[1] - x[2]) / (x[1] + x[2])
-                       }))
-    sum(lp) * 100 / nrow(df)
-  }
-  
+computeSMAPE <- function(actual, predicted) {
+  df <- data.frame(actual=actual, predicted=predicted)
+  lp <- unlist(apply(df, 1,
+                     function(x) {
+                       abs(x[1] - x[2]) / abs(x[1] + x[2])
+                     }))
+  sum(lp) * 100 / length(lp)
+}
+
+computeNRMSD <- function(actual, predicted) {
+  rmsd = computeRootMeanSquareDeviation(data.frame(actual=actual, predicted=predicted))
+  rmsd / (max(actual) - min(actual))
+}
+
+computeNormalizedRootMeanSquareDeviation <- function(experimentResult) {
   dt <- data.table(experimentResult)
-  smape <- as.data.frame(dt[, computeSMAPE(actual, predicted), by=list(target)])
-  colnames(smape) = c('target', 'SMAPE')
-  return(smape)  # data.frame(target, SMAPE)
+  nrmsd <- as.data.frame(dt[, computeNRMSD(actual, predicted), by=list(target)])
+  setnames(nrmsd, names(nrmsd), c('target', 'NRMSD'))
+  return(nrmsd) 
 }
 
 
