@@ -1,13 +1,13 @@
 library("data.table")
 
 calculateQuality <- function(folderName, fqsFile) {
-  good.cart <- findGoodCliquesFromCart(folderName)
-  # use MAPE
+  #good.cart <- findGoodCliquesFromCart(folderName)
+  good.lm = findGoodCliquesFromLM(folderName)
   
-  allCliques <- readingQuasiCliques(fqsFile)
-  quality <- nrow(good.cart) / length(allCliques)
+  allCliques <- readQuasiCliques(fqsFile)
+  quality <- nrow(good.lm) / length(allCliques)
   
-  list(QualityScore=quality, QualifiedCliques=good.cart)
+  list(QualityScore=quality, QualifiedCliques=good.lm)
 }
 
 computeRootMeanSquareDeviation<- function(df) {
@@ -35,9 +35,25 @@ findGoodCliquesFromCart <- function(folderName, method='cart') {
     #log(paste("Examing cart clique", result.cart$index))
     x <- isGoodRealValueClique(result.cart$result)
     if(x$boolean) {
-      good <- rbind(good, data.frame(index = result.lm$index,
+      good <- rbind(good, data.frame(index = result.cart$index,
                                      target = x$best$target,
                                      NRMSD <- x$best$NRMSD))
+    }
+  }
+  return(good)
+}
+
+findGoodCliquesFromLM <- function(folderName, method='lm') {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
+  good = NULL
+  for(fn in fileNames) {
+    load(fn)
+    log(paste("Examing lm clique", result.lm$index))
+    x = isGoodRealValueClique(result.lm$result)
+    if(x$boolean) {
+      good = rbind(good, data.frame(index=result.lm$index,
+                                    target = x$best$target,
+                                    SMAPE <- x$best$SMAPE))
     }
   }
   return(good)
@@ -46,26 +62,46 @@ findGoodCliquesFromCart <- function(folderName, method='cart') {
 isGoodRealValueClique <- function(experimentResult) {
   boolean <- FALSE
   best <- NULL
-  nrmsd.threshold = 0.1
+  #nrmsd.threshold = 0.1
+  smape.threshold = 0.1
   
-  nrmsd <- computeNormalizedRootMeanSquareDeviation(experimentResult)
-  nrmsd.min = min(nrmsd$NRMSD)
+  #nrmsd <- computeNormalizedRootMeanSquareDeviation(experimentResult)
   
-  if(nrmsd.min < nrmsd.threshold) {
+  # Force R not to use expotional notation.
+  options("scipen"=100, "digits"=4)
+  x = computeSymmetricMeanAbsolutePercentageError(experimentResult)
+  #nrmsd.min = min(nrmsd$NRMSD)
+  minSAMPE = min(x$SMAPE)
+  
+  if(minSAMPE < smape.threshold) {
     boolean <- TRUE
-    best <- nrmsd[which.min(nrmsd$NRMSD),]
+    best <- x[which.min(x$SMAPE),]
   }
   
   list(boolean=boolean, best=best)
 }
 
+computeSymmetricMeanAbsolutePercentageError <- function(experimentResult) {
+  dt <- data.table(experimentResult)
+  smape <- as.data.frame(dt[, computeSMAPE(actual, predicted), by=list(target)])
+  setnames(smape, names(smape), c('target', 'SMAPE'))
+  return(smape) 
+}
+
 computeSMAPE <- function(actual, predicted) {
   df <- data.frame(actual=actual, predicted=predicted)
-  lp <- unlist(apply(df, 1,
-                     function(x) {
-                       abs(x[1] - x[2]) / abs(x[1] + x[2])
-                     }))
-  sum(lp) * 100 / length(lp)
+  smape <- unlist(apply(df, 1,
+                      function(x) {
+                        abs(x[1] - x[2]) / abs(x[1] + x[2])
+                      }))
+  
+  # If both actual & predicted value equals zero, it'll result in NaN.
+  # Eliminate NaNs
+  smape = smape[!is.nan(smape)]
+  # Set the Inf values 1000000 if the sum of actual & predicted equals zero
+  smape[which(smape == Inf)] = 1000000
+  
+  sum(smape) / length(smape)
 }
 
 computeNRMSD <- function(actual, predicted) {
@@ -97,50 +133,6 @@ computeNormalizedRootMeanSquareDeviation <- function(experimentResult) {
 
 
 
-
-
-
-calculateQuality <- function(delta, alpha) {
-  data <- readExperimentResults(delta, alpha)
-  good.lm <- findGoodCliquesFromLinearRegreassion(data)
-  totalNum <- length(unique(data$clique_index))
-  goodNum <- length(unique(good$clique_index))
-  return(goodNum / totalNum)
-}
-
-readExperimentResults <- function(delta, alpha) {
-  files <- getFilePaths(delta, alpha)
-  res.cart <- getRegressionTreeResults(files$cart)
-  res.lm <- getLinearRegressionResults(files$lm)
-  list(cart = res.cart, lm = res.lm)
-}
-
-# returns a folder name in form of 'act_deltaX_alphaX'
-getFolderName <- function(datasetName, delta, alpha) {
-  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '_')
-  folderName <- paste(datasetName, prefix, sep = '_')
-  return(folderName)
-}
-
-getFilePaths <- function(delta, alpha) {
-  folder <- getFolderName('act', delta, alpha)  
-  foldernames <- list.files(folder)  ## a list of file names
-  folderpaths <- list.files(folder, full.name = TRUE)  
-  
-  lm.fn <- NULL  ## initial file names
-  cart <- NULL
-  i <- 1  ## initial folder index
-  while(i <= length(foldernames)) {
-    fs <- list.files(folderpaths[i], full.names=TRUE)
-    if(foldernames[i] == 'lm') {
-      lm.fn <- fs
-    } else if(foldernames[i] == 'cart') {
-      cart.fn <- fs
-    }
-    i = i + 1
-  }
-  list(cart = cart.fn, lm = lm.fn)
-}
 
 getLinearRegressionResults <- function(filenames) {
   df.results <- NULL
