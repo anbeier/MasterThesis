@@ -1,13 +1,29 @@
 library("data.table")
 
-calculateQuality <- function(folderName, fqsFile) {
+folderList <- function() {
+  ls <- NULL
+  f <- 'act_delta0.7_alpha0.5'
+  ls <- append(ls, f)
+  f <- 'act_delta0.8_alpha0.5'
+  ls <- append(ls, f)
+  f <- 'act_delta0.9_alpha0.5'
+  ls <- append(ls, f)
+  return(ls)
+}
+
+analysing <- function(folders) {
+  num <- length(folders)
+  
+  for (i in 1:num) {
+    calculateQuality(folders[i])
+  }
+}
+
+calculateQuality <- function(folderName) {
   #good.cart <- findGoodCliquesFromCart(folderName)
-  good.lm = findGoodCliquesFromLM(folderName)
-  
-  allCliques <- readQuasiCliques(fqsFile)
-  quality <- nrow(good.lm) / length(allCliques)
-  
-  list(QualityScore=quality, QualifiedCliques=good.lm)
+  quality = findGoodCliquesFromLM(folderName)
+  fn = fn = paste(paste('evaluation', folderName, sep='_'), 'csv', sep='.')
+  write.csv(quality, fn)
 }
 
 computeRootMeanSquareDeviation<- function(df) {
