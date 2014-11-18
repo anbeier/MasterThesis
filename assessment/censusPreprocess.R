@@ -11,6 +11,7 @@ getCensusData <- function(csvFilePath, colnameFilePath) {
 }
 
 readingData <- function(csvFile, colnameFile) { 
+  print('reading census data...')
   df <- read.csv(csvFile, sep = ";", header = FALSE)  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
@@ -155,30 +156,6 @@ getOneClique <- function(dataset, cliqueList, cliqueIndex) {
   return(qs)
 }
 
-# Extract a few samples from a quasi clique w.r.t a specific target value
-takeSmallSamples <- function(qs, targetcol) {
-  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]  
-  samples <- qs
-  ratio <- 0.6
-  alpha <- 0.5
-  trainingSize <- nrow(samples)^alpha + 1000
-  if (nrow(samples) > trainingSize) {
-    ratio <- trainingSize / nrow(samples)
-  }
-  #log(paste("choosing ratio", ratio, "sample training size", trainingSize))
-  split <- sample.split(samples[, targetcol], SplitRatio = ratio)
-  training <- subset(samples, split == TRUE)
-  testing <- subset(samples, split == FALSE) 
-  list(training = training, testing = testing)
-}
-
-takeSamples <- function(qs, targetcol) {
-  split <- sample.split(qs[, targetcol], SplitRatio = 0.6)
-  training <- subset(qs, split == TRUE)
-  testing <- subset(qs, split == FALSE) 
-  list(training = training, testing = testing)
-}
-
 # not used
 # dummy code the factors except for the target value
 # input: a quasi clique, the target value
@@ -231,17 +208,4 @@ convertCategories <- function(qs) {
   }
   
   return(df)
-}
-
-# Will return a sharing part of all file names
-makeFileIndicator <- function(delta, alpha, i) {
-  prefix <- paste(paste('delta', delta, sep = ''), paste('alpha', alpha, sep = ''), sep = '-')
-  string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
-  string <- paste(string, 'rdata', sep = '.')
-  return(string)
-}
-
-makeFileNameForExperimentResults <- function(fileIndicator, method) {
-  fn <- paste(method, fileIndicator, sep = '-')
-  return(fn)
 }

@@ -1,9 +1,16 @@
+library(e1071)
+library(caTools)
+library(caret)
+library(randomForest)
+
 # Naive bayes
 loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
-  
   df <- NULL
+  
+  print(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
+  
   for(target in colnames(qs)) {
     data <- takeSamples(qs, target)
     model <- trainNaiveBayes(data$training, target)
@@ -23,6 +30,8 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'svm')
   df <- NULL
   # target.vector <- NULL
+  
+  print(paste('training svm and testing on quasi-clique:', index, sep=' '))
   
   for(target in colnames(qs)) {   
     data <- takeSmallSamples(qs, target) 
@@ -66,8 +75,8 @@ loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
                                predicted = pred))
   }
   result.cart <- list(index = index, result = df)
-  #save(result.cart, file = fileName) 
-  return(result.cart)
+  save(result.cart, file = fileName) 
+  #return(result.cart)
 }
 
 # Linear regression

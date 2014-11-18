@@ -228,6 +228,7 @@ delete.Nulls <- function(aList) {
 
 # Return a data frame with 4 columns: TP, TN, FP, FN
 computeConfusionMatrixOfOneLabel <- function(classLabel, data) {
+  print('computing confusion matrix...')
   condition.pos <- subset(data, actual == classLabel)  ## data frame of condition positives
   condition.neg <- subset(data, !actual == classLabel) ## data frame of condition negatives
   
@@ -264,6 +265,7 @@ computeMCCMutliclass <- function(data) {
                function(x, data=df) computeConfusionMatrixOfOneLabel(x, data=df))
   df <- Reduce(function(...) merge(..., all=TRUE), lp)
   
+  print('computing MCC score...')
   dividend <- as.numeric(sum(df$TP)) * as.numeric(sum(df$TN)) - as.numeric(sum(df$FP)) * as.numeric(sum(df$FN))
   #divisor <- sum(df$TP+df$FP) * sum(df$TP+df$FN) * sum(df$TN+df$FP) * sum(df$TN+df$FN)
   divisor <- sqrt(sum(df$TP+df$FP)) * sqrt(sum(df$TP+df$FN)) * sqrt(sum(df$TN+df$FP)) * sqrt(sum(df$TN+df$FN))
@@ -274,13 +276,9 @@ returnMCCTable <- function(experimentResult) {
   dfs <- split(experimentResult, experimentResult$target)
   mcc.list <- unlist(lapply(dfs,
                             function(x) computeMCCMutliclass(x)))
-  f1.list <- unlist(lapply(dfs,
-                           function(x) computeF1ScoreMulticlass(x)))
-  # A matrix of which each row indicates a MCC score of one column.
-  mcc <- data.frame(target = row.names(as.matrix(mcc.list)), MCC = as.matrix(mcc.list)[,1])
-  f1 <- data.frame(target = row.names(as.matrix(f1.list)), F1 = as.matrix(f1.list)[,1])
-  df <- merge(f1, mcc, by= 'target')
-  colnames(df) <- c('target', 'F1', 'MCC')
+  # A matrix in which each row indicates a MCC score of one column.
+  df <- data.frame(target = row.names(as.matrix(mcc.list)), MCC = as.matrix(mcc.list)[,1])
+  colnames(df) <- c('TargetColumn', 'MCC')
   return(df)
 }
 
