@@ -221,6 +221,58 @@ assessMatthewsCorrelationCoefficient <- function(result.list.by.target) {
   return(res)
 }
 
+compare <- function(char, label) {
+  if(char == label) {
+    return(1)
+  } else {
+    return(0)
+  }
+}
+
+computeMetricesXY <- function(vector, labels) {
+  res = NULL
+  
+  for(n in labels) {
+    binaryForLabelN = sapply(vector, FUN=function(x) compare(x, label = n))
+    res = cbind(res, binaryForLabelN)
+  }
+  
+  res = as.data.frame(res)
+  names(res) = labels
+  return(res)
+}
+
+computeAverageXk <- function(x, classIndex) {
+  s = nrow(x)
+  sum(x[,classIndex]) / s
+}
+
+covXY <- function(x, y) {
+  numOfLabels = length(names(x))
+  numOfSamples = nrow(x)
+  
+  summe = 0
+  
+  for(s in 1:numOfSamples) {
+    for(k in 1:numOfLabels) {
+      x_k = computeAverageXk(x, k)
+      y_k = computeAverageXk(y, k)
+      tmp = (x[s,k] - x_k)*(y[s,k] - y_k)
+      summe = summe + tmp
+    }
+  }
+  
+  summe / numOfLabels
+}
+
+computeMCC <- function(df) {
+  N = levels(df$actual)
+  X = computeMetricesXY(df$predicted, N)
+  Y = computeMetricesXY(df$actual, N)
+  denominator = sqrt(covXY(X, X) * covXY(Y, Y))
+  covXY(X, Y) / denominator
+}
+
 # Delete NULL entries in a list
 delete.Nulls <- function(aList) {
   aList[unlist(lapply(aList, length) != 0)]
