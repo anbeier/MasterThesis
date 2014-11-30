@@ -1,3 +1,5 @@
+source('mcc.R')
+
 fqsFileList <- function() {
   ls <- NULL
   f <- 'census_fqs_delta0.7_alpha0.5.txt'
@@ -40,7 +42,7 @@ analysing <- function(fqsFiles, folders) {
 
 # Return list(QualityScore, QualifiedCliques)
 calculateQuality <- function(folderName, fqsFile) {
-  # For each method, find out a set of good cliques, then get the intersection
+  # Find out a set of good cliques, then get the intersection
   good.svm <- findGoodCliquesFromSVM(folderName)
   #good.bayes <- findGoodCliquesFromBayes(folderName)
   
@@ -210,10 +212,11 @@ assessF1Score <- function(result.list.by.target) {
 assessMatthewsCorrelationCoefficient <- function(result.list.by.target) {
   mcc.threshold <- 0.6
   mcc.list <- unlist(lapply(result.list.by.target,
-                            function(x) computeMCCMutliclass(x)))
+  #                          function(x) computeMCCMutliclass(x)))
+                             function(x) computeMCC(x)))
   res <- NULL
   for(i in 1:length(mcc.list)) {
-    if(mcc.list[i] >= mcc.threshold & mcc.list[i] <= 1) {
+    if(mcc.list[i] > mcc.threshold & mcc.list[i] <= 1) {
       res <- rbind(res, data.frame(target = result.list.by.target[[i]]$target[1],
                                    mcc = mcc.list[i]))
     }
@@ -265,12 +268,35 @@ covXY <- function(x, y) {
   summe / numOfLabels
 }
 
+areAllPredictedSameClass <- function(x) {
+  booleans = NULL
+  for(i in 1:ncol(x)) {
+    areAllZeros = all(x[,i] == x[1,i] & x[1,i] == 0)
+    booleans = c(booleans, areAllZeros)
+  }
+  
+  numOfColumnsWithAllZeros = sum(booleans == TRUE)
+  if(numOfColumnsWithAllZeros == ncol(x) - 1) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
 computeMCC <- function(df) {
+  df = correctFactorLevels(df)
   N = levels(df$actual)
   X = computeMetricesXY(df$predicted, N)
-  Y = computeMetricesXY(df$actual, N)
-  denominator = sqrt(covXY(X, X) * covXY(Y, Y))
-  covXY(X, Y) / denominator
+  
+  # MCC equals zero if all samples are classified to one class
+  if(areAllPredictedSameClass(X)) {
+    return(0)
+  } else {
+    Y = computeMetricesXY(df$actual, N)
+    denominator = sqrt(covXY(X, X) * covXY(Y, Y))
+    mcc = covXY(X, Y) / denominator
+    return(round(mcc, 4))
+  }
 }
 
 # Delete NULL entries in a list
@@ -327,7 +353,8 @@ computeMCCMutliclass <- function(data) {
 returnMCCTable <- function(experimentResult) {
   dfs <- split(experimentResult, experimentResult$target)
   mcc.list <- unlist(lapply(dfs,
-                            function(x) computeMCCMutliclass(x)))
+  #                          function(x) computeMCCMutliclass(x)))
+                             function(x) computeMCC(x)))
   # A matrix in which each row indicates a MCC score of one column.
   df <- data.frame(target = row.names(as.matrix(mcc.list)), MCC = as.matrix(mcc.list)[,1])
   colnames(df) <- c('TargetColumn', 'MCC')
