@@ -20,7 +20,7 @@ tryDifferentTechniques <- function(csvFile = csvfp, colnameFile = colnamefp,
   fileIndicator <- makeFileIndicator(delta, alpha, instance)
   
   result.svm <- loopTrainSVMForOneClique(sampleClique, instance, fileIndicator)
-  result.bayes <- loopTrainNaiveBayesForOneClique(sampleClique, 1, fileIndicator)
+  result.bayes <- loopTrainNaiveBayesForOneClique(sampleClique, instance, fileIndicator)
   
   mcc.svm <- returnMCCTable(result.svm$result)
   mcc.bayes <- returnMCCTable(result.bayes$result)
@@ -41,7 +41,7 @@ main <- function(cliqueIndex, delta = d, alpha = a,
   # Save result of each clique in a 'rdata' file
   fileIndicator <- makeFileIndicator(delta, alpha, cliqueIndex)
   loopTrainSVMForOneClique(clique, cliqueIndex, fileIndicator)
-  loopTrainNaiveBayesForOneClique(clique, cliqueIndex, fileIndicator)
+  #loopTrainNaiveBayesForOneClique(clique, cliqueIndex, fileIndicator)
   rm(list = ls())  ## clear workspace
 }
 
@@ -74,4 +74,15 @@ parallelMain <- function(indexStart, indexEnd, delta = d, alpha = a,
   
   res <- mclapply(inputs, worker, mc.cores = cores)
   return(res)
+}
+
+saveOutputInCSV <- function(folderName, method) {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
+  
+  for(fn in fileNames) {
+    load(fn)
+    filestring = unlist(strsplit(fn, split='qs'))[1]
+    newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
+    write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+  }
 }

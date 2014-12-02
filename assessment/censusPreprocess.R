@@ -44,15 +44,23 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
   df[, colname] <- as.numeric(df[, colname])
   columnVector <- df[, colname]
   ## Get the .2th and .8th quantile of values in this column
-  q <- quantile(columnVector, probs = c(0.2, 0.8))  
+  q <- quantile(columnVector, probs = c(0.1, 0.9))  
+  
+  # Same max. and min. quantiles results in a range of zero
+  if(q[1] == q[2]) {
+    newVector = columnVector[columnVector != q[1]]
+    q = quantile(newVector, probs = c(0.05, 0.9))
+    
+  } 
   ## Divide the set of values into max. 10 subsets (user defined)
-  range <- (q['80%'] - q['20%']) / 10
+  range <- (q[2] - q[1]) / 10
   df[, colname] <- unlist(lapply(df[, colname], 
                                  function(x) {
-                                   i <- (x - q['20%']) %/% range
+                                   i <- (x - q[1]) %/% range
                                    label <- paste(colname, i, sep = '')
                                    return(label)
                                  }))
+  
   df[, colname] <- as.factor(df[, colname])
   return(df)
 }

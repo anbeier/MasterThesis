@@ -1,4 +1,3 @@
-source('mcc.R')
 
 fqsFileList <- function() {
   ls <- NULL
@@ -63,14 +62,16 @@ findGoodCliquesFromSVM <- function(folderName, method = 'svm') {
     # Load result.svm variable: 
     # a list of 2 elements: index (clique index), result (data frame of actual & predicted values)
     load(fn)
-    log(paste("Examing svm clique", result.svm$index))
+    #log(paste("Examing svm clique", result.svm$index))
+    print(paste("Examing svm clique", result.svm$index, "..."))
     x <- isGoodFactorClique(result.svm$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.svm$index,
                                      target = x$best$target,
-                                     mcc <- x$best$mcc))
+                                     mcc = x$best$mcc))
     }
   }
+  print('Finished')
   return(good)
 }
 
@@ -85,7 +86,8 @@ findGoodCliquesFromBayes <- function(folderName, method='bayes') {
     x <- isGoodFactorClique(result.bayes$result)
     if(x$boolean) {
       good <- rbind(good, data.frame(index = result.bayes$index,
-                                     target = x$target))
+                                     target = x$target,
+                                     mcc = x$mcc))
     }
   }
   return(good)
@@ -286,6 +288,7 @@ areAllPredictedSameClass <- function(x) {
 computeMCC <- function(df) {
   df = correctFactorLevels(df)
   N = levels(df$actual)
+  df = na.omit(df)
   X = computeMetricesXY(df$predicted, N)
   
   # MCC equals zero if all samples are classified to one class
