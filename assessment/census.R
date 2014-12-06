@@ -70,7 +70,7 @@ parallelMain <- function(indexStart, indexEnd, delta = d, alpha = a,
          filename = makeFileIndicator(delta, alpha, i))
   })
   
-  cores <- 2 # be friendly and dont use all cores
+  cores <- 1 # be friendly and dont use all cores
   
   res <- mclapply(inputs, worker, mc.cores = cores)
   return(res)
