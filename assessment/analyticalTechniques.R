@@ -276,6 +276,17 @@ makeFileIndicator <- function(delta, alpha, i) {
   return(string)
 }
 
+transferToCsv <- function(folderName, method) {
+  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
+
+  for(fn in fileNames) {
+    load(fn)
+    filestring = unlist(strsplit(fn, split='qs'))[1]
+    newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
+    write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+  }
+}
+
 makeFileNameForExperimentResults <- function(fileIndicator, method) {
   fn <- paste(method, fileIndicator, sep = '-')
   return(fn)
