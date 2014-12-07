@@ -28,15 +28,22 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
 # Support vector machine
 loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'svm')
+  if (file.exists(fileName)) {
+    log(paste('skipped svm for clique', index, '. File', fileName, 'already exists'))
+    return(NULL)
+  }
   df <- NULL
   # target.vector <- NULL
   
-  print(paste('training svm and testing on quasi-clique:', index, sep=' '))
+  log(paste('training svm and testing on quasi-clique: ', index, sep=' '))
   
   for(target in colnames(qs)) {   
     data <- takeSmallSamples(qs, target) 
+    log(paste('training svm clique: ', index, ' for target ', target, ' with ', nrow(data$training), '/', nrow(data$testing),' samples', sep=''))
     model <- trainSupportVectorMachine(data$training, target) 
+    log(paste('predicting svm clique: ', index, ' for target ', target, ' with ', nrow(data$training), '/', nrow(data$testing),' samples', sep=''))
     pred <- predict(model, newdata = data$testing)
+    log(paste('saving svm clique: ', index, ' for target ', target, sep=''))
     # data frame with 3 columns: 
     # target (outcome value), actual (actual values), predicted (predicted values)
     df <- rbind(df, data.frame(target = target, 
@@ -53,7 +60,6 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   }
   result.svm <- list(index = index, result = df)
   save(result.svm, file = fileName) 
-  print(paste('Finished svm on quasi-clique:', index, sep=' '))
   return(result.svm)
   # thres <- getErrorThreshold(error.vector)
   # df <- data.frame(target_column = targart.vector, testing_error = error.vector, expected_error_in_factor = level.vector)
@@ -268,17 +274,6 @@ makeFileIndicator <- function(delta, alpha, i) {
   string <- paste(prefix, paste('qs', i, sep = ''), sep = '-')
   string <- paste(string, 'rdata', sep = '.')
   return(string)
-}
-
-transferToCsv <- function(folderName, method) {
-  fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
-  
-  for(fn in fileNames) {
-    load(fn)
-    filestring = unlist(strsplit(fn, split='qs'))[1]
-    newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
-    write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
-  }
 }
 
 makeFileNameForExperimentResults <- function(fileIndicator, method) {

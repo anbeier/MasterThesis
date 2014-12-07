@@ -1,6 +1,7 @@
-# For-loop in a quasi clique; for each column do calculate association rules
-loopAssociationRules <- function(qs, qsIndex, delta, alpha) {
-  fileName <- makeFileNameForResultsFromRules(qsIndex, delta, alpha)
+loopTrainRulesForOneClique <- function(qs, index, fileIndicator) {
+  
+  fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
+  
   result <- NULL
   for(colname in names(qs)) {
     rules <- getRules(qs, colname)
@@ -72,10 +73,4 @@ separateRulesItems <- function(df) {
                                       return(outcome)
                                     }))
   return(df)
-}
-
-makeFileNameForResultsFromRules <- function(i, delta, alpha) {
-  sharingPart <- makeFileName(delta, alpha, i)
-  fn <- paste('rules', sharingPart, sep = '-')
-  return(fn)
 }

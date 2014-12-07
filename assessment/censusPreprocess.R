@@ -11,7 +11,7 @@ getCensusData <- function(csvFilePath, colnameFilePath) {
 }
 
 readingData <- function(csvFile, colnameFile) { 
-  print('reading census data...')
+  log('reading census data...')
   df <- read.csv(csvFile, sep = ";", header = FALSE)  
   colnames(df) <- readLines(colnameFile, encoding = "UTF-8")
   df <- modifyColnames(df)
@@ -44,20 +44,32 @@ categorizeNumericValuesIntoIntervals <- function(df, colname) {
   df[, colname] <- as.numeric(df[, colname])
   columnVector <- df[, colname]
   ## Get the .2th and .8th quantile of values in this column
-  q <- quantile(columnVector, probs = c(0.1, 0.9))  
+  q <- quantile(columnVector, probs = c(0.05, 0.95))  
   
   # Same max. and min. quantiles results in a range of zero
   if(q[1] == q[2]) {
     newVector = columnVector[columnVector != q[1]]
-    q = quantile(newVector, probs = c(0.05, 0.9))
-    
-  } 
+    q = quantile(newVector, probs = c(0.05, 0.95)) 
+  }
+  
+  quantileMargin <- 50 # allow up to 10 buckets left/right of the choosen quantile
   ## Divide the set of values into max. 10 subsets (user defined)
-  range <- (q[2] - q[1]) / 10
+  bucketsBetweenQuantiles = 10
+  range <- (q[2] - q[1]) / bucketsBetweenQuantiles
+  lowerIndexLimit <- -1 * quantileMargin
+  upperIndexLimit <- (q[2] - q[1]) / range + quantileMargin
   df[, colname] <- unlist(lapply(df[, colname], 
                                  function(x) {
                                    i <- (x - q[1]) %/% range
-                                   label <- paste(colname, i, sep = '')
+                                   low <- (q[1] + i * range)
+                                   high <- (q[1] + (i + 1) * range)
+                                   if (i < lowerIndexLimit) {
+                                     label <- paste(colname, '<', (q[1] - lowerIndexLimit * range), sep = '')
+                                   } else if (i > upperIndexLimit) {
+                                     label <- paste(colname, '>', (q[2] + upperIndexLimit * range), sep = '')
+                                   } else {
+                                     label <- paste(colname, low, '<=i<', high, sep = '')
+                                   }
                                    return(label)
                                  }))
   

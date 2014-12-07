@@ -50,27 +50,29 @@ worker <- function(input) {
   tryCatch({
     loopTrainSVMForOneClique(input$clique, input$index, input$filename)
     #loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
+    log(paste("done processing", input$index))
   }, error=function(e) {
     log(paste("error processing", input$index, e))
     e
   })
 }
 
-parallelMain <- function(indexStart, indexEnd, delta = d, alpha = a, 
+parallelMain <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a, 
                          csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
   
+  log(paste('parallelMain', indexStart, '->', indexEnd, 'using', cores, 'cores'))
   census <- getCensusData(csvFile, colnameFile)
   cliques <- readingQuasiCliques(fqsFile)
   
   inputs <- lapply(seq(indexStart, indexEnd), function(i) {
     log(paste("prepare input for", i))
     
-    list(index = i, 
-         clique = getOneClique(census, cliques, i), 
+    clique <- getOneClique(census, cliques, i)
+    log(paste('clique: ', i, ' size:', nrow(clique), 'x', ncol(clique), ' items: ', nrow(clique)*ncol(clique), sep=''))
+    list(index = i,
+         clique = clique,
          filename = makeFileIndicator(delta, alpha, i))
   })
-  
-  cores <- 1 # be friendly and dont use all cores
   
   res <- mclapply(inputs, worker, mc.cores = cores)
   return(res)
@@ -85,4 +87,10 @@ saveOutputInCSV <- function(folderName, method) {
     newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
     write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
   }
+}
+
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) > 0) {
+    idx <- as.integer(args[1])
+    parallelMain(idx, idx)
 }

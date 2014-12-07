@@ -1,47 +1,6 @@
 # For-loop in one quasi clique
 # For each column, as outcome value, train a SVM model and apply this model on testing set
-loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
-  fileName <- makeFileNameForExperimentResults(fileIndicator, 'svm')
-  df <- NULL
-  # target.vector <- NULL
-  
-  for(target in colnames(qs)) {   
-    data <- takeSmallSamples(qs, target) 
-    model <- trainSupportVectorMachine(data$training, target) 
-    pred <- predict(model, newdata = data$testing)
-    # data frame with 3 columns: 
-    # target (outcome value), actual (actual values), predicted (predicted values)
-    df <- rbind(df, data.frame(target = target, 
-                               actual = data$testing[, target], 
-                               predicted = pred))
-    # stats <- getStatistic(data$testing, pred, target)
-    # testingError <- getTestingError(model, data$testing)
-    # expected.level.ratio <- (1 - 1/length(levels(qs[, target]))) / 2.5
-    # level.vector <- c(level.vector, expected.level.ratio)
-    # error.vector <- c(error.vector, testingError)
-    # target.vector <- c(target.vector, target)
-    # save(index, targart.vector, error.vector, level.vector, file = fileNames$temporaryName)
-    # save(index, target.vector, acc.vector, dor.vector, f1.vector, file = fileNames$temporaryName)
-  }
-  result.svm <- list(index = index, result = df)
-  save(result.svm, file = fileName) 
-  # thres <- getErrorThreshold(error.vector)
-  # df <- data.frame(target_column = targart.vector, testing_error = error.vector, expected_error_in_factor = level.vector)
-  # result.svm <- list(clique_index = index, details = df, threshold = thres, 
-  #                    min_error = min(error.vector), avg_error = mean(error.vector))
-  #result.svm <- data.frame(clique_index = index, target_column = target.vector, 
-  #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
-}
 
-trainSupportVectorMachine <- function(training, target) {
-  formulastr <- as.formula(paste(target, "~.")) 
-  # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
-  #               C = 10, prob.model = TRUE)
-  # model <- svm(formulastr, data = qs)
-  obj <- tune(svm, formulastr, data = training, ranges = list(gamma = c(0.1, 1, 10), cost = c(1, 10, 50)), 
-              tunecontrol = tune.control(sampling = "fix"))
-  return(obj$best.model)
-}
 
 
 
