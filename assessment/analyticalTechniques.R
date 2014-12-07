@@ -5,21 +5,21 @@ library(caret)
 
 # Naive bayes
 loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
-  
+
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
   df <- NULL
-  
+
   print(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
-  
+
   for(target in colnames(qs)) {
     data <- takeSamples(qs, target)
     model <- trainNaiveBayes(data$training, target)
     pred <- predict(model, data$testing)
-    df <- rbind(df, data.frame(target = target, 
-                               actual = data$testing[, target], 
+    df <- rbind(df, data.frame(target = target,
+                               actual = data$testing[, target],
                                predicted = pred))
   }
-  
+
   result.bayes <- list(index = index, result = df)
   save(result.bayes, file = fileName)
   return(result.bayes)
@@ -34,20 +34,20 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
   }
   df <- NULL
   # target.vector <- NULL
-  
+
   log(paste('training svm and testing on quasi-clique: ', index, sep=' '))
-  
-  for(target in colnames(qs)) {   
-    data <- takeSmallSamples(qs, target) 
+
+  for(target in colnames(qs)) {
+    data <- takeSmallSamples(qs, target)
     log(paste('training svm clique: ', index, ' for target ', target, ' with ', nrow(data$training), '/', nrow(data$testing),' samples', sep=''))
-    model <- trainSupportVectorMachine(data$training, target) 
+    model <- trainSupportVectorMachine(data$training, target)
     log(paste('predicting svm clique: ', index, ' for target ', target, ' with ', nrow(data$training), '/', nrow(data$testing),' samples', sep=''))
     pred <- predict(model, newdata = data$testing)
     log(paste('saving svm clique: ', index, ' for target ', target, sep=''))
-    # data frame with 3 columns: 
+    # data frame with 3 columns:
     # target (outcome value), actual (actual values), predicted (predicted values)
-    df <- rbind(df, data.frame(target = target, 
-                               actual = data$testing[, target], 
+    df <- rbind(df, data.frame(target = target,
+                               actual = data$testing[, target],
                                predicted = pred))
     # stats <- getStatistic(data$testing, pred, target)
     # testingError <- getTestingError(model, data$testing)
@@ -59,13 +59,13 @@ loopTrainSVMForOneClique <- function(qs, index, fileIndicator) {
     # save(index, target.vector, acc.vector, dor.vector, f1.vector, file = fileNames$temporaryName)
   }
   result.svm <- list(index = index, result = df)
-  save(result.svm, file = fileName) 
+  save(result.svm, file = fileName)
   return(result.svm)
   # thres <- getErrorThreshold(error.vector)
   # df <- data.frame(target_column = targart.vector, testing_error = error.vector, expected_error_in_factor = level.vector)
-  # result.svm <- list(clique_index = index, details = df, threshold = thres, 
+  # result.svm <- list(clique_index = index, details = df, threshold = thres,
   #                    min_error = min(error.vector), avg_error = mean(error.vector))
-  #result.svm <- data.frame(clique_index = index, target_column = target.vector, 
+  #result.svm <- data.frame(clique_index = index, target_column = target.vector,
   #                         accurary = acc.vector, diagnostic_odds_ratio = dor.vector, f1_score = f1.vector)
 }
 
@@ -77,12 +77,12 @@ loopTrainClassificationRegressionTree <- function(qs, index, fileIndicator) {
     data <- takeSamples(qs, target)
     model <- trainTree(data$training, target)
     pred <- predict(model, data$testing)
-    df <- rbind(df, data.frame(target = target, 
-                               actual = data$testing[, target], 
+    df <- rbind(df, data.frame(target = target,
+                               actual = data$testing[, target],
                                predicted = pred))
   }
   result.cart <- list(index = index, result = df)
-  save(result.cart, file = fileName) 
+  save(result.cart, file = fileName)
   #return(result.cart)
 }
 
@@ -94,12 +94,12 @@ loopTrainLinearRegressionForOneClique <- function(clique, index, fileIndicator) 
     data <- takeSamples(clique, targetColumn)
     model <- trainLinearModel(data$training, targetColumn)
     pred <- predict(model, newdata = data$testing)
-    df <- rbind(df, data.frame(target = targetColumn, 
-                               actual = data$testing[, targetColumn], 
+    df <- rbind(df, data.frame(target = targetColumn,
+                               actual = data$testing[, targetColumn],
                                predicted = pred))
   }
   result.lm <- list(index = index, result = df)
-  save(result.lm, file = fileName) 
+  save(result.lm, file = fileName)
   return(result.lm)
 }
 
@@ -111,12 +111,12 @@ loopTrainMultilayerPerceptron <- function(qs, index, fileIndicator) {
     data <- prepareDataForPerceptron(qs, target)
     w <- monmlp.fit(data$independentVal, data$dependentVal, hidden1 = 10)
     p <- monmlp.predict(x = data$testset, weights = w)
-    df <- rbind(df, data.frame(target = target, 
-                               actual = data$actualVal, 
+    df <- rbind(df, data.frame(target = target,
+                               actual = data$actualVal,
                                predicted = p))
   }
   result.percp <- list(index = index, result = df)
-  save(result.percp, file = fileName) 
+  save(result.percp, file = fileName)
   return(result.percp)
 }
 
@@ -128,12 +128,12 @@ loopTrainNeuralNetwork <- function(qs, index, fileIndicator) {
     data <- takeSamples(qs, targetColumn)
     model <- trainNeuralNetwork(data$training, targetColumn)
     pred <- predictNeuralNetwork(model, data$testing, targetColumn)
-    df <- rbind(df, data.frame(target = targetColumn, 
-                               actual = data$testing[, targetColumn], 
+    df <- rbind(df, data.frame(target = targetColumn,
+                               actual = data$testing[, targetColumn],
                                predicted = pred))
   }
   result.nn <- list(index = index, result = df)
-  save(result.nn, file = fileName) 
+  save(result.nn, file = fileName)
   return(result.nn)
 }
 
@@ -144,12 +144,12 @@ loopTrainRandomForest <- function(qs, index, fileIndicator) {
     data <- takeSamples(qs, targetColumn)
     model <- trainRandomForest(data$training, targetColumn)
     pred <- predictRF(model, data$testing, targetColumn)
-    df <- rbind(df, data.frame(target = targetColumn, 
-                               actual = data$testing[, targetColumn], 
+    df <- rbind(df, data.frame(target = targetColumn,
+                               actual = data$testing[, targetColumn],
                                predicted = pred))
   }
   result.rf <- list(index = index, result = df)
-  save(result.rf, file = fileName) 
+  save(result.rf, file = fileName)
   return(result.rf)
 }
 
@@ -157,7 +157,7 @@ trainNeuralNetwork <- function(trainset, columnname) {
   #estimators <- paste(setdiff(colnames(trainset), columnname), collapse = '+')
   #formulastr <- as.formula(paste(columnname, estimators, sep='~'))
   formulastr <- as.formula(paste(columnname, '~.'))
-  #nn <- neuralnet(formulastr, trainset, hidden = 10, algorithm = 'backprop', 
+  #nn <- neuralnet(formulastr, trainset, hidden = 10, algorithm = 'backprop',
   #                learningrate = 0.01,linear.output = FALSE)
   model <- train(formulastr, data = trainset, method = 'brnn')
   return(model$finalModel)
@@ -169,28 +169,28 @@ predictNeuralNetwork <- function(model, testset, target) {
 }
 
 trainSupportVectorMachine <- function(training, target) {
-  formulastr <- as.formula(paste(target, "~.")) 
-  # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1), 
+  formulastr <- as.formula(paste(target, "~."))
+  # model <- ksvm(formulastr, data = qs, type = "C-bsvc", kernel = "rbfdot", kpar = list(sigma = 0.1),
   #               C = 10, prob.model = TRUE)
   # model <- svm(formulastr, data = qs)
-  obj <- tune(svm, formulastr, data = training, ranges = list(gamma = c(0.1, 1, 10), cost = c(1, 10, 50)), 
+  obj <- tune(svm, formulastr, data = training, ranges = list(gamma = c(0.1, 1, 10), cost = c(1, 10, 50)),
               tunecontrol = tune.control(sampling = "fix"))
   return(obj$best.model)
 }
 
 trainNaiveBayes <- function(trainset, target) {
-  formulastr <- as.formula(paste(target, "~.")) 
+  formulastr <- as.formula(paste(target, "~."))
   model <- naiveBayes(formulastr, data = trainset)
   return(model)
 }
 
 # With cross validation with 10 folds
 trainTree <- function(trainset, target) {
-  formulastr <- as.formula(paste(target, "~.")) 
+  formulastr <- as.formula(paste(target, "~."))
   tr.control = trainControl(method = "cv", number = 10)  ## cross-valiadation with 10 folds
   cp.grid = expand.grid( .cp = (0:10)*0.001)  ## cp values
-  tr = train(formulastr, data = trainset, method = 'rpart', 
-             trControl = tr.control, tuneGrid = cp.grid) 
+  tr = train(formulastr, data = trainset, method = 'rpart',
+             trControl = tr.control, tuneGrid = cp.grid)
   #tr <- train(formulastr, data = trainset, method = 'rpart')
   return(tr$finalModel)
 }
@@ -220,7 +220,7 @@ predictRF <- function(model, testset, target) {
 
 # Extract a few samples from a quasi clique w.r.t a specific target column
 takeSmallSamples <- function(qs, targetcol) {
-  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]  
+  # samples <- qs[sample(nrow(qs), replace = FALSE, size = 0.01 * nrow(qs)), ]
   samples <- qs
   ratio <- 0.6
   alpha <- 0.5
@@ -231,14 +231,14 @@ takeSmallSamples <- function(qs, targetcol) {
   #log(paste("choosing ratio", ratio, "sample training size", trainingSize))
   split <- sample.split(samples[, targetcol], SplitRatio = ratio)
   training <- subset(samples, split == TRUE)
-  testing <- subset(samples, split == FALSE) 
+  testing <- subset(samples, split == FALSE)
   list(training = training, testing = testing)
 }
 
 # Will take 60% of data as training set and 40% as testing set w.r.t a specific target column
 takeSamples <- function(qs, targetcol) {
   inTrain <- createDataPartition(y = qs[, targetcol], p = 0.6, list=FALSE)
-  list(training = qs[inTrain,], 
+  list(training = qs[inTrain,],
        testing = qs[-inTrain,])
 }
 
@@ -246,7 +246,7 @@ prepareDataForPerceptron <- function(qs, targetColumn) {
   inTrain <- createDataPartition(y = qs[, targetColumn], p = 0.5, list=FALSE)
   trainset <- qs[inTrain,]
   testset <- qs[-inTrain,]
-  
+
   if(nrow(trainset) > nrow(testset)) {
     diff <- nrow(trainset) - nrow(testset)
     trainset <- trainset[1: (nrow(trainset) - diff), ]
@@ -254,7 +254,7 @@ prepareDataForPerceptron <- function(qs, targetColumn) {
     diff <- nrow(testset) - nrow(trainset)
     testset <- testset[1: (nrow(testset) - diff), ]
   }
-  
+
   if(nrow(trainset) == nrow(testset)) {
     dependentVal <- as.matrix(trainset[, targetColumn])
     trainset[, targetColumn] <- NULL
@@ -263,8 +263,8 @@ prepareDataForPerceptron <- function(qs, targetColumn) {
     testset[, targetColumn] <- NULL
     testset <- as.matrix(testset)
   }
-  
-  list(independentVal = independentVal, dependentVal = dependentVal, 
+
+  list(independentVal = independentVal, dependentVal = dependentVal,
        testset = testset, actualVal = actualVal)
 }
 
