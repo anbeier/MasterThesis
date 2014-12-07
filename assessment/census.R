@@ -63,6 +63,11 @@ parallelMain <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a,
   log(paste('parallelMain', indexStart, '->', indexEnd, 'using', cores, 'cores'))
   census <- getCensusData(csvFile, colnameFile)
   cliques <- readingQuasiCliques(fqsFile)
+
+  if (indexEnd > length(cliques)) {
+    indexEnd <- length(cliques)
+    log(paste('indexEnd changed to ', indexEnd, sep=''))
+  }
   
   inputs <- lapply(seq(indexStart, indexEnd), function(i) {
     log(paste("prepare input for", i))
