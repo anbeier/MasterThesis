@@ -1,0 +1,444 @@
+target,actual,predicted
+race,White,White
+race,White,White
+race,White,White
+race,Other,White
+race,White,White
+race,White,White
+race,Other,White
+race,White,White
+race,White,White
+race,White,White
+race,White,White
+race,White,White
+race,White,White
+race,White,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,Black,White
+race,Black,White
+race,White,White
+race,White,White
+race,White,White
+race,Other,White
+race,White,White
+race,White,White
+race,Black,White
+race,White,White
+race,Amer Indian Aleut or Eskimo,White
+race,White,White
+race,Other,White
+race,White,White
+race,White,White
+race,White,White
+race,Other,White
+race,White,White
+race,Other,White
+race,White,White
+race,Black,White
+race,Black,White
+race,White,White
+race,Black,White
+race,Black,White
+race,White,White
+race,White,White
+race,Other,White
+race,Black,White
+race,Amer Indian Aleut or Eskimo,White
+race,White,White
+race,Black,White
+race,Other,White
+race,Asian or Pacific Islander,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,Black,White
+race,Asian or Pacific Islander,White
+race,Amer Indian Aleut or Eskimo,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,White,White
+race,White,White
+race,Black,White
+race,White,White
+race,Black,White
+race,Black,White
+race,White,White
+race,Amer Indian Aleut or Eskimo,White
+race,White,White
+race,Black,White
+race,White,White
+race,White,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,Black,White
+race,Black,White
+race,Amer Indian Aleut or Eskimo,White
+race,Black,White
+race,Amer Indian Aleut or Eskimo,White
+race,Black,White
+race,Amer Indian Aleut or Eskimo,White
+race,Asian or Pacific Islander,White
+race,Black,White
+race,Black,White
+race,White,White
+race,Black,White
+race,White,White
+race,Asian or Pacific Islander,White
+race,Amer Indian Aleut or Eskimo,White
+race,Other,White
+regionofpreviousresidence,Not in universe,Not in universe
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,Abroad
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Not in universe,Not in universe
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,Not in universe,Not in universe
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,Abroad
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Abroad,Abroad
+regionofpreviousresidence,Not in universe,Not in universe
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,West,West
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Not in universe,Not in universe
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,Abroad,Abroad
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Abroad,Abroad
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Northeast,Northeast
+regionofpreviousresidence,West,West
+regionofpreviousresidence,West,West
+regionofpreviousresidence,West,West
+regionofpreviousresidence,South,South
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,West,West
+regionofpreviousresidence,Midwest,Midwest
+regionofpreviousresidence,South,South
+regionofpreviousresidence,South,South
+stateofpreviousresidence,Not in universe,Not in universe
+stateofpreviousresidence,Not in universe,Not in universe
+stateofpreviousresidence,Not in universe,Not in universe
+stateofpreviousresidence,California,California
+stateofpreviousresidence,Maryland,North Carolina
+stateofpreviousresidence,Not in universe,Not in universe
+stateofpreviousresidence,Iowa,Indiana
+stateofpreviousresidence,Missouri,Utah
+stateofpreviousresidence,Kentucky,Indiana
+stateofpreviousresidence,Oklahoma,Indiana
+stateofpreviousresidence,Montana,Indiana
+stateofpreviousresidence,Alaska,California
+stateofpreviousresidence,Florida,Utah
+stateofpreviousresidence,Not in universe,Not in universe
+stateofpreviousresidence,Arizona,California
+stateofpreviousresidence,North Carolina,North Carolina
+stateofpreviousresidence,South Carolina,North Carolina
+stateofpreviousresidence,Minnesota,Indiana
+stateofpreviousresidence,New York,California
+stateofpreviousresidence,South Dakota,Utah
+stateofpreviousresidence,New Mexico,North Carolina
+stateofpreviousresidence,West Virginia,California
+stateofpreviousresidence,Tennessee,Indiana
+stateofpreviousresidence,Arizona,California
+stateofpreviousresidence,Arkansas,Utah
+stateofpreviousresidence,Illinois,California
+stateofpreviousresidence,Virginia,North Carolina
+stateofpreviousresidence,Minnesota,Indiana
+stateofpreviousresidence,District of Columbia,Utah
+stateofpreviousresidence,Montana,Indiana
+stateofpreviousresidence,Wyoming,Indiana
+stateofpreviousresidence,North Dakota,Utah
+stateofpreviousresidence,Kentucky,Indiana
+stateofpreviousresidence,Abroad,Abroad
+stateofpreviousresidence,Florida,Utah
+stateofpreviousresidence,New Hampshire,California
+stateofpreviousresidence,Massachusetts,Utah
+stateofpreviousresidence,California,California
+stateofpreviousresidence,Florida,Utah
+stateofpreviousresidence,Nevada,Indiana
+stateofpreviousresidence,Delaware,Utah
+stateofpreviousresidence,Georgia,Utah
+stateofpreviousresidence,Maine,Utah
+stateofpreviousresidence,Nebraska,California
+stateofpreviousresidence,California,California
+stateofpreviousresidence,North Carolina,North Carolina
+stateofpreviousresidence,Pennsylvania,California
+stateofpreviousresidence,Abroad,Abroad
+stateofpreviousresidence,Massachusetts,Utah
+stateofpreviousresidence,Oregon,Utah
+stateofpreviousresidence,Vermont,California
+stateofpreviousresidence,Maine,Utah
+stateofpreviousresidence,Alaska,California
+stateofpreviousresidence,Mississippi,Indiana
+stateofpreviousresidence,Utah,Utah
+stateofpreviousresidence,North Dakota,Utah
+stateofpreviousresidence,Indiana,Indiana
+stateofpreviousresidence,South Dakota,Utah
+stateofpreviousresidence,New Jersey,North Carolina
+stateofpreviousresidence,Michigan,North Carolina
+stateofpreviousresidence,Oregon,Utah
+stateofpreviousresidence,Indiana,Indiana
+stateofpreviousresidence,Colorado,California
+stateofpreviousresidence,Tennessee,Indiana
+stateofpreviousresidence,Alabama,Utah
+stateofpreviousresidence,North Carolina,North Carolina
+stateofpreviousresidence,Georgia,Utah
+stateofpreviousresidence,New Mexico,North Carolina
+stateofpreviousresidence,Abroad,Abroad
+stateofpreviousresidence,West Virginia,California
+stateofpreviousresidence,Michigan,North Carolina
+stateofpreviousresidence,Utah,Utah
+stateofpreviousresidence,New Hampshire,California
+stateofpreviousresidence,Idaho,California
+stateofpreviousresidence,Colorado,California
+stateofpreviousresidence,Utah,Utah
+stateofpreviousresidence,Pennsylvania,California
+stateofpreviousresidence,Kansas,Indiana
+stateofpreviousresidence,Texas,Utah
+stateofpreviousresidence,Louisiana,Utah
+stateofpreviousresidence,Connecticut,North Carolina
+stateofpreviousresidence,Iowa,Indiana
+stateofpreviousresidence,Oklahoma,Indiana
+stateofpreviousresidence,Arkansas,Utah
+stateofpreviousresidence,Wisconsin,Utah
+stateofpreviousresidence,Alabama,Utah
+stateofpreviousresidence,Abroad,Abroad
+stateofpreviousresidence,Ohio,Tennessee
+liveinthishouse1yearago,Yes,Yes
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,Yes,Yes
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,Yes,Yes
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,Yes,Yes
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+liveinthishouse1yearago,No,No
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
