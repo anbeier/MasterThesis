@@ -1,0 +1,3775 @@
+target,actual,predicted
+majorindustrycode,Not in universe or children,Transportation
+majorindustrycode,Other professional services,Transportation
+majorindustrycode,Retail trade,Manufacturing-nondurable goods
+majorindustrycode,Retail trade,Personal services except private HH
+majorindustrycode,Wholesale trade,Transportation
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Transportation,Transportation
+majorindustrycode,Construction,Business and repair services
+majorindustrycode,Manufacturing-durable goods,Medical except hospital
+majorindustrycode,Personal services except private HH,Transportation
+majorindustrycode,Not in universe or children,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Transportation
+majorindustrycode,Construction,Transportation
+majorindustrycode,Education,Medical except hospital
+majorindustrycode,Entertainment,Transportation
+majorindustrycode,Business and repair services,Public administration
+majorindustrycode,Retail trade,Wholesale trade
+majorindustrycode,Education,Mining
+majorindustrycode,Retail trade,Transportation
+majorindustrycode,Finance insurance and real estate,Hospital services
+majorindustrycode,Public administration,Transportation
+majorindustrycode,Retail trade,Hospital services
+majorindustrycode,Manufacturing-nondurable goods,Transportation
+majorindustrycode,Education,Transportation
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Transportation,Medical except hospital
+majorindustrycode,Private household services,Medical except hospital
+majorindustrycode,Not in universe or children,Manufacturing-durable goods
+majorindustrycode,Manufacturing-durable goods,Transportation
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Education,Hospital services
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Education,Manufacturing-nondurable goods
+majorindustrycode,Manufacturing-nondurable goods,Finance insurance and real estate
+majorindustrycode,Finance insurance and real estate,Wholesale trade
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Medical except hospital,Medical except hospital
+majorindustrycode,Education,Public administration
+majorindustrycode,Not in universe or children,Other professional services
+majorindustrycode,Finance insurance and real estate,Transportation
+majorindustrycode,Transportation,Mining
+majorindustrycode,Business and repair services,Transportation
+majorindustrycode,Public administration,Wholesale trade
+majorindustrycode,Medical except hospital,Manufacturing-nondurable goods
+majorindustrycode,Manufacturing-nondurable goods,Mining
+majorindustrycode,Agriculture,Medical except hospital
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Education,Medical except hospital
+majorindustrycode,Construction,Construction
+majorindustrycode,Public administration,Education
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Finance insurance and real estate,Finance insurance and real estate
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Manufacturing-durable goods,Wholesale trade
+majorindustrycode,Personal services except private HH,Other professional services
+majorindustrycode,Business and repair services,Wholesale trade
+majorindustrycode,Not in universe or children,Finance insurance and real estate
+majorindustrycode,Manufacturing-nondurable goods,Public administration
+majorindustrycode,Wholesale trade,Hospital services
+majorindustrycode,Retail trade,Other professional services
+majorindustrycode,Retail trade,Social services
+majorindustrycode,Education,Medical except hospital
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Other professional services,Manufacturing-durable goods
+majorindustrycode,Agriculture,Medical except hospital
+majorindustrycode,Mining,Transportation
+majorindustrycode,Construction,Transportation
+majorindustrycode,Public administration,Medical except hospital
+majorindustrycode,Transportation,Wholesale trade
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Manufacturing-nondurable goods,Hospital services
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Retail trade,Construction
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Construction,Transportation
+majorindustrycode,Manufacturing-nondurable goods,Business and repair services
+majorindustrycode,Construction,Agriculture
+majorindustrycode,Education,Construction
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Hospital services,Communications
+majorindustrycode,Business and repair services,Manufacturing-nondurable goods
+majorindustrycode,Social services,Hospital services
+majorindustrycode,Construction,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Wholesale trade
+majorindustrycode,Business and repair services,Other professional services
+majorindustrycode,Communications,Manufacturing-durable goods
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Retail trade,Manufacturing-durable goods
+majorindustrycode,Construction,Mining
+majorindustrycode,Entertainment,Personal services except private HH
+majorindustrycode,Medical except hospital,Public administration
+majorindustrycode,Wholesale trade,Medical except hospital
+majorindustrycode,Private household services,Manufacturing-durable goods
+majorindustrycode,Education,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Other professional services
+majorindustrycode,Manufacturing-nondurable goods,Personal services except private HH
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Construction,Medical except hospital
+majorindustrycode,Finance insurance and real estate,Other professional services
+majorindustrycode,Construction,Agriculture
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Agriculture,Manufacturing-durable goods
+majorindustrycode,Manufacturing-durable goods,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Communications
+majorindustrycode,Private household services,Medical except hospital
+majorindustrycode,Construction,Personal services except private HH
+majorindustrycode,Construction,Entertainment
+majorindustrycode,Forestry and fisheries,Transportation
+majorindustrycode,Business and repair services,Business and repair services
+majorindustrycode,Entertainment,Public administration
+majorindustrycode,Agriculture,Medical except hospital
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Education,Manufacturing-durable goods
+majorindustrycode,Agriculture,Public administration
+majorindustrycode,Manufacturing-nondurable goods,Education
+majorindustrycode,Social services,Hospital services
+majorindustrycode,Agriculture,Transportation
+majorindustrycode,Other professional services,Medical except hospital
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Retail trade,Manufacturing-nondurable goods
+majorindustrycode,Not in universe or children,Retail trade
+majorindustrycode,Agriculture,Transportation
+majorindustrycode,Private household services,Medical except hospital
+majorindustrycode,Transportation,Public administration
+majorindustrycode,Agriculture,Hospital services
+majorindustrycode,Manufacturing-durable goods,Education
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Education,Education
+majorindustrycode,Business and repair services,Medical except hospital
+majorindustrycode,Private household services,Hospital services
+majorindustrycode,Business and repair services,Construction
+majorindustrycode,Business and repair services,Finance insurance and real estate
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Wholesale trade,Transportation
+majorindustrycode,Hospital services,Finance insurance and real estate
+majorindustrycode,Finance insurance and real estate,Manufacturing-durable goods
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Other professional services,Hospital services
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Retail trade,Manufacturing-durable goods
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Construction
+majorindustrycode,Hospital services,Wholesale trade
+majorindustrycode,Manufacturing-nondurable goods,Agriculture
+majorindustrycode,Agriculture,Wholesale trade
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Utilities and sanitary services,Medical except hospital
+majorindustrycode,Personal services except private HH,Transportation
+majorindustrycode,Private household services,Hospital services
+majorindustrycode,Retail trade,Communications
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Agriculture,Finance insurance and real estate
+majorindustrycode,Education,Transportation
+majorindustrycode,Retail trade,Transportation
+majorindustrycode,Personal services except private HH,Transportation
+majorindustrycode,Retail trade,Wholesale trade
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Medical except hospital,Education
+majorindustrycode,Wholesale trade,Personal services except private HH
+majorindustrycode,Other professional services,Business and repair services
+majorindustrycode,Education,Retail trade
+majorindustrycode,Entertainment,Hospital services
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Medical except hospital,Education
+majorindustrycode,Construction,Hospital services
+majorindustrycode,Private household services,Transportation
+majorindustrycode,Agriculture,Public administration
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Manufacturing-durable goods
+majorindustrycode,Medical except hospital,Public administration
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Mining,Wholesale trade
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Medical except hospital
+majorindustrycode,Entertainment,Construction
+majorindustrycode,Communications,Medical except hospital
+majorindustrycode,Construction,Construction
+majorindustrycode,Medical except hospital,Medical except hospital
+majorindustrycode,Entertainment,Medical except hospital
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Other professional services,Public administration
+majorindustrycode,Hospital services,Public administration
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Construction,Transportation
+majorindustrycode,Agriculture,Construction
+majorindustrycode,Manufacturing-durable goods,Other professional services
+majorindustrycode,Social services,Medical except hospital
+majorindustrycode,Entertainment,Hospital services
+majorindustrycode,Retail trade,Entertainment
+majorindustrycode,Wholesale trade,Manufacturing-durable goods
+majorindustrycode,Business and repair services,Medical except hospital
+majorindustrycode,Public administration,Mining
+majorindustrycode,Manufacturing-durable goods,Medical except hospital
+majorindustrycode,Personal services except private HH,Manufacturing-nondurable goods
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Agriculture,Manufacturing-durable goods
+majorindustrycode,Private household services,Public administration
+majorindustrycode,Other professional services,Other professional services
+majorindustrycode,Communications,Hospital services
+majorindustrycode,Manufacturing-durable goods,Public administration
+majorindustrycode,Wholesale trade,Business and repair services
+majorindustrycode,Entertainment,Public administration
+majorindustrycode,Agriculture,Retail trade
+majorindustrycode,Wholesale trade,Manufacturing-nondurable goods
+majorindustrycode,Forestry and fisheries,Retail trade
+majorindustrycode,Personal services except private HH,Medical except hospital
+majorindustrycode,Public administration,Public administration
+majorindustrycode,Not in universe or children,Manufacturing-durable goods
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Construction,Transportation
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Finance insurance and real estate,Other professional services
+majorindustrycode,Social services,Medical except hospital
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Business and repair services,Armed Forces
+majorindustrycode,Construction,Medical except hospital
+majorindustrycode,Public administration,Construction
+majorindustrycode,Business and repair services,Personal services except private HH
+majorindustrycode,Manufacturing-nondurable goods,Public administration
+majorindustrycode,Entertainment,Other professional services
+majorindustrycode,Finance insurance and real estate,Construction
+majorindustrycode,Medical except hospital,Transportation
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Entertainment,Public administration
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Manufacturing-durable goods,Communications
+majorindustrycode,Mining,Medical except hospital
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Retail trade,Construction
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Mining,Education
+majorindustrycode,Business and repair services,Business and repair services
+majorindustrycode,Utilities and sanitary services,Hospital services
+majorindustrycode,Business and repair services,Public administration
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Communications,Education
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Manufacturing-durable goods,Business and repair services
+majorindustrycode,Not in universe or children,Retail trade
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Mining,Manufacturing-durable goods
+majorindustrycode,Retail trade,Finance insurance and real estate
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Public administration,Personal services except private HH
+majorindustrycode,Business and repair services,Manufacturing-durable goods
+majorindustrycode,Wholesale trade,Finance insurance and real estate
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Other professional services,Public administration
+majorindustrycode,Education,Personal services except private HH
+majorindustrycode,Construction,Education
+majorindustrycode,Agriculture,Retail trade
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Education,Transportation
+majorindustrycode,Entertainment,Education
+majorindustrycode,Other professional services,Agriculture
+majorindustrycode,Personal services except private HH,Business and repair services
+majorindustrycode,Mining,Hospital services
+majorindustrycode,Business and repair services,Agriculture
+majorindustrycode,Entertainment,Medical except hospital
+majorindustrycode,Construction,Medical except hospital
+majorindustrycode,Wholesale trade,Communications
+majorindustrycode,Retail trade,Public administration
+majorindustrycode,Social services,Public administration
+majorindustrycode,Manufacturing-durable goods,Agriculture
+majorindustrycode,Education,Public administration
+majorindustrycode,Public administration,Transportation
+majorindustrycode,Communications,Construction
+majorindustrycode,Transportation,Manufacturing-durable goods
+majorindustrycode,Wholesale trade,Medical except hospital
+majorindustrycode,Hospital services,Transportation
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Personal services except private HH,Education
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Hospital services,Retail trade
+majorindustrycode,Business and repair services,Mining
+majorindustrycode,Retail trade,Business and repair services
+majorindustrycode,Construction,Agriculture
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Manufacturing-durable goods,Hospital services
+majorindustrycode,Mining,Transportation
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Private household services,Medical except hospital
+majorindustrycode,Business and repair services,Public administration
+majorindustrycode,Education,Entertainment
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Construction,Medical except hospital
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Retail trade,Business and repair services
+majorindustrycode,Medical except hospital,Manufacturing-nondurable goods
+majorindustrycode,Public administration,Transportation
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Construction,Manufacturing-durable goods
+majorindustrycode,Social services,Business and repair services
+majorindustrycode,Business and repair services,Wholesale trade
+majorindustrycode,Public administration,Public administration
+majorindustrycode,Social services,Education
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Education,Hospital services
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Construction,Other professional services
+majorindustrycode,Retail trade,Manufacturing-nondurable goods
+majorindustrycode,Social services,Transportation
+majorindustrycode,Construction,Public administration
+majorindustrycode,Mining,Retail trade
+majorindustrycode,Business and repair services,Manufacturing-durable goods
+majorindustrycode,Manufacturing-durable goods,Personal services except private HH
+majorindustrycode,Armed Forces,Retail trade
+majorindustrycode,Public administration,Medical except hospital
+majorindustrycode,Private household services,Manufacturing-nondurable goods
+majorindustrycode,Retail trade,Transportation
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Utilities and sanitary services,Medical except hospital
+majorindustrycode,Public administration,Business and repair services
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Retail trade,Business and repair services
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Medical except hospital,Communications
+majorindustrycode,Social services,Transportation
+majorindustrycode,Wholesale trade,Entertainment
+majorindustrycode,Retail trade,Education
+majorindustrycode,Wholesale trade,Business and repair services
+majorindustrycode,Manufacturing-durable goods,Mining
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Public administration,Education
+majorindustrycode,Agriculture,Personal services except private HH
+majorindustrycode,Agriculture,Entertainment
+majorindustrycode,Social services,Medical except hospital
+majorindustrycode,Not in universe or children,Not in universe or children
+majorindustrycode,Finance insurance and real estate,Public administration
+majorindustrycode,Hospital services,Other professional services
+majorindustrycode,Finance insurance and real estate,Public administration
+majorindustrycode,Forestry and fisheries,Transportation
+majorindustrycode,Medical except hospital,Manufacturing-durable goods
+majorindustrycode,Entertainment,Transportation
+majorindustrycode,Communications,Finance insurance and real estate
+majorindustrycode,Social services,Mining
+majorindustrycode,Retail trade,Manufacturing-durable goods
+majorindustrycode,Manufacturing-durable goods,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Mining
+majorindustrycode,Manufacturing-nondurable goods,Entertainment
+majorindustrycode,Education,Education
+majorindustrycode,Medical except hospital,Manufacturing-durable goods
+majorindustrycode,Social services,Personal services except private HH
+majorindustrycode,Construction,Manufacturing-nondurable goods
+majorindustrycode,Other professional services,Public administration
+majorindustrycode,Hospital services,Manufacturing-nondurable goods
+majorindustrycode,Personal services except private HH,Transportation
+majorindustrycode,Construction,Other professional services
+majorindustrycode,Business and repair services,Other professional services
+majorindustrycode,Transportation,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Hospital services
+majorindustrycode,Business and repair services,Armed Forces
+majorindustrycode,Mining,Retail trade
+majorindustrycode,Retail trade,Entertainment
+majorindustrycode,Construction,Retail trade
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Wholesale trade,Public administration
+majorindustrycode,Transportation,Communications
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Transportation,Business and repair services
+majorindustrycode,Social services,Medical except hospital
+majorindustrycode,Hospital services,Transportation
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Business and repair services,Public administration
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Retail trade,Education
+majorindustrycode,Education,Entertainment
+majorindustrycode,Public administration,Other professional services
+majorindustrycode,Manufacturing-nondurable goods,Transportation
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Wholesale trade,Agriculture
+majorindustrycode,Manufacturing-nondurable goods,Education
+majorindustrycode,Personal services except private HH,Personal services except private HH
+majorindustrycode,Construction,Other professional services
+majorindustrycode,Business and repair services,Manufacturing-nondurable goods
+majorindustrycode,Personal services except private HH,Manufacturing-durable goods
+majorindustrycode,Retail trade,Manufacturing-nondurable goods
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Mining,Construction
+majorindustrycode,Wholesale trade,Other professional services
+majorindustrycode,Manufacturing-durable goods,Business and repair services
+majorindustrycode,Private household services,Manufacturing-nondurable goods
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Transportation,Personal services except private HH
+majorindustrycode,Forestry and fisheries,Business and repair services
+majorindustrycode,Hospital services,Manufacturing-durable goods
+majorindustrycode,Education,Transportation
+majorindustrycode,Manufacturing-durable goods,Armed Forces
+majorindustrycode,Other professional services,Transportation
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Agriculture,Agriculture
+majorindustrycode,Other professional services,Personal services except private HH
+majorindustrycode,Public administration,Medical except hospital
+majorindustrycode,Medical except hospital,Public administration
+majorindustrycode,Manufacturing-durable goods,Agriculture
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Entertainment,Business and repair services
+majorindustrycode,Manufacturing-nondurable goods,Education
+majorindustrycode,Business and repair services,Personal services except private HH
+majorindustrycode,Utilities and sanitary services,Medical except hospital
+majorindustrycode,Entertainment,Medical except hospital
+majorindustrycode,Private household services,Personal services except private HH
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Transportation,Education
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Education,Mining
+majorindustrycode,Communications,Retail trade
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Mining
+majorindustrycode,Social services,Manufacturing-durable goods
+majorindustrycode,Manufacturing-nondurable goods,Manufacturing-durable goods
+majorindustrycode,Education,Public administration
+majorindustrycode,Retail trade,Transportation
+majorindustrycode,Education,Business and repair services
+majorindustrycode,Finance insurance and real estate,Medical except hospital
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Communications,Public administration
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Finance insurance and real estate,Business and repair services
+majorindustrycode,Agriculture,Retail trade
+majorindustrycode,Social services,Construction
+majorindustrycode,Manufacturing-nondurable goods,Personal services except private HH
+majorindustrycode,Hospital services,Personal services except private HH
+majorindustrycode,Transportation,Transportation
+majorindustrycode,Retail trade,Retail trade
+majorindustrycode,Finance insurance and real estate,Public administration
+majorindustrycode,Manufacturing-nondurable goods,Armed Forces
+majorindustrycode,Retail trade,Medical except hospital
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Other professional services,Communications
+majorindustrycode,Education,Retail trade
+majorindustrycode,Agriculture,Transportation
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Wholesale trade,Entertainment
+majorindustrycode,Manufacturing-durable goods,Armed Forces
+majorindustrycode,Utilities and sanitary services,Business and repair services
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Private household services,Public administration
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Transportation,Construction
+majorindustrycode,Construction,Transportation
+majorindustrycode,Personal services except private HH,Public administration
+majorindustrycode,Not in universe or children,Not in universe or children
+majorindustrycode,Entertainment,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Construction
+majorindustrycode,Business and repair services,Medical except hospital
+majorindustrycode,Finance insurance and real estate,Mining
+majorindustrycode,Manufacturing-nondurable goods,Wholesale trade
+majorindustrycode,Agriculture,Education
+majorindustrycode,Agriculture,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Manufacturing-durable goods,Transportation
+majorindustrycode,Education,Retail trade
+majorindustrycode,Other professional services,Personal services except private HH
+majorindustrycode,Personal services except private HH,Communications
+majorindustrycode,Other professional services,Transportation
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Transportation,Other professional services
+majorindustrycode,Wholesale trade,Public administration
+majorindustrycode,Retail trade,Agriculture
+majorindustrycode,Communications,Transportation
+majorindustrycode,Construction,Personal services except private HH
+majorindustrycode,Personal services except private HH,Medical except hospital
+majorindustrycode,Communications,Business and repair services
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Public administration,Other professional services
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Finance insurance and real estate,Entertainment
+majorindustrycode,Social services,Entertainment
+majorindustrycode,Hospital services,Education
+majorindustrycode,Agriculture,Agriculture
+majorindustrycode,Hospital services,Business and repair services
+majorindustrycode,Construction,Business and repair services
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Armed Forces,Retail trade
+majorindustrycode,Medical except hospital,Mining
+majorindustrycode,Manufacturing-nondurable goods,Education
+majorindustrycode,Construction,Personal services except private HH
+majorindustrycode,Manufacturing-nondurable goods,Social services
+majorindustrycode,Construction,Business and repair services
+majorindustrycode,Wholesale trade,Wholesale trade
+majorindustrycode,Other professional services,Education
+majorindustrycode,Agriculture,Business and repair services
+majorindustrycode,Finance insurance and real estate,Manufacturing-nondurable goods
+majorindustrycode,Wholesale trade,Medical except hospital
+majorindustrycode,Mining,Transportation
+majorindustrycode,Retail trade,Business and repair services
+majorindustrycode,Education,Social services
+majorindustrycode,Retail trade,Agriculture
+majorindustrycode,Manufacturing-nondurable goods,Other professional services
+majorindustrycode,Entertainment,Finance insurance and real estate
+majorindustrycode,Other professional services,Manufacturing-durable goods
+majorindustrycode,Education,Business and repair services
+majorindustrycode,Construction,Manufacturing-durable goods
+majorindustrycode,Agriculture,Business and repair services
+majorindustrycode,Education,Education
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Entertainment,Public administration
+majorindustrycode,Medical except hospital,Personal services except private HH
+majorindustrycode,Retail trade,Armed Forces
+majorindustrycode,Retail trade,Business and repair services
+majorindustrycode,Hospital services,Retail trade
+majorindustrycode,Business and repair services,Social services
+majorindustrycode,Private household services,Armed Forces
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Communications,Transportation
+majorindustrycode,Manufacturing-nondurable goods,Manufacturing-durable goods
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Public administration,Construction
+majorindustrycode,Agriculture,Social services
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Transportation,Business and repair services
+majorindustrycode,Entertainment,Manufacturing-nondurable goods
+majorindustrycode,Business and repair services,Entertainment
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Retail trade,Entertainment
+majorindustrycode,Forestry and fisheries,Retail trade
+majorindustrycode,Communications,Transportation
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Business and repair services,Transportation
+majorindustrycode,Mining,Personal services except private HH
+majorindustrycode,Utilities and sanitary services,Public administration
+majorindustrycode,Agriculture,Other professional services
+majorindustrycode,Utilities and sanitary services,Retail trade
+majorindustrycode,Finance insurance and real estate,Wholesale trade
+majorindustrycode,Public administration,Education
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Transportation,Business and repair services
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Personal services except private HH,Personal services except private HH
+majorindustrycode,Transportation,Manufacturing-durable goods
+majorindustrycode,Other professional services,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Transportation,Manufacturing-nondurable goods
+majorindustrycode,Education,Retail trade
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Not in universe or children,Not in universe or children
+majorindustrycode,Other professional services,Business and repair services
+majorindustrycode,Hospital services,Manufacturing-durable goods
+majorindustrycode,Agriculture,Retail trade
+majorindustrycode,Transportation,Manufacturing-durable goods
+majorindustrycode,Education,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Public administration,Transportation
+majorindustrycode,Mining,Construction
+majorindustrycode,Finance insurance and real estate,Transportation
+majorindustrycode,Transportation,Entertainment
+majorindustrycode,Manufacturing-nondurable goods,Agriculture
+majorindustrycode,Transportation,Public administration
+majorindustrycode,Other professional services,Transportation
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Hospital services,Education
+majorindustrycode,Manufacturing-nondurable goods,Business and repair services
+majorindustrycode,Private household services,Education
+majorindustrycode,Public administration,Construction
+majorindustrycode,Wholesale trade,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Transportation
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Wholesale trade,Armed Forces
+majorindustrycode,Agriculture,Medical except hospital
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Social services,Other professional services
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Utilities and sanitary services,Retail trade
+majorindustrycode,Manufacturing-durable goods,Education
+majorindustrycode,Public administration,Business and repair services
+majorindustrycode,Utilities and sanitary services,Hospital services
+majorindustrycode,Transportation,Other professional services
+majorindustrycode,Entertainment,Business and repair services
+majorindustrycode,Finance insurance and real estate,Communications
+majorindustrycode,Business and repair services,Transportation
+majorindustrycode,Social services,Other professional services
+majorindustrycode,Personal services except private HH,Retail trade
+majorindustrycode,Private household services,Retail trade
+majorindustrycode,Other professional services,Business and repair services
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Transportation,Public administration
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Utilities and sanitary services,Retail trade
+majorindustrycode,Other professional services,Education
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Medical except hospital
+majorindustrycode,Wholesale trade,Manufacturing-nondurable goods
+majorindustrycode,Forestry and fisheries,Transportation
+majorindustrycode,Transportation,Education
+majorindustrycode,Social services,Manufacturing-durable goods
+majorindustrycode,Agriculture,Armed Forces
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Finance insurance and real estate,Education
+majorindustrycode,Wholesale trade,Personal services except private HH
+majorindustrycode,Business and repair services,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Finance insurance and real estate
+majorindustrycode,Business and repair services,Medical except hospital
+majorindustrycode,Agriculture,Construction
+majorindustrycode,Hospital services,Personal services except private HH
+majorindustrycode,Mining,Other professional services
+majorindustrycode,Education,Retail trade
+majorindustrycode,Armed Forces,Armed Forces
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Business and repair services,Construction
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Mining,Other professional services
+majorindustrycode,Hospital services,Other professional services
+majorindustrycode,Utilities and sanitary services,Retail trade
+majorindustrycode,Medical except hospital,Manufacturing-durable goods
+majorindustrycode,Other professional services,Armed Forces
+majorindustrycode,Education,Manufacturing-nondurable goods
+majorindustrycode,Retail trade,Education
+majorindustrycode,Personal services except private HH,Entertainment
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Wholesale trade,Construction
+majorindustrycode,Armed Forces,Retail trade
+majorindustrycode,Communications,Personal services except private HH
+majorindustrycode,Education,Retail trade
+majorindustrycode,Manufacturing-durable goods,Education
+majorindustrycode,Business and repair services,Education
+majorindustrycode,Retail trade,Manufacturing-nondurable goods
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Medical except hospital,Education
+majorindustrycode,Personal services except private HH,Other professional services
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Construction
+majorindustrycode,Medical except hospital,Medical except hospital
+majorindustrycode,Transportation,Communications
+majorindustrycode,Utilities and sanitary services,Mining
+majorindustrycode,Manufacturing-durable goods,Business and repair services
+majorindustrycode,Manufacturing-nondurable goods,Business and repair services
+majorindustrycode,Personal services except private HH,Entertainment
+majorindustrycode,Manufacturing-durable goods,Manufacturing-durable goods
+majorindustrycode,Manufacturing-durable goods,Entertainment
+majorindustrycode,Public administration,Education
+majorindustrycode,Manufacturing-durable goods,Manufacturing-nondurable goods
+majorindustrycode,Public administration,Business and repair services
+majorindustrycode,Private household services,Agriculture
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Construction,Manufacturing-nondurable goods
+majorindustrycode,Public administration,Manufacturing-nondurable goods
+majorindustrycode,Transportation,Mining
+majorindustrycode,Entertainment,Other professional services
+majorindustrycode,Utilities and sanitary services,Manufacturing-durable goods
+majorindustrycode,Agriculture,Medical except hospital
+majorindustrycode,Entertainment,Wholesale trade
+majorindustrycode,Finance insurance and real estate,Business and repair services
+majorindustrycode,Finance insurance and real estate,Manufacturing-durable goods
+majorindustrycode,Mining,Transportation
+majorindustrycode,Personal services except private HH,Manufacturing-nondurable goods
+majorindustrycode,Education,Transportation
+majorindustrycode,Other professional services,Retail trade
+majorindustrycode,Utilities and sanitary services,Mining
+majorindustrycode,Education,Retail trade
+majorindustrycode,Agriculture,Retail trade
+majorindustrycode,Public administration,Entertainment
+majorindustrycode,Forestry and fisheries,Business and repair services
+majorindustrycode,Social services,Business and repair services
+majorindustrycode,Entertainment,Manufacturing-nondurable goods
+majorindustrycode,Medical except hospital,Manufacturing-durable goods
+majorindustrycode,Private household services,Wholesale trade
+majorindustrycode,Education,Mining
+majorindustrycode,Communications,Retail trade
+majorindustrycode,Finance insurance and real estate,Retail trade
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Other professional services,Public administration
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Public administration,Mining
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Construction,Manufacturing-durable goods
+majorindustrycode,Education,Wholesale trade
+majorindustrycode,Entertainment,Retail trade
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Utilities and sanitary services,Public administration
+majorindustrycode,Medical except hospital,Armed Forces
+majorindustrycode,Retail trade,Transportation
+majorindustrycode,Utilities and sanitary services,Medical except hospital
+majorindustrycode,Manufacturing-nondurable goods,Manufacturing-nondurable goods
+majorindustrycode,Transportation,Medical except hospital
+majorindustrycode,Manufacturing-durable goods,Transportation
+majorindustrycode,Public administration,Manufacturing-durable goods
+majorindustrycode,Education,Business and repair services
+majorindustrycode,Hospital services,Finance insurance and real estate
+majorindustrycode,Hospital services,Business and repair services
+majorindustrycode,Manufacturing-nondurable goods,Manufacturing-nondurable goods
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Social services,Armed Forces
+majorindustrycode,Forestry and fisheries,Manufacturing-durable goods
+majorindustrycode,Transportation,Education
+majorindustrycode,Other professional services,Transportation
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Personal services except private HH,Manufacturing-nondurable goods
+majorindustrycode,Forestry and fisheries,Manufacturing-durable goods
+majorindustrycode,Not in universe or children,Not in universe or children
+majorindustrycode,Mining,Retail trade
+majorindustrycode,Public administration,Retail trade
+majorindustrycode,Business and repair services,Finance insurance and real estate
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Entertainment,Communications
+majorindustrycode,Entertainment,Manufacturing-durable goods
+majorindustrycode,Personal services except private HH,Manufacturing-nondurable goods
+majorindustrycode,Wholesale trade,Retail trade
+majorindustrycode,Manufacturing-durable goods,Mining
+majorindustrycode,Manufacturing-nondurable goods,Retail trade
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Communications,Personal services except private HH
+majorindustrycode,Utilities and sanitary services,Manufacturing-nondurable goods
+majorindustrycode,Construction,Business and repair services
+majorindustrycode,Entertainment,Mining
+majorindustrycode,Hospital services,Medical except hospital
+majorindustrycode,Forestry and fisheries,Other professional services
+majorindustrycode,Transportation,Retail trade
+majorindustrycode,Hospital services,Public administration
+majorindustrycode,Retail trade,Education
+majorindustrycode,Social services,Retail trade
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Private household services,Wholesale trade
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Entertainment,Social services
+majorindustrycode,Agriculture,Manufacturing-nondurable goods
+majorindustrycode,Communications,Retail trade
+majorindustrycode,Personal services except private HH,Business and repair services
+majorindustrycode,Wholesale trade,Agriculture
+majorindustrycode,Not in universe or children,Not in universe or children
+majorindustrycode,Communications,Construction
+majorindustrycode,Medical except hospital,Retail trade
+majorindustrycode,Private household services,Entertainment
+majorindustrycode,Manufacturing-durable goods,Retail trade
+majorindustrycode,Private household services,Manufacturing-durable goods
+majorindustrycode,Utilities and sanitary services,Medical except hospital
+majorindustrycode,Medical except hospital,Education
+majorindustrycode,Finance insurance and real estate,Business and repair services
+majorindustrycode,Forestry and fisheries,Retail trade
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Yes
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Yes
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,Yes
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,No
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Yes,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,No,No
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,No,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,Not in universe
+memberofalaborunion,Not in universe,No
+memberofalaborunion,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,New entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,New entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,New entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Job loser - on layoff,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job loser - on layoff
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Job leaver
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Job leaver,Job loser - on layoff
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Job leaver,Job loser - on layoff
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,New entrant,New entrant
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Job loser - on layoff
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Job loser - on layoff
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,New entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job leaver,Job leaver
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Job leaver
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Other job loser,Other job loser
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job loser - on layoff,Job leaver
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Re-entrant
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Re-entrant,Job loser - on layoff
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Other job loser,Job loser - on layoff
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,New entrant,New entrant
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Job loser - on layoff
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Not in universe,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Not in universe,Job leaver
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Job leaver,Other job loser
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear20.8<=i<26
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear52<=i<57.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear52<=i<57.2
