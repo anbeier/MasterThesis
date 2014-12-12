@@ -1,0 +1,137 @@
+target,actual,predicted
+sex,Male,Female
+sex,Male,Female
+sex,Female,Female
+sex,Male,Female
+sex,Female,Female
+sex,Female,Female
+sex,Female,Male
+sex,Male,Female
+sex,Male,Female
+sex,Female,Male
+sex,Male,Female
+sex,Female,Male
+sex,Male,Male
+sex,Male,Female
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Female,Male
+sex,Female,Male
+sex,Male,Female
+sex,Male,Male
+sex,Male,Female
+sex,Male,Male
+sex,Female,Male
+sex,Male,Male
+sex,Female,Male
+sex,Female,Male
+reasonforunemployment,Not in universe,New entrant
+reasonforunemployment,Not in universe,Job leaver
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Other job loser
+reasonforunemployment,Not in universe,Job leaver
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Not in universe,Re-entrant
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Re-entrant,Other job loser
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Re-entrant,New entrant
+reasonforunemployment,Job loser - on layoff,Not in universe
+reasonforunemployment,Other job loser,Job leaver
+reasonforunemployment,Not in universe,New entrant
+reasonforunemployment,Other job loser,New entrant
+reasonforunemployment,Other job loser,Not in universe
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Re-entrant,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job loser - on layoff,Job leaver
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Job loser - on layoff,Re-entrant
+reasonforunemployment,Job leaver,Not in universe
+reasonforunemployment,Re-entrant,Job leaver
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Other job loser,Re-entrant
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,Job loser - on layoff,Job leaver
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,Job loser - on layoff,Other job loser
+reasonforunemployment,New entrant,Not in universe
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,Job leaver,Re-entrant
+reasonforunemployment,New entrant,Re-entrant
+reasonforunemployment,Job leaver,Other job loser
+reasonforunemployment,New entrant,Re-entrant
+reasonforunemployment,New entrant,Not in universe
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear26<=i<31.2
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear15.6<=i<20.8
+weeksworkedinyear,weeksworkedinyear0<=i<5.2,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear0<=i<5.2
+weeksworkedinyear,weeksworkedinyear52<=i<57.2,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear26<=i<31.2,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear31.2<=i<36.4,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear46.8<=i<52
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear41.6<=i<46.8,weeksworkedinyear5.2<=i<10.4
+weeksworkedinyear,weeksworkedinyear36.4<=i<41.6,weeksworkedinyear41.6<=i<46.8
+weeksworkedinyear,weeksworkedinyear46.8<=i<52,weeksworkedinyear36.4<=i<41.6
+weeksworkedinyear,weeksworkedinyear20.8<=i<26,weeksworkedinyear10.4<=i<15.6
+weeksworkedinyear,weeksworkedinyear5.2<=i<10.4,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear15.6<=i<20.8,weeksworkedinyear31.2<=i<36.4
+weeksworkedinyear,weeksworkedinyear10.4<=i<15.6,weeksworkedinyear31.2<=i<36.4
