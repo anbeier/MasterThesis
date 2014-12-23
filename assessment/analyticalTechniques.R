@@ -7,6 +7,10 @@ library(caret)
 loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
 
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
+  if (file.exists(fileName)) {
+    log(paste('skipped bayes for clique', index, '. File', fileName, 'already exists'))
+    return(NULL)
+  }
   df <- NULL
 
   log(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
