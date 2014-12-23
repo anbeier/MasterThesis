@@ -23,7 +23,7 @@ hashColumns <- function(data, columnIndices) {
     vechash = unlist(lapply(vec, 
                             function(x) {
                               hs = digest(x, algo=c('md5'), serialize=F)
-                              substring(hs, 1, 5)
+                              substring(hs, 1, 3)
                             }))
     data[,i] = vechash
     print(paste('hash of column', paste(i, 'done.')))
@@ -31,16 +31,24 @@ hashColumns <- function(data, columnIndices) {
   return(data)
 }
 
+extractFirstNChars <- function(data, columnIndices, nchar) {
+  for(i in columnIndices) {
+    data[,i] = substring(as.character(data[,i]), 1, nchar)
+  }
+  return(data)
+}
+
 readSchemata <- function() {
+  library(digest)
   customer = read.csv('CUSTOMER.csv', header=F, sep=';')
   names(customer) = setColumnNames('customer')
-  customer = hashColumns(customer, c(3, 8))
-  customer$C_PHONE = substring(as.character(customer$C_PHONE), 1, 3)
+  customer = hashColumns(customer, c(2, 3, 8))
+  customer = extractFirstNChars(customer, c(5), 3)
   
   orders = read.csv('ORDERS.csv', header=F, sep=';')
   names(orders) = setColumnNames('orders')
-  orders = hashColumns(orders, c(9))
-  orders$O_ORDERDATE = substring(as.character(orders$O_ORDERDATE), 1, 7)
+  orders = hashColumns(orders, c(7, 9))
+  orders = extractFirstNChars(orders, c(5), 7)
   
   nation = read.csv('NATION.csv', header=F, sep=';')
   names(nation) = setColumnNames('nation')
@@ -52,12 +60,12 @@ readSchemata <- function() {
   
   part = read.csv('PART.csv', header=F, sep=';')
   names(part) = setColumnNames('part')
-  part = hashColumns(part, c(9))
+  part = hashColumns(part, c(2, 9))
   
   supplier = read.csv('SUPPLIER.csv', header=F, sep=';')
   names(supplier) = setColumnNames('supplier')
-  supplier = hashColumns(supplier, c(3, 7))
-  supplier$S_PHONE = substring(as.character(supplier$S_PHONE), 1, 3)
+  supplier = hashColumns(supplier, c(2, 3, 7))
+  supplier = extractFirstNChars(supplier, c(5), 3)
   
   region = read.csv('REGION.csv', header=F, sep=';')
   names(region) = setColumnNames('region')
@@ -66,12 +74,12 @@ readSchemata <- function() {
   lineitem = read.csv('LINEITEM.csv', header=F, sep=';')
   names(lineitem) = setColumnNames('lineitem')
   lineitem = hashColumns(lineitem, c(16))
-  lineitem$L_SHIPDATE = substring(as.character(lineitem$L_SHIPDATE), 1, 7)
-  lineitem$L_COMMITDATE = substring(as.character(lineitem$L_COMMITDATE), 1, 7)
-  lineitem$L_RECEIPTDATE = substring(as.character(lineitem$L_RECEIPTDATE), 1, 7)
+  lineitem = extractFirstNChars(lineitem, c(11, 12, 13), 7)
   
   list(customer=customer, orders=orders, nation=nation, partsupp=partsupp, part=part, supplier=supplier, region=region, line=line)
 }
+
+
 setColumnNames <- function(schema) {
   if(schema == 'customer') {
     return(c('CUSTKEY','C_NAME','C_ADDRESS','NATIONKEY','C_PHONE','C_ACCTBAL','C_MKTSEGMENT','C_COMMENT'))
@@ -98,4 +106,57 @@ setColumnNames <- function(schema) {
     return(c('ORDERKEY','PARTKEY','SUPPKEY','L_LINENUMBER','L_QUANTITY','L_EXTENDEDPRICE','L_DISCOUNT','L_TAX','L_RETURNFLAG','L_LINESTATUS'
              ,'L_SHIPDATE','L_COMMITDATE','L_RECEIPTDATE','L_SHIPINSTRUCT','L_SHIPMODE','L_COMMENT'))
   }
+}
+
+getDistinctNumber <- function(columnValue) {
+  length(unique(columnValue))
+}
+
+renameJoinedDatasets <- function(df) {
+  # PARTKEY
+  names(df)[1] = 'L_PARTKEY'
+  df$PS_PARTKEY = df$L_PARTKEY
+  df$P_PARTKEY = df$L_PARTKEY
+  
+  # SUPPKEY
+  names(df)[2] = 'PS_SUPPKEY'
+  df$L_SUPPKEY = df$PS_SUPPKEY
+  df$S_SUPPKEY = df$PS_SUPPKEY
+  
+  # ORDERKEY
+  names(df)[3] = 'O_ORDERKEY'
+  df$L_ORDERKEY = df$O_ORDERKEY
+  
+  # CUSTKEY
+  names(df)[4] = 'O_CUSTKEY'
+  df$C_CUSTKEY = df$O_CUSTKEY
+  
+  # REGIONKEY
+  names(df)[5] = 'N_REGIONKEY'
+  names(df)[37] = 'R_REGIONKEY'
+  
+  # NATIONKEY
+  names(df)[6] = 'N_NATIONKEY'
+  names(df)[38] = 'S_NATIONKEY'
+  df$C_NATIONKEY = df$N_NATIONKEY
+  
+  return(df)
+}
+
+joinSchemata <- function(schemata.vector) {
+  j1 = merge(customer, nation, by='NATIONKEY')
+  j1 = merge(j1, region, by='REGIONKEY')
+  j1 = merge(j1, orders, by='CUSTKEY')
+  j1 = merge(j1, lineitem, by='ORDERKEY')
+  print('finished join part 1.')
+  
+  j2 = merge(supplier, nation, by='NATIONKEY')
+  j2 = merge(j2, region, by='REGIONKEY')
+  j2 = merge(j2, partsupp, by='SUPPKEY')
+  j2 = merge(j2, part, by='PARTKEY')
+  print('finished join part 2.')
+  
+  j = merge(j1, j2, by=c('PARTKEY', 'SUPPKEY'))
+  
+  j = renameJoinedDatasets(j)
 }
