@@ -22,7 +22,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
 
   result.bayes <- list(index = index, result = df)
   save(result.bayes, file = fileName)
-  return(result.bayes)
+  #return(result.bayes)
 }
 
 # Support vector machine
