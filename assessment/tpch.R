@@ -85,7 +85,7 @@ setColumnNames <- function(schema) {
     return(c('CUSTKEY','C_NAME','C_ADDRESS','NATIONKEY','C_PHONE','C_ACCTBAL','C_MKTSEGMENT','C_COMMENT'))
   }
   else if(schema == 'orders') {
-    return(c('ORDERKEY','CUSTKEY','O_ORDERSTATUS','O_TOTALPRICE','O_ORDERDATE','O_PRDERPRIORITY','O_CLERK','O_SHIPPRIORITY','O_COMMENT'))
+    return(c('ORDERKEY','CUSTKEY','O_ORDERSTATUS','O_TOTALPRICE','O_ORDERDATE','O_ORDERPRIORITY','O_CLERK','O_SHIPPRIORITY','O_COMMENT'))
   }
   else if(schema == 'nation') {
     return(c('NATIONKEY','N_NAME','REGIONKEY','N_COMMENT'))
