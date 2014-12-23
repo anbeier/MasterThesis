@@ -140,7 +140,7 @@ renameJoinedDatasets <- function(df) {
   names(df)[38] = 'S_NATIONKEY'
   df$C_NATIONKEY = df$N_NATIONKEY
   
-  return(df)
+  return(df)  # columns containing .x or .y should be removed.
 }
 
 joinSchemata <- function(schemata.vector) {
@@ -159,4 +159,21 @@ joinSchemata <- function(schemata.vector) {
   j = merge(j1, j2, by=c('PARTKEY', 'SUPPKEY'))
   
   j = renameJoinedDatasets(j)
+}
+
+modifyDataTypes <- function(data) {
+  for(i in 1:ncol(data)) {
+    data[,i] = as.factor(as.character(data[,i]))
+  }
+  
+  # to numeric and then bucketize
+  numericColumns = c('ACCTBAL','PRICE','QUANTITY','DISCOUNT','TAX','QTY','COST','SIZE')
+  for(x in numericColumns) {
+    inds = grep(x, names(data), ignore.case = T)
+    for(i in inds) {
+      data[,i] = as.numeric(as.character(data[,i]))
+    }
+  }
+  data = convertNumericColumnToFactor(data)
+  return(data)
 }

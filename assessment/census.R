@@ -99,7 +99,7 @@ parallelMainCensus <- function(indexStart, indexEnd, cores=2, delta = d, alpha =
 }
 
 parallelMainTPCH <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a,
-                             tpchData = setTPCHParameters()$data
+                             tpchData = setTPCHParameters()$data,
                              fqsFile = setTPCHParameters()$fqsFile) {
   
   log(paste('parallelMain', indexStart, '->', indexEnd, 'using', cores, 'cores'))
@@ -128,16 +128,38 @@ parallelMainTPCH <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a
 saveOutputInCSV <- function(folderName, method) {
   fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
   
-  for(fn in fileNames) {
-    load(fn)
-    filestring = unlist(strsplit(fn, split='qs'))[1]
-    newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
-    write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+  if(method == 'svm') {
+    for(fn in fileNames) {
+      load(fn)
+      filestring = unlist(strsplit(fn, split='qs'))[1]
+      newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
+      write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+    }
+  } else if(method == 'bayes') {
+    for(fn in fileNames) {
+      load(fn)
+      filestring = unlist(strsplit(fn, split='qs'))[1]
+      newfn = paste(filestring, paste(result.bayes$index, '.csv', sep=''), sep='')
+      write.csv(result.bayes$result, file=newfn, quote=F, row.names=F)
+    }
   }
+  
 }
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) > 0) {
     idx <- as.integer(args[1])
     parallelMain(idx, idx)
+}
+
+test <- function(index, delta = d, alpha = a,
+                 tpchData = setTPCHParameters()$data,
+                 fqsFile = setTPCHParameters()$fqsFile) {
+  
+  cliques <- readTPCHCliques(fqsFile)
+  sampleClique <- getOneClique(tpchData, cliques, index) 
+  fileIndicator <- makeFileIndicator(delta, alpha, index)
+  
+  result.bayes <- loopTrainNaiveBayesForOneClique(sampleClique, index, fileIndicator)
+  return('finished')
 }
