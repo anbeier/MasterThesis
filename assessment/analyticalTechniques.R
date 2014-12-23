@@ -9,7 +9,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
   df <- NULL
 
-  print(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
+  log(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
 
   for(target in colnames(qs)) {
     data <- takeSamples(qs, target)
