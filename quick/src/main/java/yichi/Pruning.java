@@ -44,6 +44,7 @@ public class Pruning {
     if (this.indegCache.containsKey(v)) {
       return this.indegCache.get(v);
     }
+
     int indeg = 0;
     for (Iterator<Integer> itNeighborOfV = this.g.getNeighbors(v).iterator(); itNeighborOfV.hasNext();) {
       if (this.y.contains(itNeighborOfV.next())) {
@@ -58,6 +59,7 @@ public class Pruning {
     if (this.exdegCache.containsKey(v)) {
       return this.exdegCache.get(v);
     }
+
     int exdeg = 0;
     for (Iterator<Integer> itNeighborOfV = this.g.getNeighbors(v).iterator(); itNeighborOfV.hasNext();) {
       if (this.candY.contains(itNeighborOfV.next())) {
@@ -77,7 +79,7 @@ public class Pruning {
       int exdeg = this.getExdegY(v);
       degMin = Math.min(degMin, indeg + exdeg);
     }
-    
+
     int Umin = (int) (degMin / this.gamma) + 1 - this.y.size();
     return Umin;
   }
@@ -202,7 +204,7 @@ public class Pruning {
     this.calculatedCritical = true;
 
     int lower = this.getLowerBound();
-    int properDegSize = (int)Math.ceil(this.gamma * (this.y.size() + lower - 1));
+    int properDegSize = (int) Math.ceil(this.gamma * (this.y.size() + lower - 1));
 
     for (Integer v : this.y) {
       int indeg = this.getIndegY(v);
@@ -212,7 +214,7 @@ public class Pruning {
         return v;
       }
     }
-    
+
     return this.critical;
   }
 

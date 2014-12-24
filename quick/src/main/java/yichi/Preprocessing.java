@@ -15,7 +15,7 @@ import java.util.TreeSet;
 public class Preprocessing {
 
   Graph<Integer, Edge> g;
-  List<Integer> x;
+  Collection<Integer> x;
   Collection<Integer> cand_exts;
   double gamma;
   int min_size;
@@ -32,65 +32,53 @@ public class Preprocessing {
   public Preprocessing(Graph<Integer, Edge> g, Collection<Integer> x, Collection<Integer> cand_exts, double gamma, int min_size) {
 
     this.g = g;
-    this.x = new ArrayList<Integer>(x);
+    this.x = new TreeSet<Integer>(x);
     this.cand_exts = new HashSet<Integer>(cand_exts);
     this.gamma = gamma;
     this.min_size = min_size;
   }
 
-  public Collection<Integer> intersectAllNbrsOfNonneigborhoodV(int u) {
+  public Collection<Integer> intersectAllNbrsNotInNeigborhoodOfV(int u) {
 
     Collection<Integer> neighborsOfU = this.g.getNeighbors(u);
     Collection<Set<Integer>> collectNbrsOfV = new ArrayList<>();
-    boolean hasIntersectingNeighbors = false;
 
-    for (Iterator<Integer> itV = this.x.iterator(); itV.hasNext();) {
-      int v = itV.next();
+    for (Integer v : this.x) {
       if (!neighborsOfU.contains(v)) {
-        hasIntersectingNeighbors = true;
         Set<Integer> neighborsOfV = new TreeSet<>(this.g.getNeighbors(v));
         collectNbrsOfV.add(neighborsOfV);
       }
     }
 
-    if (!hasIntersectingNeighbors) {
+    if (collectNbrsOfV.isEmpty()) {
       return new TreeSet<>();
-    } else {
-      Iterator<Set<Integer>> itSet = collectNbrsOfV.iterator();
-      Set<Integer> intersect = itSet.next();
-      for (Iterator<Set<Integer>> itCollect = collectNbrsOfV.iterator(); itCollect.hasNext();) {
-        intersect.retainAll(itCollect.next());
-      }
-      return intersect;
     }
+    
+    Iterator<Set<Integer>> itSet = collectNbrsOfV.iterator();
+    Set<Integer> intersect = itSet.next();
+    while (itSet.hasNext()) {
+      intersect.retainAll(itSet.next());
+    }
+    return intersect;
   }
 
-  public List<Integer> getCoverVertexSet() {
+  public Collection<Integer> getCoverVertexSet() {
 
-    List<Integer> rslt = new ArrayList<Integer>();
-    int size = 0;
+    Collection<Integer> rslt = new TreeSet<Integer>();
 
-    List<Integer> cand_exts = new ArrayList<Integer>(this.cand_exts);
+    Integer best_u = -1;
     for (Integer u : cand_exts) {
-      Collection<Integer> intersect = this.intersectAllNbrsOfNonneigborhoodV(u);
+      Collection<Integer> intersect = this.intersectAllNbrsNotInNeigborhoodOfV(u);
       intersect.retainAll(this.cand_exts);
       Collection<Integer> neighborsOfU = this.g.getNeighbors(u);
       intersect.retainAll(neighborsOfU);
-      if (intersect.size() > size) {
-        size = intersect.size();
-        rslt.clear();
-        rslt.addAll(intersect);
+      if (intersect.size() > rslt.size()) {
+        rslt = intersect;
+        best_u = u;
       }
     }
+    
     return rslt;
-  }
-
-  public Collection<Integer> getComplement(Collection<Integer> set1, Collection<Integer> set2) {
-
-    List<Integer> intersect = new ArrayList<Integer>(set1);
-    intersect.retainAll(set2);
-    set1.removeAll(intersect);
-    return set1;
   }
 
   public boolean satisfyMinSize() {
@@ -146,15 +134,11 @@ public class Preprocessing {
   }
 
   public boolean formQClq() {
-
-    Set<Integer> union = new HashSet<Integer>(this.x);
-    union.addAll(this.cand_exts);
-    return this.formSetOfVerticesQClq(union);
+    return this.formSetOfVerticesQClq(SetOperations.union(this.x, this.cand_exts));
   }
 
   //to check if G(Y) self is a gamma-quasi-clique
   public boolean formSetOfVerticesQClq(Collection<Integer> y) {
-
     Set<Integer> set = new HashSet<Integer>(y);
     Map<Integer, Integer> nodeToNeighborCountMap = this.getNodeToNeighborCountMap(set);
     boolean formQClq = true;
@@ -225,10 +209,8 @@ public class Preprocessing {
 
   public Collection<Integer> removeFromCandExtAndGetcandY(int v) {
     this.cand_exts.remove(v);
-    Set<Integer> ts = new HashSet<Integer>(this.cand_exts);
     int k = this.getDiameter(v); //r.t. confusions 		
-    ts.retainAll(this.getNeighborsInDistK(v, k));
-    return ts;
+    return SetOperations.intersect(this.cand_exts, this.getNeighborsInDistK(v, k));
   }
 
 }

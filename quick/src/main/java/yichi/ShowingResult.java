@@ -1,13 +1,13 @@
 package yichi;
 
+import edu.uci.ics.jung.graph.Graph;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
-
-import edu.uci.ics.jung.graph.Graph;
 
 public class ShowingResult {
 
@@ -39,10 +39,12 @@ public class ShowingResult {
         for (Iterator<Collection<Integer>> it = output.iterator(); it.hasNext();) {
             root.insert(new TreeSet<Integer>(it.next()));
         }
-        System.out.println("leafs:");
-        System.out.println(root.getValuesForLeafs());
+//        System.out.println("leafs:");
+//        System.out.println(root.getValuesForLeafs());
         System.out.println("maximum leafs:");
-        System.out.println(MaximumSubsetFinder.getAllMaximumSets(root.getValuesForLeafs()));
+        Collection<Set<Integer>> maxLeafs = MaximumSubsetFinder.getAllMaximumSets(root.getValuesForLeafs());
+        System.out.println("found " + maxLeafs.size() + " maximum leafs");
+        System.out.println(maxLeafs);
 
     }
 

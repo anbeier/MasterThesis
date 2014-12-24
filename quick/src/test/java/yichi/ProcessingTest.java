@@ -82,7 +82,7 @@ public class ProcessingTest {
 		List<Integer> x = new ArrayList<Integer>(node.value);
 		Collection<Integer> cand_exts = node.cand_exts(g, gamma, min_size);
 		Processing p = new Processing();	
-		boolean actual = p.quick(g, x, cand_exts, gamma, min_size);
+		boolean actual = p.quick(g, gamma, min_size);
 		assertFalse(actual);
 	}
 	
@@ -107,7 +107,8 @@ public class ProcessingTest {
 		boolean actual = p.quick(g, x, cand_exts, gamma, min_size);
 		assertTrue(actual);
 		List<Collection<Integer>> expectedOutput = new ArrayList<>();
-		expectedOutput.add(new TreeSet<>(Arrays.asList(0, 1, 2, 3, 5, 6)));
+		expectedOutput.add(new TreeSet<>(Arrays.asList(0, 1, 2, 6)));
+		expectedOutput.add(new TreeSet<>(Arrays.asList(0, 1, 3, 4, 5, 6)));
 		assertEquals(expectedOutput, new ArrayList<>(p.lastOutput));
 	}
 }
