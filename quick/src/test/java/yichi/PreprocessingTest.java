@@ -29,8 +29,8 @@ public class PreprocessingTest {
 		Collection<Integer> cand_exts = node.cand_exts(g, gamma, min_size);
 		
 		Preprocessing pp = new Preprocessing(g, x, cand_exts, gamma, min_size);
-		List<Integer> actual = pp.getCoverVertexSet();
-		List<Integer> expected = new ArrayList<Integer>();
+		Collection<Integer> actual = pp.getCoverVertexSet();
+		Collection<Integer> expected = new TreeSet<Integer>();
 		expected.add(2);
 		expected.add(3);
 		expected.add(5);
@@ -52,8 +52,8 @@ public class PreprocessingTest {
 		cover.add(3);
 		cover.add(5);
 		Preprocessing pp = new Preprocessing();
-		Collection<Integer> actual = pp.getComplement(cand_exts, cover);
-		List<Integer> expected = new ArrayList<Integer>();
+		Collection<Integer> actual = SetOperations.complement(cand_exts, cover);
+		Collection<Integer> expected = new TreeSet<>();
 		expected.add(4);
 		expected.add(6);
 		assertEquals(expected, actual);
