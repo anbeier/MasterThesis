@@ -16,8 +16,8 @@ setCensusParameters <- function() {
        fqsFile = 'census_fqs_delta0.7_alpha0.5.txt')
 }
 
-setTPCHParameters <- function(dataFile) {
-  load(dataFile)
+setTPCHParameters <- function() {
+  load('tpch_2chars.rdata')
   list(data = tpch,
        fqsFile = 'DOCCO_FQS_07.txt')
 }
