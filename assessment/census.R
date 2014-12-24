@@ -16,8 +16,8 @@ setCensusParameters <- function() {
        fqsFile = 'census_fqs_delta0.7_alpha0.5.txt')
 }
 
-setTPCHParameters <- function() {
-  load('tpch.rdata')
+setTPCHParameters <- function(dataFile) {
+  load(dataFile)
   list(data = tpch,
        fqsFile = 'DOCCO_FQS_07.txt')
 }
@@ -62,6 +62,7 @@ worker <- function(input) {
   log(paste("processing", input$index))
   tryCatch({
     #loopTrainSVMForOneClique(input$clique, input$index, input$filename)
+    clique = pruneLevels(input$clique)
     loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
     log(paste("done processing", input$index))
   }, error=function(e) {
