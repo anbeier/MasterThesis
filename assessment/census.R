@@ -5,14 +5,27 @@ source('analyticalTechniques.R')
 source('censusPostAnalysis.R')
 source('log.R')
 
-csvfp = 'census.csv'
-colnamefp = 'census_colnames.txt'
-fqsfp = 'census_fqs_delta0.7_alpha0.5.txt'
+source('tpch.R')
+
 d = 0.7
 a = 0.5
 
-tryDifferentTechniques <- function(csvFile = csvfp, colnameFile = colnamefp,
-                              fqsFile = fqsfp, delta = d, alpha = a, instance) {
+setCensusParameters <- function() {
+  list(csvFile = 'census.csv',
+       colnameFile = 'census_colnames.txt',
+       fqsFile = 'census_fqs_delta0.7_alpha0.5.txt')
+}
+
+setTPCHParameters <- function() {
+  load('tpch_2chars.rdata')
+  list(data = tpch,
+       fqsFile = 'DOCCO_FQS_07.txt')
+}
+
+tryDifferentTechniques <- function(csvFile = setCensusParameters()$csvFile, 
+                                   colnameFile = setCensusParameters()$colnameFile,
+                                   fqsFile = setCensusParameters()$fqsFile,
+                                   delta = d, alpha = a, instance) {
   census <- getCensusData(csvFile, colnameFile)
   cliqueGroup <- readingQuasiCliques(fqsFile) 
   # Take the Xst quasi clique as sample data
@@ -48,8 +61,9 @@ main <- function(cliqueIndex, delta = d, alpha = a,
 worker <- function(input) {
   log(paste("processing", input$index))
   tryCatch({
-    loopTrainSVMForOneClique(input$clique, input$index, input$filename)
-    #loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
+    #loopTrainSVMForOneClique(input$clique, input$index, input$filename)
+    clique = pruneLevels(input$clique)
+    loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
     log(paste("done processing", input$index))
   }, error=function(e) {
     log(paste("error processing", input$index, e))
@@ -57,8 +71,10 @@ worker <- function(input) {
   })
 }
 
-parallelMain <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a, 
-                         csvFile = csvfp, colnameFile = colnamefp, fqsFile = fqsfp) {
+parallelMainCensus <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a, 
+                         csvFile = setCensusParameters()$csvFile, 
+                         colnameFile = setCensusParameters()$colnameFile,
+                         fqsFile = setCensusParameters()$fqsFile) {
   
   log(paste('parallelMain', indexStart, '->', indexEnd, 'using', cores, 'cores'))
   census <- getCensusData(csvFile, colnameFile)
@@ -83,19 +99,68 @@ parallelMain <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a,
   return(res)
 }
 
+parallelMainTPCH <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a,
+                             tpchData = setTPCHParameters()$data,
+                             fqsFile = setTPCHParameters()$fqsFile) {
+  
+  log(paste('parallelMain', indexStart, '->', indexEnd, 'using', cores, 'cores'))
+  
+  cliques <- readTPCHCliques(fqsFile)
+  
+  if (indexEnd > length(cliques)) {
+    indexEnd <- length(cliques)
+    log(paste('indexEnd changed to ', indexEnd, sep=''))
+  }
+  
+  inputs <- lapply(seq(indexStart, indexEnd), function(i) {
+    log(paste("prepare input for", i))
+    
+    clique <- getOneClique(tpchData, cliques, i)
+    log(paste('clique: ', i, ' size:', nrow(clique), 'x', ncol(clique), ' items: ', nrow(clique)*ncol(clique), sep=''))
+    list(index = i,
+         clique = clique,
+         filename = makeFileIndicator(delta, alpha, i))
+  })
+  
+  res <- mclapply(inputs, worker, mc.cores = cores)
+  return(res)
+}
+
 saveOutputInCSV <- function(folderName, method) {
   fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
   
-  for(fn in fileNames) {
-    load(fn)
-    filestring = unlist(strsplit(fn, split='qs'))[1]
-    newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
-    write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+  if(method == 'svm') {
+    for(fn in fileNames) {
+      load(fn)
+      filestring = unlist(strsplit(fn, split='qs'))[1]
+      newfn = paste(filestring, paste(result.svm$index, '.csv', sep=''), sep='')
+      write.csv(result.svm$result, file=newfn, quote=F, row.names=F)
+    }
+  } else if(method == 'bayes') {
+    for(fn in fileNames) {
+      load(fn)
+      filestring = unlist(strsplit(fn, split='qs'))[1]
+      newfn = paste(filestring, paste(result.bayes$index, '.csv', sep=''), sep='')
+      write.csv(result.bayes$result, file=newfn, quote=F, row.names=F)
+    }
   }
+  
 }
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) > 0) {
     idx <- as.integer(args[1])
     parallelMain(idx, idx)
+}
+
+test <- function(index, delta = d, alpha = a,
+                 tpchData = setTPCHParameters()$data,
+                 fqsFile = setTPCHParameters()$fqsFile) {
+  
+  cliques <- readTPCHCliques(fqsFile)
+  sampleClique <- getOneClique(tpchData, cliques, index) 
+  fileIndicator <- makeFileIndicator(delta, alpha, index)
+  
+  result.bayes <- loopTrainNaiveBayesForOneClique(sampleClique, index, fileIndicator)
+  return('finished')
 }

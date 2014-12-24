@@ -7,9 +7,13 @@ library(caret)
 loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
 
   fileName <- makeFileNameForExperimentResults(fileIndicator, 'bayes')
+  if (file.exists(fileName)) {
+    log(paste('skipped bayes for clique', index, '. File', fileName, 'already exists'))
+    return(NULL)
+  }
   df <- NULL
 
-  print(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
+  log(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
 
   for(target in colnames(qs)) {
     data <- takeSamples(qs, target)
@@ -22,7 +26,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
 
   result.bayes <- list(index = index, result = df)
   save(result.bayes, file = fileName)
-  return(result.bayes)
+  #return(result.bayes)
 }
 
 # Support vector machine
