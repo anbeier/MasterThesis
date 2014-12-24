@@ -177,3 +177,15 @@ modifyDataTypes <- function(data) {
   data = convertNumericColumnToFactor(data)
   return(data)
 }
+
+pruneLevels <- function(data) {
+  df = apply(data, 2,
+              function(x) {
+                if(length(unique(x)) > 300) {
+                  return(substring(as.character(x), 1, 2))
+                } else {
+                  return(x)
+                }
+              })
+  as.data.frame(df)
+}
