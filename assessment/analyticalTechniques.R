@@ -308,6 +308,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
   
   result = NULL
+  isOrigin = FALSE
   
   for(i in candidateIndices) {
     df = clique
@@ -330,7 +331,12 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
     }
   }
   
+  if(length(prunedColumns) == 0) {
+    isOrigin = TRUE
+  }
+  
   list(index=cliqueIndex,
        target=targetColumn,
-       prunedColumns=prunedColumns)
+       prunedColumns=prunedColumns,
+       isOrigin=isOrigin)
 }
