@@ -312,7 +312,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
   for(i in candidateIndices) {
     df = clique
     df[,i] = NULL
-    cols = paste(sort(names(df)), collapse = '')
+    cols = paste(sort(names(df)), collapse = '|')
     
     if(!cols %in% prunedColumns) {
       data <- takeSamples(df, targetColumn)
@@ -322,7 +322,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
                                   predicted = pred))
       
       if(mcc >= cliqueMCC) {
-        prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = ''))
+        prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
         if(ncol(df) > 2) {
           pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, prunedColumns)
         }
@@ -332,5 +332,5 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
   
   list(index=cliqueIndex,
        target=targetColumn,
-       prunedColumns=prunedColumnSet)
+       prunedColumns=prunedColumns)
 }
