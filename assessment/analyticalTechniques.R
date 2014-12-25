@@ -280,6 +280,12 @@ makeFileIndicator <- function(delta, alpha, i) {
   return(string)
 }
 
+makeFileIndicatorForPruning <- function(fileIndicator, removedColumnInd) {
+  toAdd = paste(paste('-c', removedColumnInd, sep=''), '.rdata', sep='')
+  newFileInd = gsub('.rdata', toAdd, fileIndicator, fixed = T)
+  return(newFileInd)
+}
+
 transferToCsv <- function(folderName, method) {
   fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE)
 
@@ -294,4 +300,37 @@ transferToCsv <- function(folderName, method) {
 makeFileNameForExperimentResults <- function(fileIndicator, method) {
   fn <- paste(method, fileIndicator, sep = '-')
   return(fn)
+}
+
+pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedColumns=NULL) {
+  targetIndex = grep(targetColumn, names(clique))
+  candidateIndices = 1:ncol(clique)
+  candidateIndices = candidateIndices[candidateIndices != targetIndex]
+  
+  result = NULL
+  
+  for(i in candidateIndices) {
+    df = clique
+    df[,i] = NULL
+    cols = paste(sort(names(df)), collapse = '')
+    
+    if(!cols %in% prunedColumns) {
+      data <- takeSamples(df, targetColumn)
+      model <- trainNaiveBayes(data$training, targetColumn)
+      pred <- predict(model, data$testing)
+      mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
+                                  predicted = pred))
+      
+      if(mcc >= cliqueMCC) {
+        prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = ''))
+        if(ncol(df) > 2) {
+          pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, prunedColumns)
+        }
+      }
+    }
+  }
+  
+  list(index=cliqueIndex,
+       target=targetColumn,
+       prunedColumns=prunedColumnSet)
 }
