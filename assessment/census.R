@@ -128,7 +128,7 @@ parallelMainTPCH <- function(indexStart, indexEnd, cores=2, delta = d, alpha = a
 
 saveOutputInCSV <- function(folderName, method) {
   fileNames <- list.files(paste(folderName, method, sep='/'), full.names = TRUE) 
-  
+  fileNames <- as.character(subset(data.frame(file=fileNames), grepl("\\.rdata$", file))$file)
   if(method == 'svm') {
     for(fn in fileNames) {
       load(fn)
