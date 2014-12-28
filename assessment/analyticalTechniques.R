@@ -302,7 +302,7 @@ makeFileNameForExperimentResults <- function(fileIndicator, method) {
   return(fn)
 }
 
-pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedColumns=NULL) {
+pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedColumns=NULL, prunedColumns=NULL) {
   targetIndex = grep(targetColumn, names(clique))
   candidateIndices = 1:ncol(clique)
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
@@ -315,12 +315,14 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, prunedCol
     df[,i] = NULL
     cols = paste(sort(names(df)), collapse = '|')
     
-    if(!cols %in% prunedColumns) {
+    if(!cols %in% checkedColumns) {
       data <- takeSamples(df, targetColumn)
       model <- trainNaiveBayes(data$training, targetColumn)
       pred <- predict(model, data$testing)
       mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
                                   predicted = pred))
+      
+      checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
       
       if(mcc >= cliqueMCC) {
         prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
