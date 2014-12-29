@@ -39,28 +39,27 @@ public class Main {
     double gamma = configuration.min_deg_ratio;
     int min_size = configuration.min_size;
 
-    Processing p = new Processing();
+    Quick q = new Quick();
     System.out.println("running quick");
-    p.quick(g, gamma, min_size);
-    Collection<Collection<Integer>> output = p.lastOutput;
+    Collection<Collection<Integer>> output = q.quick(g, gamma, min_size).cliques;
     PrefixTreeNode root = new PrefixTreeNode();
 
-    System.out.println("feeding tree");
+    System.out.println("feeding tree with " + output.size() + " cliques");
     for (Collection<Integer> clique : output) {
       root.insert(new TreeSet<>(clique));
     }
 
-    return MaximumSubsetFinder.getAllMaximumSets(root.getValuesForLeafs());
+    return MaximumCliquesFinder.getAllMaximumSets(root.getValuesForLeafs());
   }
 
   public static void writeCliques(PrintWriter writer, Collection<Set<Integer>> cliques) {
     List<String> lines = new ArrayList<>();
     for (Set<Integer> clique : cliques) {
       StringBuilder b = new StringBuilder();
-      b.append(clique.size());
+      b.append(clique.size() + " ");
 
       for (Iterator<Integer> setIt = clique.iterator(); setIt.hasNext();) {
-        b.append(" " + setIt.next().toString());
+        b.append(setIt.next().toString() + " ");
       }
 
       lines.add(b.toString());
