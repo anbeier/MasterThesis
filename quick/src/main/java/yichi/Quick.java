@@ -56,14 +56,14 @@ public class Quick {
       candidateExtensions.removeAll(Arrays.asList(v));
       Collection<Integer> candY = SetOperations.intersect(
               candidateExtensions, 
-              Util.kNeighborhoodOfV(quickConfiguration.graph, v, quickConfiguration.gamma)
+              Pruning.kNeighborhoodOfV(quickConfiguration.graph, v, quickConfiguration.gamma)
       );
       double UY, LY;
       Collection<Integer> Z;
       do {
-        UY = Util.UX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
-        LY = Util.LX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
-        Integer criticalVertex = Util.criticalVertex(
+        UY = Pruning.UX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
+        LY = Pruning.LX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
+        Integer criticalVertex = Pruning.criticalVertex(
                 quickConfiguration.graph,
                 quickConfiguration.candidateExtensions,
                 Y,
@@ -76,17 +76,17 @@ public class Quick {
                   SetOperations.intersect(candY, quickConfiguration.graph.getNeighbors(criticalVertex))
           );
           candY.removeAll(SetOperations.intersect(candY, quickConfiguration.graph.getNeighbors(criticalVertex)));
-          UY = Util.UX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
-          LY = Util.LX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
+          UY = Pruning.UX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
+          LY = Pruning.LX(quickConfiguration.graph, candY, Y, quickConfiguration.gamma);
         }
         
-        Z = Util.Z1(quickConfiguration.graph, candY, Y, quickConfiguration.gamma, LY, UY);
+        Z = Pruning.Z1(quickConfiguration.graph, candY, Y, quickConfiguration.gamma, LY, UY);
         
         if (!Z.isEmpty()) {
           candY.clear();
         }
         
-        Z = Util.Z2(quickConfiguration.graph, candY, Y, quickConfiguration.gamma, LY, UY);
+        Z = Pruning.Z2(quickConfiguration.graph, candY, Y, quickConfiguration.gamma, LY, UY);
         
         candY.removeAll(Z);
        
