@@ -1,225 +1,222 @@
 package yichi;
 
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Pruning {
-
-  Graph<Integer, Edge> g;
-  Collection<Integer> y;
-  Collection<Integer> candY;
-  Map<Integer, Integer> indegCache;
-  Map<Integer, Integer> exdegCache;
-  Integer lowerBoundCache = null;
-  Integer upperBoundCache = null;
-  List<Integer> descIndegCache = null;
-  double gamma;
-  int min_size;
-  Integer critical = null;
-  boolean calculatedCritical = false;
-
-  //The Pruning class has one constructor.
-  public Pruning(Graph<Integer, Edge> g, Collection<Integer> y, Collection<Integer> candY, double gamma, int min_size) {
-
-    this.g = g;
-    this.y = new HashSet<Integer>(y);
-    this.candY = new TreeSet<Integer>(candY);
-    this.gamma = gamma;
-    this.min_size = min_size;
-    this.indegCache = new HashMap<>();
-    this.exdegCache = new HashMap<>();
-  }
-
-  public int getIndegY(int v) {
-    if (this.indegCache.containsKey(v)) {
-      return this.indegCache.get(v);
-    }
-
-    int indeg = 0;
-    for (Iterator<Integer> itNeighborOfV = this.g.getNeighbors(v).iterator(); itNeighborOfV.hasNext();) {
-      if (this.y.contains(itNeighborOfV.next())) {
-        indeg++;
+    
+  public static Collection<Integer> kNeighborhoodOfV(Graph<Integer, Edge> g, Integer v, Double gamma) {
+    Integer k = Pruning.maxDiameterOfX(g.getVertices(), gamma);
+    Collection<Integer> neighbors = new TreeSet<>();
+    neighbors.add(v);
+    for (int i = 0; i < k; i++) {
+      Collection<Integer> oldNeighbors = new TreeSet<>(neighbors);
+      for (Integer u : oldNeighbors) {
+        neighbors.addAll(g.getNeighbors(u));
       }
     }
-    this.indegCache.put(v, indeg);
-    return indeg;
+    
+    return neighbors;
   }
-
-  public int getExdegY(int v) {
-    if (this.exdegCache.containsKey(v)) {
-      return this.exdegCache.get(v);
+  
+  public static Integer maxDiameterOfX(Collection<Integer> x, Double gamma) {
+    Double n = (double)x.size();
+    if (1 >= gamma && gamma > ((n - 2) / (n - 1))) {
+      return 1;
+    } else if (((n - 2) / (n - 1)) >= gamma && gamma >= 0.5) {
+      return 2;
+    } else if (0.5 > gamma && gamma >= (2 / (n - 1)) && (n % (gamma * (n - 1) + 1)) == 0) {
+      return 3 * Integer.valueOf((int) Math.floor(n / (gamma * (n - 1) + 1))) - 3;
+    } else if (0.5 > gamma && gamma >= (2 / (n - 1)) && (n % (gamma * (n - 1) + 1)) == 1) {
+      return 3 * Integer.valueOf((int) Math.floor(n / (gamma * (n - 1) + 1))) - 2;
+    } else if (0.5 > gamma && gamma >= (2 / (n - 1)) && (n % (gamma * (n - 1) + 1)) >= 2) {
+      return 3 * Integer.valueOf((int) Math.floor(n / (gamma * (n - 1) + 1))) - 1;
+    } else if (gamma == (1 / (n - 1))) {
+      return n.intValue() - 1;
     }
-
-    int exdeg = 0;
-    for (Iterator<Integer> itNeighborOfV = this.g.getNeighbors(v).iterator(); itNeighborOfV.hasNext();) {
-      if (this.candY.contains(itNeighborOfV.next())) {
-        exdeg++;
+    return n.intValue();
+  }
+  
+  public static Integer degMinX(
+          Graph<Integer, Edge> g, 
+          Collection<Integer> candidateExtensions, 
+          Collection<Integer> x
+  ) {
+    Integer min = Integer.MAX_VALUE;
+    for (Integer v : x) {
+      Integer val = Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v);
+      min = Math.min(min, val);
+    }
+    
+    return min;
+  }
+  
+  public static Integer UMinX(
+          Graph<Integer, Edge> g, 
+          Collection<Integer> candidateExtension,
+          Collection<Integer> x, 
+          Double gamma
+  ) {
+    return Math.min(
+            (int)Math.floor((double)Pruning.degMinX(g, candidateExtension, x)/gamma) + 1 - x.size(),
+            candidateExtension.size()
+    );
+  }
+  
+  public static Integer UX(
+          Graph<Integer, Edge> g,
+          Collection<Integer> candidateExtensions,
+          Collection<Integer> x,
+          Double gamma
+  ) {
+    List<Integer> sortedCandidateExtensions = new ArrayList<>(candidateExtensions);
+    Collections.sort(sortedCandidateExtensions, new IndegComparator(g, x));
+    
+    
+    for (int t = Pruning.UMinX(g, candidateExtensions, x, gamma); t > 0; t--) {
+      Integer part1 = 0;
+      for (Integer v : x) {
+        part1 += Util.indegX(g, x, v);
+      }
+      
+      for (int e = 0; e < t; e++) {
+        part1 += Util.indegX(g, x, sortedCandidateExtensions.get(e));
+      }
+      
+      Integer part2 = x.size() * (int)Math.ceil(gamma * (x.size() + t - 1));
+      if (part1 >= part2) {
+        return t;
       }
     }
-    this.exdegCache.put(v, exdeg);
-    return exdeg;
+    
+    return 0;
   }
-
-  //definition 3 / 5 using the set of Y instead of X
-  public int getUmin() {
-
-    int degMin = Integer.MAX_VALUE;
-    for (Integer v : this.y) {
-      int indeg = this.getIndegY(v);
-      int exdeg = this.getExdegY(v);
-      degMin = Math.min(degMin, indeg + exdeg);
+  
+  public static Integer indegMinX(
+          Graph<Integer, Edge> g,
+          Collection<Integer> x
+  ) {
+    Integer min = Integer.MAX_VALUE;
+    for (Integer v : x) {
+      Math.min(min, Util.indegX(g, x, v));
     }
-
-    int Umin = (int) (degMin / this.gamma) + 1 - this.y.size();
-    return Umin;
+    return min;
   }
-
-  public int getLmin() {
-
-    TreeSet<Integer> ts = new TreeSet<Integer>();
-    for (Integer v : this.y) {
-      int indeg = this.getIndegY(v);
-      ts.add(indeg);
-    }
-    int indegMin = ts.first();
-
-    int Lmin = 0;
-    for (int t = 0; t < this.y.size() + this.candY.size(); t++) { //r.t. confusions
-      if (indegMin + t >= Math.ceil(this.gamma * (this.y.size() + t - 1))) {
-        Lmin = t;
-        break;
+  
+  public static Integer LMinX(
+          Graph<Integer, Edge> g,
+          Collection<Integer> x,
+          Double gamma
+  ) {
+    for (int t = 0; t < Integer.MAX_VALUE; t++) {
+      if (Pruning.indegMinX(g, x) + t >= Math.ceil(gamma * (x.size() + t - 1))) {
+        return t;
       }
     }
-    return Lmin;
+    return Integer.MAX_VALUE;
   }
-
-  public int sumIndegY() {
-
-    int sum = 0;
-    for (Integer v : this.y) {
-      int indeg = this.getIndegY(v);
-      sum += indeg;
-    }
-    return sum;
-  }
-
-  public int sumIndegCandYTilT(int t) {
-
-    int sum = 0;
-    int count = 0;
-    List<Integer> descIndeg = this.descendingCandYIndeg();
-    for (Integer i : descIndeg) {
-      if (count < t) {
-        sum += i;
-        count++;
-      } else {
-        break;
+  
+  public static Integer LX(
+          Graph<Integer, Edge> g,
+          Collection<Integer> candidateExtensions,
+          Collection<Integer> x,
+          Double gamma
+  ) {
+    List<Integer> sortedCandidateExtensions = new ArrayList<>(candidateExtensions);
+    Collections.sort(sortedCandidateExtensions, new IndegComparator(g, x));
+    
+    for (int t = Pruning.LMinX(g, x, gamma); t <= candidateExtensions.size(); t++) {
+      Integer part1 = 0;
+      for (Integer v : x) {
+        part1 += Util.indegX(g, x, v);
+      }
+      
+      for (int e = 0; e < t; e++) {
+        part1 += Util.indegX(g, x, sortedCandidateExtensions.get(e));
+      }
+      
+      Integer part2 = x.size() * (int)Math.ceil(gamma * (x.size() + t - 1));
+      if (part1 >= part2) {
+        return t;
       }
     }
-    return sum;
+    
+    return candidateExtensions.size() + 1;
   }
-
-  //Lemma 6: to sort vertices in cand_exts(X) in descending order of their indegree-values
-  public List<Integer> descendingCandYIndeg() {
-    if (null != this.descIndegCache) {
-      return this.descIndegCache;
-    }
-
-    List<Integer> indegs = new ArrayList<Integer>();
-    for (Iterator<Integer> itCand = this.candY.iterator(); itCand.hasNext();) {
-      int indeg = this.getIndegY(itCand.next());
-      indegs.add(indeg);
-    }
-    Collections.sort(indegs, new IntComparable());
-
-    this.descIndegCache = indegs;
-
-    return indegs;
-  }
-
-  public int getUpperBound() {
-    if (this.upperBoundCache != null) {
-      return this.upperBoundCache;
-    }
-
-    int sumIndeg = this.sumIndegY();
-
-    int Umin = this.getUmin();
-    int upperBound = 0;
-    for (int t = Umin; t > 0; t--) {
-      int sumIndegT = this.sumIndegCandYTilT(t);
-      if (sumIndeg + sumIndegT >= this.y.size() * Math.ceil(this.gamma * (this.y.size() + t - 1))) {
-        upperBound = t;
-        break;
-      }
-    }
-
-    this.upperBoundCache = upperBound;
-    return upperBound;
-  }
-
-  public int getLowerBound() {
-    if (this.lowerBoundCache != null) {
-      return this.lowerBoundCache;
-    }
-
-    int sumIndeg = this.sumIndegY();
-
-    int Lmin = this.getLmin();
-    int n = this.candY.size(); //r.t. confusions
-    int lowerBound = Integer.MAX_VALUE;
-    boolean hasLowerBound = false;
-    for (int t = Lmin; t < n + 1; t++) {
-      int sumIndegT = this.sumIndegCandYTilT(t);
-      if (sumIndeg + sumIndegT >= this.y.size() * Math.ceil(this.gamma * (this.y.size() + t - 1))) {
-        lowerBound = t;
-        hasLowerBound = true;
-        break;
-      }
-    }
-
-    if (!hasLowerBound) {
-      lowerBound = this.candY.size() + 1;
-    }
-
-    this.lowerBoundCache = lowerBound;
-    return lowerBound;
-  }
-
-  public Integer getCritical() {
-    if (this.calculatedCritical) {
-      return this.critical;
-    }
-
-    this.calculatedCritical = true;
-
-    int lower = this.getLowerBound();
-    int properDegSize = (int) Math.ceil(this.gamma * (this.y.size() + lower - 1));
-
-    for (Integer v : this.y) {
-      int indeg = this.getIndegY(v);
-      int exdeg = this.getExdegY(v);
-      if (indeg + exdeg == properDegSize) {
-        this.critical = v;
+  
+  public static Integer criticalVertex(
+          Graph<Integer, Edge> g,
+          Collection<Integer> candidateExtensions,
+          Collection<Integer> x,
+          Double gamma,
+          Double LX
+  ) {
+    for (Integer v : x) {
+      if ((Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v)) == 
+              Math.ceil(gamma * (x.size() + LX - 1))) {
         return v;
       }
     }
-
-    return this.critical;
+    return null;
   }
-
-  public boolean hasCritical() {
-    return null != this.getCritical();
+  
+  public static Collection<Integer> Z1(
+          Graph<Integer, Edge> g,
+          Collection<Integer> candidateExtensions,
+          Collection<Integer> x,
+          Double gamma,
+          Double LX,
+          Double UX
+  ) {
+    Collection<Integer> result = new TreeSet<>();
+    
+    for (Integer v : x) {
+      Boolean part1 = Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v)
+              <
+              Math.ceil(gamma * (x.size() + Util.exdegX(g, candidateExtensions, v) - 1));
+      Boolean part2 = Util.indegX(g, x, v) + UX
+              <
+              Math.ceil(gamma * (x.size() + UX - 1));
+      Boolean part3 = Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v)
+              <
+              Math.ceil(gamma * (x.size() + LX - 1));
+      if (part1 || part2 || part3) {
+        result.add(v);
+      }
+    }
+    
+    return result;
   }
-
+  
+  public static Collection<Integer> Z2(
+          Graph<Integer, Edge> g,
+          Collection<Integer> candidateExtensions,
+          Collection<Integer> x,
+          Double gamma,
+          Double LX,
+          Double UX
+  ) {
+    Collection<Integer> result = new TreeSet<>();
+    
+    for (Integer v : candidateExtensions) {
+      Boolean part1 = Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v)
+              <
+              Math.ceil(gamma * (x.size() + Util.exdegX(g, candidateExtensions, v)));
+      Boolean part2 = Util.indegX(g, x, v) + UX - 1
+              <
+              Math.ceil(gamma * (x.size() + UX - 1));
+      Boolean part3 = Util.indegX(g, x, v) + Util.exdegX(g, candidateExtensions, v)
+              <
+              Math.ceil(gamma * (x.size() + LX - 1));
+      if (part1 || part2 || part3) {
+        result.add(v);
+      }
+    }
+    
+    return result;
+  }
 }

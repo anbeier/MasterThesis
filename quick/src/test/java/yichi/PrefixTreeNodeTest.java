@@ -3,13 +3,14 @@ package yichi;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.junit.Test;
 
-public class PrefixTreeTest {
+public class PrefixTreeNodeTest {
 
 	@Test
 	public void testSimpleInsert() {
@@ -20,7 +21,6 @@ public class PrefixTreeTest {
 		
 		PrefixTreeNode leaf = root.getLeafs().iterator().next();
 		assertEquals(expected, leaf.getValue());
-
 	}
 	
 	@Test
@@ -357,5 +357,25 @@ public class PrefixTreeTest {
 		assertTrue(root.getLeafs().contains(ffirst));
 		assertTrue(root.getLeafs().contains(fsecond));
 		assertTrue(root.getLeafs().contains(fthird));
+	}
+  
+  @Test
+	public void testSampleResults() {
+		PrefixTreeNode root = new PrefixTreeNode();
+    root.insert(new TreeSet<>(Arrays.asList(0, 2, 3, 8, 9, 12)));
+    root.insert(new TreeSet<>(Arrays.asList(1, 2, 3, 8, 9, 12)));
+    root.insert(new TreeSet<>(Arrays.asList(2, 3, 4, 8, 9, 12)));
+    root.insert(new TreeSet<>(Arrays.asList(2, 3, 5, 8, 9, 12)));
+    root.insert(new TreeSet<>(Arrays.asList(2, 3, 8, 9, 12, 13)));
+    root.insert(new TreeSet<>(Arrays.asList(0, 1, 2, 3, 4, 8, 9)));
+    root.insert(new TreeSet<>(Arrays.asList(0, 2, 3, 4, 5, 8, 9)));
+    root.insert(new TreeSet<>(Arrays.asList(0, 2, 3, 4, 8, 9, 13)));
+    root.insert(new TreeSet<>(Arrays.asList(1, 2, 3, 4, 5, 8, 9)));
+    root.insert(new TreeSet<>(Arrays.asList(1, 2, 3, 4, 8, 9, 13)));
+    root.insert(new TreeSet<>(Arrays.asList(2, 3, 4, 5, 8, 9, 13)));
+
+
+		Collection<PrefixTreeNode> leafs = root.getLeafs();
+		assertEquals(11, leafs.size());
 	}
 }

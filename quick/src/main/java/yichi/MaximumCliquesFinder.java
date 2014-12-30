@@ -6,12 +6,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 
-public class MaximumSubsetFinder {
+public class MaximumCliquesFinder {
     
 
     public static Collection<Set<Integer>> getAllMaximumSets(Collection<Set<Integer>> sets) {
         ArrayList<Set<Integer>> sortedSets = new ArrayList<>(sets);
         Collections.sort(sortedSets, new Comparator<Set<Integer>>() {
+            @Override
             public int compare(Set<Integer> a, Set<Integer> b) {
                 return b.size() - a.size();
             }
