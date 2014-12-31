@@ -15,45 +15,18 @@ public class Util {
    * Number of vertices in cand_ext(X) that are adjacent to u.
    */
   public static int exdegX(Graph<Integer, Edge> g, Collection<Integer> candidateExtensions, Integer u) {
-    return Util.neighborsInSet(g, candidateExtensions, u);
+    return Util.neighborCountInX(g, candidateExtensions, u);
   }
   
    /**
    * Number of vertices in vertices in X that are adjacent to u.
    */
   public static int indegX(Graph<Integer, Edge> g, Collection<Integer> x, Integer u) {
-    return Util.neighborsInSet(g, x, u);
+    return Util.neighborCountInX(g, x, u);
   }
   
-  public static int neighborsInSet(Graph<Integer, Edge> g, Collection<Integer> s, Integer u) {
-    Set<Integer> neighbors = new TreeSet<>(g.getNeighbors(u));
-    neighbors.retainAll(s);
-    return neighbors.size();
-  }
-
-  public static Collection<Integer> intersectAllNeighborsNotInNeighborhoodOfU(
-          Graph<Integer, Edge> g,
-          Collection<Integer> x,
-          Integer u
-  ) {
-    ArrayList<Collection<Integer>> sets = new ArrayList<>();
-    for (Integer v : x) {
-      if (!g.isNeighbor(u, v)) {
-        sets.add(g.getNeighbors(v));
-      }
-    }
-    
-    if (sets.isEmpty()) {
-      return new TreeSet<>();
-    } else if (sets.size() == 1) {
-      return sets.get(0);
-    } else {
-      Set<Integer> result = new TreeSet<>(sets.get(0));
-      for (int i = 1; i < sets.size(); i++) {
-        result.retainAll(sets.get(i));
-      }
-      return result;
-    }
+  public static int neighborCountInX(Graph<Integer, Edge> g, Collection<Integer> x, Integer u) {
+    return Util.neighborsInX(g, x, u).size();
   }
   
   public static boolean isQuasiClique(Graph<Integer, Edge> g, Collection<Integer> x, Double gamma) {
