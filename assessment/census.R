@@ -61,9 +61,9 @@ main <- function(cliqueIndex, delta = d, alpha = a,
 worker <- function(input) {
   log(paste("processing", input$index))
   tryCatch({
-    #loopTrainSVMForOneClique(input$clique, input$index, input$filename)
     clique = pruneLevels(input$clique)
-    loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
+    loopTrainSVMForOneClique(input$clique, input$index, input$filename)
+    #loopTrainNaiveBayesForOneClique(input$clique, input$index, input$filename)
     log(paste("done processing", input$index))
   }, error=function(e) {
     log(paste("error processing", input$index, e))
