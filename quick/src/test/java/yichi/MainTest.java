@@ -16,7 +16,7 @@ public class MainTest {
   public void smallerDoccoTest() throws FileNotFoundException {
     Configuration configuration = new Configuration("src/test/resources/DOCCO_graph_smaller.txt", 0.8, 5, 100, "");
 
-    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiClique(configuration);
+    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiCliques(configuration);
     assertEquals(6, foundCliques.size());
   }
   
@@ -24,7 +24,7 @@ public class MainTest {
   public void hugeDoccoTest() throws FileNotFoundException {
     Configuration configuration = new Configuration("src/test/resources/DOCCO_graph_huge.txt", 0.8, 5, 100, "");
 
-    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiClique(configuration);
+    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiCliques(configuration);
     assertEquals(118, foundCliques.size());
   }
     
@@ -32,7 +32,7 @@ public class MainTest {
   public void smallDoccoTest() throws FileNotFoundException {
     Configuration configuration = new Configuration("src/test/resources/DOCCO_graph_small.txt", 0.8, 5, 100, "");
 
-    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiClique(configuration);
+    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiCliques(configuration);
     assertEquals(11, foundCliques.size());
   }
       
@@ -40,7 +40,7 @@ public class MainTest {
   public void biggerDoccoTest() throws FileNotFoundException {
     Configuration configuration = new Configuration("src/test/resources/DOCCO_graph_bigger.txt", 0.8, 5, 100, "");
 
-    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiClique(configuration);
+    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiCliques(configuration);
     assertEquals(32, foundCliques.size());
   }
         
@@ -48,7 +48,7 @@ public class MainTest {
   public void biggerDoccoFull() throws FileNotFoundException {
     Configuration configuration = new Configuration("src/test/resources/DOCCO_graph.txt", 0.8, 5, 100, "");
 
-    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiClique(configuration);
+    Collection<Set<Integer>> foundCliques = Main.calculateMaxQuasiCliques(configuration);
     assertEquals(286, foundCliques.size());
   }
 }

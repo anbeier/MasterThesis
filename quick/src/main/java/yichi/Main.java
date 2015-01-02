@@ -23,7 +23,7 @@ public class Main {
 
     Configuration conf = Configuration.fromArgs(args);
 
-    Collection<Set<Integer>> maxLeafs = Main.calculateMaxQuasiClique(conf);
+    Collection<Set<Integer>> maxLeafs = Main.calculateMaxQuasiCliques(conf);
 
     System.out.println("found " + maxLeafs.size() + " cliques");
 
@@ -32,7 +32,7 @@ public class Main {
     writer.close();
   }
 
-  public static Collection<Set<Integer>> calculateMaxQuasiClique(Configuration configuration) throws FileNotFoundException {
+  public static Collection<Set<Integer>> calculateMaxQuasiCliques(Configuration configuration) throws FileNotFoundException {
     GraphGenerator gg = new GraphGenerator();
     System.out.println("reading graph");
     Graph<Integer, Edge> g = gg.createGraph(configuration.graph_file);
