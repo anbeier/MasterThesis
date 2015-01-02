@@ -110,7 +110,7 @@ plot_bucketized_wageperhour <- function(census_processed) {
   ggsave(file="census_wageperhour_bucketized.svg", plot=last_plot(), width=10, height=5)
 }
 
-plot_count_qualified <- function(clqList, delta) {
+plot_count_qualified <- function(delta) {
   fn.bayes = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
   fn.svm = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
   
@@ -131,9 +131,71 @@ plot_count_qualified <- function(clqList, delta) {
   image = ggplot(dat, aes(x=method, fill = name)) +
     geom_histogram(position=position_dodge()) +
     scale_fill_manual("Quasi-clique", values=c('skyblue4','gray8')) +
-    theme(text = element_text(size=18)) +
+    # turn off legend
+    theme(legend.position='none', text = element_text(size=18)) +
+    #theme(text = element_text(size=18)) +
     xlab('Classification Method') +
     ylab('Number of Quasi-cliques')
   
-  ggsave(file="count_qualified.svg", plot=last_plot(), width=10, height=5)
+  ggsave(file="count_qualified.svg", plot=last_plot(), width=5, height=6)
+}
+
+countRows <- function(x) {
+  length(unique(x))
+}
+
+countColsByClique <- function(d) {
+  aggregate(d$target, by=list(d$index), FUN=countRows)
+}
+
+avgMCCByClique <- function(d) {
+  aggregate(d$mcc, by=list(d$index), FUN=mean)
+}
+
+makeLevels <- function(inds) {
+  inds = sort(inds)
+  paste('QS', inds, sep='_')
+}
+
+addNotInCols <- function(d1, d2) {
+  # add cliques in d1 but not in d2 to d2
+  toadd = setdiff(unique(d1$index), unique(d2$index))
+  for(x in toadd) {
+    d2[nrow(d2) + 1,] = c(x, 0, 0, d2$method[1])
+  }
+  return(d2)
+}
+
+make_data_for_plot_TargetCols <- function(delta) {
+  fn.bayes = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
+  fn.svm = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+  
+  # read result.csv
+  b = read.csv(fn.bayes, header=T, sep=',')
+  s = read.csv(fn.svm, header=T, sep=',')
+  
+  b.agg = merge(countColsByClique(b), avgMCCByClique(b), by='Group.1')
+  names(b.agg) = c('index', 'ncol', 'mcc')
+  b.agg$method = 'bayes'
+  s.agg = merge(countColsByClique(s), avgMCCByClique(s), by='Group.1')
+  names(s.agg) = c('index', 'ncol', 'mcc')
+  s.agg$method = 'svm'
+  
+  b.agg = addNotInCols(s.agg, b.agg)
+  s.agg = addNotInCols(b.agg, s.agg)
+  
+  dat = rbind(b.agg, s.agg)
+  dat$qs = factor(paste('QS', dat$index, sep='_'), levels=makeLevels(unique(dat$index)))
+  dat$mcc = round(as.numeric(dat$mcc), 4)
+  
+  image = ggplot(dat, aes(x=qs, y=ncol, fill = method)) +
+    geom_bar(stat="identity", position="dodge") +
+    scale_fill_manual("Classifier", values=c('lightskyblue4','palevioletred')) +
+    geom_errorbar(aes(y=mcc, ymax=mcc, ymin=mcc, fill=method),  position=position_dodge()) +
+    theme(text = element_text(size=18), 
+          axis.text.x  = element_text(angle=45, vjust=0.5, size=15)) +
+    xlab('Discovered Qualified Quasi-cliques') +
+    ylab('Number of Identified Target Columns')
+  
+  ggsave(file="target_cols.svg", plot=last_plot(), width=6, height=5)
 }
