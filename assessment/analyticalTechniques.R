@@ -342,3 +342,24 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedCo
        prunedColumns=prunedColumns,
        isOrigin=isOrigin)
 }
+
+loopPruneColumns <- function(originQS, dfIdentifiedCols) {
+  df = NULL
+  for(i in 1:nrow(dfIdentifiedCols)) {
+    ls = pruneColumns(dfIdentifiedCols[i,"index"], originQS,
+                      as.character(dfIdentifiedCols[i,"target"]),
+                      as.numeric(dfIdentifiedCols[i,"mcc"]))
+    
+    if(ls$isOrigin) {
+      cols = paste(names(originQS), collapse = '|')
+    } else {
+      cols = ls$prunedColumns
+    }
+    
+    df = rbind(df, data.frame(index=ls$index,
+                              target=ls$target,
+                              pruned=cols))
+  }
+  
+  return(df)
+}
