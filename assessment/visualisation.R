@@ -110,34 +110,21 @@ plot_bucketized_wageperhour <- function(census_processed) {
   ggsave(file="census_wageperhour_bucketized.svg", plot=last_plot(), width=10, height=5)
 }
 
-plot_count_qualified <- function(delta) {
-  fn.bayes = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
-  fn.svm = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+plot_count_qualified <- function(delta, fqsFile) {
+  #cliques = readTPCHCliques(fqsFile)
+  cliques = readingQuasiCliques(fqsFile) 
+  
+  x = 'census_delta'
+  fn.bayes = paste(paste(x, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
+  fn.svm = paste(paste(x, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
   
   # read result.csv
   b = read.csv(fn.bayes, header=T, sep=',')
   s = read.csv(fn.svm, header=T, sep=',')
 
-  b = data.frame(name='MCC > 0.6', method='bayes', qs=unique(b$index))
-  s = data.frame(name='MCC > 0.6', method='svm', qs=unique(s$index))
-  df = rbind(b, s)
-  
-  b0 = data.frame(name='Discovered', method='bayes', qs=seq(1, length(clqList), by=1))
-  s0 = data.frame(name='Discovered', method='svm', qs=seq(1, length(clqList), by=1))
-  df0 = rbind(b0, s0)
-  
-  dat = rbind(df, df0)
-  
-  image = ggplot(dat, aes(x=method, fill = name)) +
-    geom_histogram(position=position_dodge()) +
-    scale_fill_manual("Quasi-clique", values=c('skyblue4','gray8')) +
-    # turn off legend
-    theme(legend.position='none', text = element_text(size=18)) +
-    #theme(text = element_text(size=18)) +
-    xlab('Classification Method') +
-    ylab('Number of Quasi-cliques')
-  
-  ggsave(file="count_qualified.svg", plot=last_plot(), width=5, height=6)
+  b = data.frame(method='bayes', name='MCC > 0.6', qs=length(unique(b$index)), name='total', qs=length(cliques))
+  s = data.frame(method='svm', name='MCC > 0.6', qs=length(unique(s$index)), name='total', qs=length(cliques))
+  rbind(b, s)
 }
 
 countRows <- function(x) {
@@ -153,7 +140,7 @@ avgMCCByClique <- function(d) {
 }
 
 makeLevels <- function(inds) {
-  inds = sort(inds)
+  inds = sort(as.integer(inds))
   paste('QS', inds, sep='_')
 }
 
@@ -161,14 +148,27 @@ addNotInCols <- function(d1, d2) {
   # add cliques in d1 but not in d2 to d2
   toadd = setdiff(unique(d1$index), unique(d2$index))
   for(x in toadd) {
-    d2[nrow(d2) + 1,] = c(x, 0, 0, d2$method[1])
+    d2[nrow(d2) + 1,] = c(x, 0, NA, d2$method[1])
   }
   return(d2)
 }
 
-make_data_for_plot_TargetCols <- function(delta) {
-  fn.bayes = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
-  fn.svm = paste(paste('tpch_delta', delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+findQSHavingSameNCols <- function(df) {
+  isSameNCols <- function(x) {
+    if(x[1] == x[2]) {
+      return(TRUE)
+    }
+    return(FALSE)
+  }
+    
+  agg = aggregate(df$ncol, by=list(df$index), FUN=isSameNCols)
+  agg$Group.1[agg$x == TRUE]
+}
+
+plot_TargetCols <- function(delta) {
+  x = 'census_delta'
+  fn.bayes = paste(paste(x, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
+  fn.svm = paste(paste(x, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
   
   # read result.csv
   b = read.csv(fn.bayes, header=T, sep=',')
@@ -188,14 +188,41 @@ make_data_for_plot_TargetCols <- function(delta) {
   dat$qs = factor(paste('QS', dat$index, sep='_'), levels=makeLevels(unique(dat$index)))
   dat$mcc = round(as.numeric(dat$mcc), 4)
   
+  # determine y axis for number of target columns
+  ymin = NULL
+  if(is.na(match(0, dat$ncol))) {
+    ymin = 0
+  } else {
+    ymin = 1
+  }
+  
   image = ggplot(dat, aes(x=qs, y=ncol, fill = method)) +
     geom_bar(stat="identity", position="dodge") +
-    scale_fill_manual("Classifier", values=c('lightskyblue4','palevioletred')) +
-    geom_errorbar(aes(y=mcc, ymax=mcc, ymin=mcc, fill=method),  position=position_dodge()) +
+    scale_fill_manual(name="Classifier", values=c('lightskyblue4','palevioletred')) +
+    coord_cartesian(ylim=seq(ymin, as.integer(max(dat$ncol)), by=1)) +
     theme(text = element_text(size=18), 
+          legend.position='none',
+          legend.title=element_blank(),
           axis.text.x  = element_text(angle=45, vjust=0.5, size=15)) +
     xlab('Discovered Qualified Quasi-cliques') +
-    ylab('Number of Identified Target Columns')
+    ylab('Number of Identified Target Column')
   
   ggsave(file="target_cols.svg", plot=last_plot(), width=6, height=5)
+  
+  
+  # extract quasi-cliques having same identified target columns from diff model types
+  dat = subset(dat, dat$index %in% findQSHavingSameNCols(dat))
+  
+  image = ggplot(dat, aes(x=qs, y=mcc, fill = method)) +
+    geom_bar(stat="identity", position="dodge") +
+    scale_fill_manual(name="Classifier", values=c('lightskyblue4','palevioletred')) +
+    coord_cartesian(ylim=seq(0.9, 1, by=0.1)) +
+    theme(text = element_text(size=18), 
+          legend.position='none',
+          legend.title=element_blank(),
+          axis.text.x  = element_text(angle=45, vjust=0.5, size=15)) +
+    xlab('Discovered Qualified Quasi-cliques') +
+    ylab('Mean MCC Value of Target Columns')
+  
+  ggsave(file="target_mcc.svg", plot=last_plot(), width=6, height=5)
 }
