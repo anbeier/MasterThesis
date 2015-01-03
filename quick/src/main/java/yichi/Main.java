@@ -23,33 +23,13 @@ public class Main {
 
     Configuration conf = Configuration.fromArgs(args);
 
-    Collection<Set<Integer>> maxLeafs = Main.calculateMaxQuasiCliques(conf);
+    Collection<Set<Integer>> maxLeafs = API.calculateMaxQuasiCliques(conf);
 
     System.out.println("found " + maxLeafs.size() + " cliques");
 
     PrintWriter writer = new PrintWriter(conf.output_file);
       Main.writeCliques(writer, maxLeafs);
     writer.close();
-  }
-
-  public static Collection<Set<Integer>> calculateMaxQuasiCliques(Configuration configuration) throws FileNotFoundException {
-    GraphGenerator gg = new GraphGenerator();
-    System.out.println("reading graph");
-    Graph<Integer, Edge> g = gg.createGraph(configuration.graph_file);
-    double gamma = configuration.min_deg_ratio;
-    int min_size = configuration.min_size;
-
-    Quick q = new Quick();
-    System.out.println("running quick");
-    Collection<Collection<Integer>> output = q.quick(g, gamma, min_size).cliques;
-    PrefixTreeNode root = new PrefixTreeNode();
-
-    System.out.println("feeding tree with " + output.size() + " cliques");
-    for (Collection<Integer> clique : output) {
-      root.insert(new TreeSet<>(clique));
-    }
-
-    return MaximumCliquesFinder.getAllMaximumSets(root.getValuesForLeafs());
   }
 
   public static void writeCliques(PrintWriter writer, Collection<Set<Integer>> cliques) {
