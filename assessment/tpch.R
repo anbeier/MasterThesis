@@ -143,28 +143,58 @@ renameJoinedDatasets <- function(df) {
   return(df)  # columns containing .x or .y should be removed.
 }
 
-joinSchemata <- function(schemata.vector) {
+joinSchemata <- function(...) {
   j1 = merge(customer, nation, by='NATIONKEY')
+  names(j1) = gsub('N_', 'CN_', names(j1), fixed = TRUE)
+  names(j1)[1] = 'CN_NATIONKEY'
+  j1$C_NATIONKEY = j1$CN_NATIONKEY
+ 
   j1 = merge(j1, region, by='REGIONKEY')
+  names(j1) = gsub('R_', 'CR_', names(j1), fixed = TRUE)
+  names(j1)[1] = 'CN_REGIONKEY'
+  j1$CR_REGIONKEY = j1$CN_REGIONKEY
+  
   j1 = merge(j1, orders, by='CUSTKEY')
+  names(j1)[1] = 'C_CUSTKEY'
+  j1$O_CUSTKEY = j1$C_CUSTKEY
+  
   j1 = merge(j1, lineitem, by='ORDERKEY')
-  print('finished join part 1.')
+  names(j1)[1] = 'O_ORDERKEY'
+  j1$L_ORDERKEY = j1$O_ORDERKEY
+  
+  print('finished join customer part.')
   
   j2 = merge(supplier, nation, by='NATIONKEY')
+  names(j2) = gsub('N_', 'SN_', names(j2), fixed = TRUE)
+  names(j2)[1] = 'S_NATIONKEY'
+  j2$SN_NATIONKEY = j2$S_NATIONKEY
+  
   j2 = merge(j2, region, by='REGIONKEY')
+  names(j2) = gsub('R_', 'SR_', names(j2), fixed = TRUE)
+  names(j2)[1] = 'SN_REGIONKEY'
+  j2$SR_REGIONKEY = j2$SN_REGIONKEY
+  
   j2 = merge(j2, partsupp, by='SUPPKEY')
+  j2$S_SUPPKEY = j2$SUPPKEY  #PS_SUPPKEY
+  
   j2 = merge(j2, part, by='PARTKEY')
-  print('finished join part 2.')
+  j2$P_PARTKEY = j2$PARTKEY  #PS_PARTKEY
+  
+  print('finished join supplier part.')
   
   j = merge(j1, j2, by=c('PARTKEY', 'SUPPKEY'))
+  names(j)[1] = 'PS_PARTKEY'
+  names(j)[2] = 'PS_SUPPKEY'
+  j$L_PARTKEY = j$PS_PARTKEY
+  j$L_SUPPKEY = j$PS_SUPPKEY
   
-  j = renameJoinedDatasets(j)
+  
+  j = na.omit(j)
+  #renameJoinedDatasets(j)
+  
 }
 
 modifyDataTypes <- function(data) {
-  for(i in 1:ncol(data)) {
-    data[,i] = as.factor(as.character(data[,i]))
-  }
   
   # to numeric and then bucketize
   numericColumns = c('ACCTBAL','PRICE','QUANTITY','DISCOUNT','TAX','QTY','COST','SIZE')
@@ -175,6 +205,10 @@ modifyDataTypes <- function(data) {
     }
   }
   data = convertNumericColumnToFactor(data)
+  
+  for(i in 1:ncol(data)) {
+    data[,i] = as.factor(as.character(data[,i]))
+  }
   return(data)
 }
 
