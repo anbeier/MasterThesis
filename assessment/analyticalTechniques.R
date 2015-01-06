@@ -16,7 +16,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   log(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
 
   for(target in colnames(qs)) {
-    data <- takeSamples(qs, target)
+    data <- takeSmallSamples(qs, target)
     model <- trainNaiveBayes(data$training, target)
     pred <- predict(model, data$testing)
     df <- rbind(df, data.frame(target = target,
