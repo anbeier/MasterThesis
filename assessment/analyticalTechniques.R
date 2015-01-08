@@ -311,6 +311,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedCo
   isOrigin = FALSE
   
   for(i in candidateIndices) {
+    print(i)
     df = clique
     df[,i] = NULL
     cols = paste(sort(names(df)), collapse = '|')
@@ -346,6 +347,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedCo
 loopPruneColumns <- function(originQS, dfIdentifiedCols) {
   df = NULL
   for(i in 1:nrow(dfIdentifiedCols)) {
+    print(paste("examine target column", as.character(dfIdentifiedCols[i,"target"])))
     ls = pruneColumns(dfIdentifiedCols[i,"index"], originQS,
                       as.character(dfIdentifiedCols[i,"target"]),
                       as.numeric(dfIdentifiedCols[i,"mcc"]))
