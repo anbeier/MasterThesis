@@ -111,12 +111,12 @@ plot_bucketized_wageperhour <- function(census_processed) {
 }
 
 plot_count_qualified <- function(delta, fqsFile) {
-  #cliques = readTPCHCliques(fqsFile)
-  cliques = readingQuasiCliques(fqsFile) 
+  cliques = readTPCHCliques(fqsFile)
+  #cliques = readingQuasiCliques(fqsFile) 
   
-  x = 'census_delta'
-  fn.bayes = paste(paste(x, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
-  fn.svm = paste(paste(x, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+  x = 'tpch_delta'
+  fn.bayes = paste(paste(x, delta, sep=''), '_alpha0.5_corrected/bayes/mcc/results.csv', sep= '')
+  fn.svm = paste(paste(x, delta, sep=''), '_alpha0.5_corrected/svm/mcc/results.csv', sep= '')
   
   # read result.csv
   b = read.csv(fn.bayes, header=T, sep=',')
@@ -166,8 +166,8 @@ findQSHavingSameNCols <- function(df) {
   agg$Group.1[agg$x == TRUE]
 }
 
-readMCCResults <- function(method, delta) {
-  prefix = paste(method, "delta", sep='_')
+readMCCResults <- function(dataName, delta) {
+  prefix = paste(dataName, "delta", sep='_')
   fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
   fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
   

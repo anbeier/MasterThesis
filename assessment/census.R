@@ -4,7 +4,7 @@ source('censusPreprocess.R')
 source('analyticalTechniques.R')
 source('censusPostAnalysis.R')
 source('log.R')
-
+source('visualisation.R')
 source('tpch.R')
 
 d = 0.7
@@ -19,7 +19,7 @@ setCensusParameters <- function() {
 setTPCHParameters <- function() {
   load('tpch_2chars.rdata')
   list(data = tpch,
-       fqsFile = 'DOCCO_FQS_07.txt')
+       fqsFile = 'DOCCO_FQS_07_yichi.txt')
 }
 
 tryDifferentTechniques <- function(csvFile = setCensusParameters()$csvFile, 
@@ -163,4 +163,21 @@ test <- function(index, delta = d, alpha = a,
   
   result.bayes <- loopTrainNaiveBayesForOneClique(sampleClique, index, fileIndicator)
   return('finished')
+}
+
+paralellPruning <- function(DataName, delta, 
+                            tpch = setTPCHParameters()$data,
+                            tpchFQS = setTPCHParameters()$fqsFile,
+                            censusCSV = setCensusParameters()$csvFile,
+                            censusColName = setCensusParameters()$colnameFile,
+                            censusFQS = setCensusParameters()$fqsFile) {
+  
+  if(DataName == "tpch") {
+    data = tpch
+    cliques <- readTPCHCliques(tpchFQS)
+  }
+  if(DataName == "census") {
+    data = getCensusData(censusCSV, censusColName)
+    cliques <- readingQuasiCliques(censusFQS) 
+  }
 }

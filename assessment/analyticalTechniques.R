@@ -16,6 +16,7 @@ loopTrainNaiveBayesForOneClique <- function(qs, index, fileIndicator) {
   log(paste('training naive bayes and testing on quasi-clique:', index, sep=' '))
 
   for(target in colnames(qs)) {
+    #data <- takeSmallSamples(qs, target)
     data <- takeSmallSamples(qs, target)
     model <- trainNaiveBayes(data$training, target)
     pred <- predict(model, data$testing)
@@ -236,7 +237,24 @@ takeSmallSamples <- function(qs, targetcol) {
   split <- sample.split(samples[, targetcol], SplitRatio = ratio)
   training <- subset(samples, split == TRUE)
   testing <- subset(samples, split == FALSE)
+  
+  testing = takeSmallSamples2(testing, targetcol)
+  
   list(training = training, testing = testing)
+}
+
+takeSmallSamples2 <- function(dat, targetcol) {
+  samples <- dat
+  ratio <- 0.6
+  alpha <- 0.5
+  trainingSize <- nrow(samples)^alpha + 1000
+  if (nrow(samples) > trainingSize) {
+    ratio <- trainingSize / nrow(samples)
+  }
+  #log(paste("choosing ratio", ratio, "sample training size", trainingSize))
+  split <- sample.split(samples[, targetcol], SplitRatio = ratio)
+  training <- subset(samples, split == TRUE)
+  return(training)
 }
 
 # Will take 60% of data as training set and 40% as testing set w.r.t a specific target column
@@ -302,7 +320,7 @@ makeFileNameForExperimentResults <- function(fileIndicator, method) {
   return(fn)
 }
 
-pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedColumns=NULL, prunedColumns=NULL) {
+pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifier, checkedColumns=NULL, prunedColumns=NULL) {
   targetIndex = grep(targetColumn, names(clique))
   candidateIndices = 1:ncol(clique)
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
@@ -310,25 +328,55 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedCo
   result = NULL
   isOrigin = FALSE
   
-  for(i in candidateIndices) {
-    print(i)
-    df = clique
-    df[,i] = NULL
-    cols = paste(sort(names(df)), collapse = '|')
-    
-    if(!cols %in% checkedColumns) {
-      data <- takeSamples(df, targetColumn)
-      model <- trainNaiveBayes(data$training, targetColumn)
-      pred <- predict(model, data$testing)
-      mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
-                                  predicted = pred))
+  if(classifier=='bayes') {
+    for(i in candidateIndices) {
+      print(i)
+      df = clique
+      df[,i] = NULL
+      cols = paste(sort(names(df)), collapse = '|')
       
-      checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
+      if(!cols %in% checkedColumns) {
+        data <- takeSamples(df, targetColumn)
+        model <- trainNaiveBayes(data$training, targetColumn)
+        #model <- trainSupportVectorMachine(data$training, targetColumn)
+        pred <- predict(model, data$testing)
+        mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
+                                    predicted = pred))
+        
+        checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
+        
+        if(mcc >= cliqueMCC) {
+          prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
+          if(ncol(df) > 2) {
+            pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, 
+                         prunedColumns=prunedColumns)
+          }
+        }
+      }
+    }
+  } else if(classifier=='svm') {
+    for(i in candidateIndices) {
+      print(i)
+      df = clique
+      df[,i] = NULL
+      cols = paste(sort(names(df)), collapse = '|')
       
-      if(mcc >= cliqueMCC) {
-        prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
-        if(ncol(df) > 2) {
-          pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, prunedColumns)
+      if(!cols %in% checkedColumns) {
+        data <- takeSamples(df, targetColumn)
+        #model <- trainNaiveBayes(data$training, targetColumn)
+        model <- trainSupportVectorMachine(data$training, targetColumn)
+        pred <- predict(model, data$testing)
+        mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
+                                    predicted = pred))
+        
+        checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
+        
+        if(mcc >= cliqueMCC) {
+          prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
+          if(ncol(df) > 2) {
+            pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, 
+                         prunedColumns=prunedColumns)
+          }
         }
       }
     }
@@ -344,13 +392,14 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, checkedCo
        isOrigin=isOrigin)
 }
 
-loopPruneColumns <- function(originQS, dfIdentifiedCols) {
+loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
   df = NULL
   for(i in 1:nrow(dfIdentifiedCols)) {
     print(paste("examine target column", as.character(dfIdentifiedCols[i,"target"])))
     ls = pruneColumns(dfIdentifiedCols[i,"index"], originQS,
                       as.character(dfIdentifiedCols[i,"target"]),
-                      as.numeric(dfIdentifiedCols[i,"mcc"]))
+                      as.numeric(dfIdentifiedCols[i,"mcc"]),
+                      classifier)
     
     if(ls$isOrigin) {
       cols = paste(names(originQS), collapse = '|')
@@ -364,4 +413,23 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols) {
   }
   
   return(df)
+}
+
+launchPruning_census <- function(census, delta, qs_index, classifier) {
+  fqsFile = paste('census_fqs_delta', paste(delta, '_alpha0.5.txt', sep=''), sep='')
+  cliqueGroup <- readingQuasiCliques(fqsFile) 
+  
+  qs = getOneClique(census, cliqueGroup, qs_index)
+  
+  ls = readMCCResults('census', delta)
+  df = NULL
+  if(classifier=='bayes') {
+    df = ls$bayes[ls$bayes$index == qs_index,]
+  }
+  if(classifier=='svm') {
+    df = ls$svm[ls$svm$index == qs_index,]
+  }
+  df$mcc = round(as.numeric(as.character(df$mcc)), 4)
+  
+  loopPruneColumns(qs, df, classifier)
 }
