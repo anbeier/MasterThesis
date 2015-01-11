@@ -327,7 +327,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
   
   result = NULL
   isOrigin = FALSE
-  
+  minResults = NULL
   if(classifier=='bayes') {
     for(i in candidateIndices) {
       print(i)
@@ -356,17 +356,20 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     }
   } else if(classifier=='svm') {
     for(i in candidateIndices) {
-      print(i)
       df = clique
       df[,i] = NULL
       cols = paste(sort(names(df)), collapse = '|')
       
       if(!cols %in% checkedColumns) {
-        data <- takeSamples(df, targetColumn)
+        data <- takeSmallSamples(df, targetColumn)
         #model <- trainNaiveBayes(data$training, targetColumn)
         model <- trainSupportVectorMachine(data$training, targetColumn)
-        pred <- predict(model, data$testing)
-        mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
+        
+        # reduce numbers of testing data, use training data as testing data
+        data = takeSmallSamples(data$testing, targetColumn)
+        
+        pred <- predict(model, data$training)
+        mcc = computeMCC(data.frame(actual = data$training[, targetColumn],
                                     predicted = pred))
         
         checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
@@ -376,6 +379,18 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
           if(ncol(df) > 2) {
             pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, 
                          prunedColumns=prunedColumns)
+          } else if(ncol(df) == 2) {
+            print('ncol = 2')
+            data <- takeSamples(df, targetColumn)
+            #model <- trainNaiveBayes(data$training, targetColumn)
+            model <- trainSupportVectorMachine(data$training, targetColumn)
+            pred <- predict(model, data$testing)
+            mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
+                                        predicted = pred))
+            if(mcc >= cliqueMCC) {
+              prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
+              print(paste(sort(names(df)), collapse = '|'))
+            }
           }
         }
       }
@@ -390,6 +405,12 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
        target=targetColumn,
        prunedColumns=prunedColumns,
        isOrigin=isOrigin)
+}
+
+directOutput <- function(cliqueIndex, targetColumn, df) {
+  data.frame(index=cliqueIndex,
+             target=targetColumn,
+             pruned=paste(sort(names(df)), sep='|'))
 }
 
 loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
@@ -415,13 +436,20 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
   return(df)
 }
 
-launchPruning_census <- function(census, delta, qs_index, classifier) {
-  fqsFile = paste('census_fqs_delta', paste(delta, '_alpha0.5.txt', sep=''), sep='')
-  cliqueGroup <- readingQuasiCliques(fqsFile) 
+launchPruning_census <- function(datasetName, data, delta, qs_index, classifier) {
+  cliques = NULL
+  if(datasetName == 'census') {
+    fqsFile = paste('census_fqs_delta', paste(delta, '_alpha0.5.txt', sep=''), sep='')
+    cliques <- readingQuasiCliques(fqsFile) 
+  } else if(datasetName == 'tpch') {
+    x = paste(0, delta*10, sep='')
+    fqsFile = paste('DOCCO_FQS_', paste(x, '_yichi.txt', sep=''), sep='')
+    cliques <- readTPCHCliques(fqsFile)
+  }
   
-  qs = getOneClique(census, cliqueGroup, qs_index)
+  qs = getOneClique(data, cliques, qs_index)
   
-  ls = readMCCResults('census', delta)
+  ls = readMCCResults(datasetName, delta)
   df = NULL
   if(classifier=='bayes') {
     df = ls$bayes[ls$bayes$index == qs_index,]

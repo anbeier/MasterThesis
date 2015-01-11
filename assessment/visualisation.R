@@ -166,10 +166,11 @@ findQSHavingSameNCols <- function(df) {
   agg$Group.1[agg$x == TRUE]
 }
 
+# check if order name has "corrected"
 readMCCResults <- function(dataName, delta) {
   prefix = paste(dataName, "delta", sep='_')
-  fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
-  fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+  fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/bayes/mcc/results.csv', sep= '')
+  fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/svm/mcc/results.csv', sep= '')
   
   # read result.csv
   b = read.csv(fn.bayes, header=T, sep=',')
@@ -220,7 +221,7 @@ plot_MCCResults <- function(method, delta, yminMCC=0.9) {
     scale_fill_manual(name="Classifier", values=c('midnightblue','palevioletred')) +
     coord_cartesian(ylim=seq(0, as.integer(max(dat$ncol)), by=1)) +
     theme(text = element_text(size=16), 
-          legend.position='none',
+          #legend.position='none',
           legend.title=element_blank(),
           axis.text.x  = element_text(angle=45, vjust=0.5, size=13)) +
     xlab('Discovered Qualified Quasi-cliques') +
@@ -237,7 +238,7 @@ plot_MCCResults <- function(method, delta, yminMCC=0.9) {
     scale_fill_manual(name="Classifier", values=c('midnightblue','palevioletred')) +
     coord_cartesian(ylim=seq(yminMCC, 1, by=0.1)) +
     theme(text = element_text(size=16), 
-          legend.position='none',
+          #legend.position='none',
           legend.title=element_blank(),
           axis.text.x  = element_text(angle=45, vjust=0.5, size=13)) +
     xlab('Discovered Qualified Quasi-cliques') +
