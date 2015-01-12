@@ -380,10 +380,12 @@ returnMCCTable <- function(experimentResult) {
 }
 
 correctFactorLevels <- function(df) {
+  l = levels(factor(df$actual))
+  l = unique(c(l, levels(factor(df$predicted))))
   # Drop levels that do not appear.
-  df$actual = factor(df$actual)
+  df$actual = factor(df$actual, levels=l)
   # Relevel df$predicted and let them be the same as df$actual.
-  df$predicted = factor(df$predicted, levels=levels(df$actual))
+  df$predicted = factor(df$predicted, levels=l)
   return(df)
 }
 
