@@ -320,91 +320,57 @@ makeFileNameForExperimentResults <- function(fileIndicator, method) {
   return(fn)
 }
 
-pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifier, checkedColumns=NULL, prunedColumns=NULL) {
+pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifier, checkedColumns=NULL) {
+  if (ncol(clique) == 2) {
+    return(NULL)
+  }
   targetIndex = grep(targetColumn, names(clique))
   candidateIndices = 1:ncol(clique)
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
-  
-  result = NULL
-  isOrigin = FALSE
-  minResults = NULL
-  if(classifier=='bayes') {
-    for(i in candidateIndices) {
-      print(i)
-      df = clique
-      df[,i] = NULL
-      cols = paste(sort(names(df)), collapse = '|')
-      
-      if(!cols %in% checkedColumns) {
-        data <- takeSamples(df, targetColumn)
-        model <- trainNaiveBayes(data$training, targetColumn)
-        #model <- trainSupportVectorMachine(data$training, targetColumn)
-        pred <- predict(model, data$testing)
-        mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
-                                    predicted = pred))
-        
-        checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
-        
-        if(mcc >= cliqueMCC) {
-          prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
-          if(ncol(df) > 2) {
-            pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, 
-                         prunedColumns=prunedColumns)
-          }
-        }
+
+  prunedColumns = NULL
+  modelFunction = NULL
+  if(classifier == 'bayes') {
+    modelFunction = trainNaiveBayes
+  } else if (classifier == 'svm') {
+    modelFunction = trainSupportVectorMachine
+  }
+
+  for(i in candidateIndices) {
+    df = clique
+    df[,i] = NULL
+    data <- takeSmallSamples(df, targetColumn)
+    print(paste('train with', nrow(data$training), 'rows', sep=' '))
+    model <- modelFunction(data$training, targetColumn)
+    
+    # reduce numbers of testing data, use training data as testing data
+    testData = takeSmallSamples(data$testing, targetColumn)$training
+    
+    print(paste('predict with', nrow(data$training), 'rows', sep=' '))
+    pred <- predict(model, testData)
+    mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
+                                      predicted = pred))
+    
+    if(mcc >= cliqueMCC) {
+      print(paste("mcc ok for:", paste(sort(names(df)), collapse = '|')))
+      super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier)
+      if (!is.null(super)) {
+        prunedColumns = c(prunedColumns, super$prunedColumns)
+      } else {
+        prunedColumns = c(prunedColumns, sort(names(df)))
       }
-    }
-  } else if(classifier=='svm') {
-    for(i in candidateIndices) {
-      df = clique
-      df[,i] = NULL
-      cols = paste(sort(names(df)), collapse = '|')
-      
-      if(!cols %in% checkedColumns) {
-        data <- takeSmallSamples(df, targetColumn)
-        #model <- trainNaiveBayes(data$training, targetColumn)
-        model <- trainSupportVectorMachine(data$training, targetColumn)
-        
-        # reduce numbers of testing data, use training data as testing data
-        data = takeSmallSamples(data$testing, targetColumn)
-        
-        pred <- predict(model, data$training)
-        mcc = computeMCC(data.frame(actual = data$training[, targetColumn],
-                                    predicted = pred))
-        
-        checkedColumns = c(checkedColumns, paste(sort(names(df)), collapse = '|'))
-        
-        if(mcc >= cliqueMCC) {
-          prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
-          if(ncol(df) > 2) {
-            pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, 
-                         prunedColumns=prunedColumns)
-          } else if(ncol(df) == 2) {
-            print('ncol = 2')
-            data <- takeSamples(df, targetColumn)
-            #model <- trainNaiveBayes(data$training, targetColumn)
-            model <- trainSupportVectorMachine(data$training, targetColumn)
-            pred <- predict(model, data$testing)
-            mcc = computeMCC(data.frame(actual = data$testing[, targetColumn],
-                                        predicted = pred))
-            if(mcc >= cliqueMCC) {
-              prunedColumns = c(prunedColumns, paste(sort(names(df)), collapse = '|'))
-              print(paste(sort(names(df)), collapse = '|'))
-            }
-          }
-        }
-      }
+    } else {
+      print(paste("mcc reduced for:", paste(sort(names(df)), collapse = '|')))
     }
   }
   
-  if(length(prunedColumns) == 0) {
-    isOrigin = TRUE
+  if (is.null(prunedColumns)) {
+    return(NULL)
+  } else {
+    return(list(index=cliqueIndex,
+                target=targetColumn,
+                prunedColumns=sort(unique(prunedColumns))))
   }
-  
-  list(index=cliqueIndex,
-       target=targetColumn,
-       prunedColumns=prunedColumns,
-       isOrigin=isOrigin)
 }
 
 directOutput <- function(cliqueIndex, targetColumn, df) {
@@ -422,15 +388,9 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
                       as.numeric(dfIdentifiedCols[i,"mcc"]),
                       classifier)
     
-    if(ls$isOrigin) {
-      cols = paste(names(originQS), collapse = '|')
-    } else {
-      cols = ls$prunedColumns
-    }
-    
     df = rbind(df, data.frame(index=ls$index,
                               target=ls$target,
-                              pruned=cols))
+                              pruned=paste(ls$prunedColumns, collapse="|")))
   }
   
   return(df)
@@ -443,7 +403,7 @@ launchPruning_census <- function(datasetName, data, delta, qs_index, classifier)
     cliques <- readingQuasiCliques(fqsFile) 
   } else if(datasetName == 'tpch') {
     x = paste(0, delta*10, sep='')
-    fqsFile = paste('DOCCO_FQS_', paste(x, '_yichi.txt', sep=''), sep='')
+    fqsFile = paste('DOCCO_FQS_', x, '_yichi.txt', sep='')
     cliques <- readTPCHCliques(fqsFile)
   }
   
