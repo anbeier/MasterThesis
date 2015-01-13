@@ -329,6 +329,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
 
   prunedColumns = NULL
+  minimalColumns = NULL
   modelFunction = NULL
   if(classifier == 'bayes') {
     modelFunction = trainNaiveBayes
@@ -356,8 +357,10 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
       super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier)
       if (!is.null(super)) {
         prunedColumns = c(prunedColumns, super$prunedColumns)
+        minimalColumns = c(minimalColumns, super$minimalColumns)
       } else {
         prunedColumns = c(prunedColumns, sort(names(df)))
+        minimalColumns = c(minimalColumns, paste(sort(names(df)), collapse = '|'))
       }
     } else {
       print(paste("mcc reduced for:", paste(sort(names(df)), collapse = '|')))
@@ -369,7 +372,8 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
   } else {
     return(list(index=cliqueIndex,
                 target=targetColumn,
-                prunedColumns=sort(unique(prunedColumns))))
+                prunedColumns=sort(unique(prunedColumns)),
+                minimalColumns=sort(unique(minimalColumns))))
   }
 }
 
@@ -390,7 +394,8 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
     
     df = rbind(df, data.frame(index=ls$index,
                               target=ls$target,
-                              pruned=paste(ls$prunedColumns, collapse="|")))
+                              pruned=paste(ls$prunedColumns, collapse="|"),
+                              minimal=paste(ls$minimalColumns, collapse=",")))
   }
   
   return(df)
