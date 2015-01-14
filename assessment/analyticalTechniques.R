@@ -363,10 +363,10 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     if(mcc >= cliqueMCC) {
       print(paste("mcc ok for:", colString))
       super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, checkedColumns = checkedColumns)
-      if (!is.null(super)) {
+      if (!is.null(super$prunedColumns)) {
         prunedColumns = c(prunedColumns, super$prunedColumns)
         minimalColumns = c(minimalColumns, super$minimalColumns)
-        checkedColumns = c(checkedColumns, super$checkedColumns)
+        checkedColumns = super$checkedColumns
       } else {
         prunedColumns = c(prunedColumns, sort(names(df)))
         minimalColumns = c(minimalColumns, colString)
@@ -376,15 +376,19 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     }
   }
   
-  if (is.null(prunedColumns)) {
-    return(NULL)
-  } else {
-    return(list(index=cliqueIndex,
-                target=targetColumn,
-                prunedColumns=sort(unique(prunedColumns)),
-                minimalColumns=sort(unique(minimalColumns)),
-                checkedColumns=checkedColumns))
+  if (!is.null(prunedColumns)) {
+    prunedColumns = sort(unique(prunedColumns))
   }
+  
+  if (!is.null(minimalColumns)) {
+    minimalColumns = sort(unique(minimalColumns))
+  }
+  
+  return(list(index=cliqueIndex,
+              target=targetColumn,
+              prunedColumns=prunedColumns,
+              minimalColumns=minimalColumns,
+              checkedColumns=checkedColumns))
 }
 
 directOutput <- function(cliqueIndex, targetColumn, df) {
@@ -401,11 +405,24 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
                       as.character(dfIdentifiedCols[i,"target"]),
                       as.numeric(dfIdentifiedCols[i,"mcc"]),
                       classifier)
+
+    pruned = ls$prunedColumns
+    minimal = ls$minimalColumns
+    pruningPossible = !is.null(pruned)
     
+    if(is.null(pruned)) {
+      pruned = names(originQS)
+    }
+    
+    if(is.null(minimal)) {
+      minimal = paste(names(originQS), collapse="|")
+    }
+
     df = rbind(df, data.frame(index=ls$index,
                               target=ls$target,
-                              pruned=paste(ls$prunedColumns, collapse="|"),
-                              minimal=paste(ls$minimalColumns, collapse=",")))
+                              pruningPossible=pruningPossible,
+                              pruned=paste(pruned, collapse="|"),
+                              minimal=paste(minimal, collapse=",")))
   }
   
   return(df)
