@@ -309,7 +309,7 @@ computeMCCExtern <- function(df) {
   df["target"] = "target"
   filename = tempfile()
   write.csv(df, file = filename, row.names=FALSE, quote=FALSE)
-  out = system(paste("./mcc", "-f", filename, sep=" "), intern=TRUE)
+  out = system(paste("./mcc", "-f", filename, sep=" "), intern=TRUE, show.output.on.console = FALSE, ignore.stderr = TRUE)
   unlink(filename)
   con = textConnection(paste("target,mcc\n", out, sep=""))
   ret = read.csv(con)
