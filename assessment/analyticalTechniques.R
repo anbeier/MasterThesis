@@ -340,30 +340,39 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
   for(i in candidateIndices) {
     df = clique
     df[,i] = NULL
+    colString = paste(sort(names(df)), collapse = '|')
+    if (colString %in% checkedColumns) {
+      print(paste("########skipping", colString))
+      next
+    }
+
     data <- takeSmallSamples(df, targetColumn)
-    print(paste('train with', nrow(data$training), 'rows', sep=' '))
+    #print(paste('train with', nrow(data$training), 'rows', sep=' '))
     model <- modelFunction(data$training, targetColumn)
     
     # reduce numbers of testing data, use training data as testing data
     testData = takeSmallSamples(data$testing, targetColumn)$training
     
-    print(paste('predict with', nrow(data$training), 'rows', sep=' '))
+    #print(paste('predict with', nrow(data$training), 'rows', sep=' '))
     pred <- predict(model, testData)
     mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
                                       predicted = pred))
     
+    checkedColumns = c(checkedColumns, colString)
+    
     if(mcc >= cliqueMCC) {
-      print(paste("mcc ok for:", paste(sort(names(df)), collapse = '|')))
-      super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier)
+      print(paste("mcc ok for:", colString))
+      super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, checkedColumns = checkedColumns)
       if (!is.null(super)) {
         prunedColumns = c(prunedColumns, super$prunedColumns)
         minimalColumns = c(minimalColumns, super$minimalColumns)
+        checkedColumns = c(checkedColumns, super$checkedColumns)
       } else {
         prunedColumns = c(prunedColumns, sort(names(df)))
-        minimalColumns = c(minimalColumns, paste(sort(names(df)), collapse = '|'))
+        minimalColumns = c(minimalColumns, colString)
       }
     } else {
-      print(paste("mcc reduced for:", paste(sort(names(df)), collapse = '|')))
+      print(paste("mcc reduced for:", colString))
     }
   }
   
@@ -373,7 +382,8 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     return(list(index=cliqueIndex,
                 target=targetColumn,
                 prunedColumns=sort(unique(prunedColumns)),
-                minimalColumns=sort(unique(minimalColumns))))
+                minimalColumns=sort(unique(minimalColumns)),
+                checkedColumns=checkedColumns))
   }
 }
 
