@@ -1,0 +1,2 @@
+index,target,pruningPossible,pruned,minimal
+9,taxfilerstat,TRUE,age|classofworker|detailedhouseholdandfamilystat|education|maritalstat|migrationcodechangeinmsa|taxfilerstat,age|classofworker|detailedhouseholdandfamilystat|education|maritalstat|migrationcodechangeinmsa|taxfilerstat
