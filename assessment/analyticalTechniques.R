@@ -341,10 +341,10 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     df = clique
     df[,i] = NULL
     colString = paste(sort(names(df)), collapse = '|')
-    if (colString %in% checkedColumns) {
-      print(paste("########skipping", colString))
-      next
-    }
+#     if (colString %in% checkedColumns) {
+#       print(paste("########skipping", colString))
+#       next
+#     }
 
     data <- takeSmallSamples(df, targetColumn)
     #print(paste('train with', nrow(data$training), 'rows', sep=' '))
