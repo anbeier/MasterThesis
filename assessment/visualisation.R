@@ -2,7 +2,7 @@
 plot_origin_age <- function(census) {
 
   image = ggplot(census, aes(x=age)) + 
-    geom_histogram(aes(fill = ..count..)) +  
+    geom_histogram(aes(fill = ..count..), binwidth = 1) +  
     scale_fill_gradient("Count", low = "grey", high = "black") +
     ylab('Count') +
     xlab('Age') +
@@ -14,7 +14,7 @@ plot_origin_age <- function(census) {
 plot_origin_wageperhour <- function(census) {
   census$x = round(as.numeric(census$wageperhour) / 100, 2)
   image = ggplot(census, aes(x=x)) + 
-    geom_histogram(aes(fill = ..count..)) +  
+    geom_histogram(aes(fill = ..count..), binwidth = 1) +  
     scale_y_sqrt() + 
     scale_fill_gradient("Count", low = "grey48", high = "black") +
     ylab('Count') +
