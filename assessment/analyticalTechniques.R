@@ -341,24 +341,26 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     df = clique
     df[,i] = NULL
     colString = paste(sort(names(df)), collapse = '|')
-    if (colString %in% checkedColumns) {
-      print(paste("########skipping", colString))
-      next
+    mcc = 0
+    
+    if (colString %in% names(checkedColumns)) {
+      mcc = checkedColumns[[colString]]
+      print(paste("cached", colString))
+    } else {
+      data <- takeSmallSamples(df, targetColumn)
+      #print(paste('train with', nrow(data$training), 'rows', sep=' '))
+      model <- modelFunction(data$training, targetColumn)
+      
+      # reduce numbers of testing data, use training data as testing data
+      testData = takeSmallSamples(data$testing, targetColumn)$training
+      
+      #print(paste('predict with', nrow(data$training), 'rows', sep=' '))
+      pred <- predict(model, testData)
+      mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
+                                        predicted = pred))
+      
+      checkedColumns[[colString]] = mcc
     }
-
-    data <- takeSmallSamples(df, targetColumn)
-    #print(paste('train with', nrow(data$training), 'rows', sep=' '))
-    model <- modelFunction(data$training, targetColumn)
-    
-    # reduce numbers of testing data, use training data as testing data
-    testData = takeSmallSamples(data$testing, targetColumn)$training
-    
-    #print(paste('predict with', nrow(data$training), 'rows', sep=' '))
-    pred <- predict(model, testData)
-    mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
-                                      predicted = pred))
-    
-    checkedColumns = c(checkedColumns, colString)
     
     if(mcc >= cliqueMCC) {
       print(paste("mcc ok for:", colString))
