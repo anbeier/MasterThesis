@@ -166,12 +166,18 @@ findQSHavingSameNCols <- function(df) {
   agg$Group.1[agg$x == TRUE]
 }
 
-# check if order name has "corrected"
 readMCCResults <- function(dataName, delta) {
   prefix = paste(dataName, "delta", sep='_')
-  fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/bayes/mcc/results.csv', sep= '')
-  fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/svm/mcc/results.csv', sep= '')
-  
+  fn.bayes = ""
+  fn.svm = ""
+  if(dataName=='tpch') {
+    fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/bayes/mcc/results.csv', sep= '')
+    fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5_corrected/svm/mcc/results.csv', sep= '')
+  } else if(dataName=='census') {
+    fn.bayes = paste(paste(prefix, delta, sep=''), '_alpha0.5/bayes/mcc/results.csv', sep= '')
+    fn.svm = paste(paste(prefix, delta, sep=''), '_alpha0.5/svm/mcc/results.csv', sep= '')
+  }
+
   # read result.csv
   b = read.csv(fn.bayes, header=T, sep=',')
   s = read.csv(fn.svm, header=T, sep=',')
