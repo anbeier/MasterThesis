@@ -343,11 +343,11 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
     df = clique
     df[,i] = NULL
     colString = paste(sort(names(df)), collapse = '|')
-    mcc = 0
     l = paste(level, paste(c, length(candidateIndices), sep='/'))
     
     if (!is.null(checkedColumns[[colString]])) {
       result = checkedColumns[[colString]]
+      
       prunedColumns = c(prunedColumns, result$prunedColumns)
       minimalColumns = c(minimalColumns, result$minimalColumns)
       log(paste(l, "cached", colString))
@@ -357,15 +357,15 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
       model <- modelFunction(data$training, targetColumn)
       
       # reduce numbers of testing data, use training data as testing data
-      testData = takeSmallSamples(data$testing, targetColumn)$training
-      
+      #testData = takeSmallSamples(data$testing, targetColumn)$training
+      testData = head(data$testing, 5000)
       #print(paste('predict with', nrow(data$training), 'rows', sep=' '))
       pred <- predict(model, testData)
       mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
                                         predicted = pred))
       
       if(mcc >= cliqueMCC) {
-        log(paste(l, "mcc ok for:", colString))
+        #log(paste(l, "mcc ok for:", colString))
         super = pruneColumns(cliqueIndex, df, targetColumn, cliqueMCC, classifier, checkedColumns = checkedColumns, level=l)
         if (!is.null(super$prunedColumns)) {
           prunedColumns = c(prunedColumns, super$prunedColumns)
@@ -373,23 +373,24 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
           checkedColumns = super$checkedColumns
           checkedColumns[[colString]] = list(prunedColumns = super$prunedColumns, minimalColumns = super$minimalColumns)
         } else {
-          prunedColumns = c(prunedColumns, sort(names(df)))
+          pruned = unique(sort(names(df)))
+          prunedColumns = c(prunedColumns, pruned)
           minimalColumns = c(minimalColumns, colString)
-          checkedColumns[[colString]] = list(prunedColumns = sort(names(df)), minimalColumns = colString)
+          checkedColumns[[colString]] = list(prunedColumns = pruned, minimalColumns = colString)
         }
       } else {
-        log(paste(l, "mcc reduced for:", colString))
+        #log(paste(l, "mcc reduced for:", colString))
       }
     }
 
   }
   
   if (!is.null(prunedColumns)) {
-    prunedColumns = sort(unique(prunedColumns))
+    prunedColumns = unique(sort(prunedColumns))
   }
   
   if (!is.null(minimalColumns)) {
-    minimalColumns = sort(unique(minimalColumns))
+    minimalColumns = unique(sort(minimalColumns))
   }
   
   return(list(index=cliqueIndex,
@@ -420,11 +421,11 @@ loopPruneColumns <- function(originQS, dfIdentifiedCols, classifier) {
     pruningPossible = !is.null(pruned)
     
     if(is.null(pruned)) {
-      pruned = names(originQS)
+      pruned = unique(sort(names(originQS)))
     }
     
     if(is.null(minimal)) {
-      minimal = paste(names(originQS), collapse="|")
+      minimal = paste(unique(sort(names(originQS))), collapse="|")
     }
 
     df = rbind(df, data.frame(index=ls$index,
@@ -446,6 +447,7 @@ getCliquesForDataset = function(datasetName, delta) {
     fqsFile = paste('DOCCO_FQS_', x, '_yichi.txt', sep='')
     cliques <- readTPCHCliques(fqsFile)
   }
+  cliques
 }
 
 launchPruning_census <- function(datasetName, data, delta, qs_index, classifier) {
@@ -470,12 +472,12 @@ prune_clique_worker <- function(input) {
   outputFile = paste(input$outputDir, '/', input$index, '.csv', sep='')
   if (file.exists(outputFile)) {
     print(paste('skipping', input$index))
-    return
+    return(NULL)
   }
   log(paste('pruning', input$index, 'with', input$method))
   result = launchPruning_census(input$datasetName, input$data, input$delta, input$index, input$method)
   log(paste('done pruning', input$index, 'with', input$method))
-  write.csv(result, outputFile, sep=";")
+  write.csv(result, outputFile)
 }
 
 prune_cliques <- function(datasetName, data, delta, indexToMethod, outputDir, cores = 4, maxCliqueSize = 10) {
@@ -490,7 +492,7 @@ prune_cliques <- function(datasetName, data, delta, indexToMethod, outputDir, co
          method = row$method,
          outputDir = outputDir)
   })
-  res <- mclapply(inputs, prune_clique_worker, mc.cores = cores)
+  mclapply(inputs, prune_clique_worker, mc.cores = cores)
 }
 
 prune_census <- function(delta, cores=4, maxCliqueSize=10) {
@@ -501,9 +503,9 @@ prune_census <- function(delta, cores=4, maxCliqueSize=10) {
     dir.create(outputDir)
   }
   prune_cliques('census', 
-                data, 
-                delta, 
-                indexToMethod, 
+                data,
+                delta,
+                indexToMethod,
                 outputDir,
                 cores = cores, maxCliqueSize = maxCliqueSize)
   
