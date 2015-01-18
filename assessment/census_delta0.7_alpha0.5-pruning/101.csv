@@ -1,0 +1,6 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",101,"fillincquestionnaireforveteransadmin",TRUE,"fillincquestionnaireforveteransadmin|veteransbenefits","fillincquestionnaireforveteransadmin|veteransbenefits"
+"2",101,"memberofalaborunion",TRUE,"memberofalaborunion|wageperhour","memberofalaborunion|wageperhour"
+"3",101,"migrationcodechangeinmsa",TRUE,"migrationcodechangeinmsa|migrationcodemovewithinreg","migrationcodechangeinmsa|migrationcodemovewithinreg"
+"4",101,"migrationcodemovewithinreg",TRUE,"migrationcodechangeinmsa|migrationcodemovewithinreg","migrationcodechangeinmsa|migrationcodemovewithinreg"
+"5",101,"veteransbenefits",TRUE,"education|fillincquestionnaireforveteransadmin|sex|veteransbenefits|weeksworkedinyear","education|fillincquestionnaireforveteransadmin|sex|veteransbenefits,education|fillincquestionnaireforveteransadmin|veteransbenefits,education|fillincquestionnaireforveteransadmin|veteransbenefits|weeksworkedinyear"

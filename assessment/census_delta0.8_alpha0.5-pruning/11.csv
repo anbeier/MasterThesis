@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",11,"detailedindustryrecode",TRUE,"detailedindustryrecode|education|majorindustrycode|migrationcodemovewithinreg|ownbusinessorselfemployed|taxfilerstat|wageperhour","detailedindustryrecode|education|majorindustrycode|migrationcodemovewithinreg|ownbusinessorselfemployed|taxfilerstat|wageperhour,detailedindustryrecode|education|majorindustrycode|wageperhour,detailedindustryrecode|majorindustrycode"
+"2",11,"majorindustrycode",TRUE,"detailedindustryrecode|majorindustrycode|weeksworkedinyear","detailedindustryrecode|majorindustrycode,detailedindustryrecode|majorindustrycode|weeksworkedinyear"

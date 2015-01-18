@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",42,"liveinthishouse1yearago",TRUE,"liveinthishouse1yearago|regionofpreviousresidence|stateofpreviousresidence","liveinthishouse1yearago|regionofpreviousresidence,liveinthishouse1yearago|stateofpreviousresidence"
+"2",42,"regionofpreviousresidence",TRUE,"liveinthishouse1yearago|race|regionofpreviousresidence|stateofpreviousresidence","liveinthishouse1yearago|regionofpreviousresidence|stateofpreviousresidence,race|regionofpreviousresidence|stateofpreviousresidence"

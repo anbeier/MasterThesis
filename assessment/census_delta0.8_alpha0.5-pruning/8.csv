@@ -1,0 +1,4 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",8,"detailedindustryrecode",TRUE,"detailedindustryrecode|majorindustrycode","detailedindustryrecode|majorindustrycode"
+"2",8,"majorindustrycode",TRUE,"detailedindustryrecode|majorindustrycode","detailedindustryrecode|majorindustrycode"
+"3",8,"majoroccupationcode",TRUE,"detailedoccupationrecode|majoroccupationcode","detailedoccupationrecode|majoroccupationcode"

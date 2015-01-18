@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",17,"detailedhouseholdandfamilystat",TRUE,"detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold|taxfilerstat","detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold|taxfilerstat"
+"2",17,"detailedhouseholdsummaryinhousehold",TRUE,"detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold","detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold"

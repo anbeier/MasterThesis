@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",9,"familymembersunder18",TRUE,"age|detailedhouseholdandfamilystat|education|familymembersunder18|migrationcodemovewithinreg|ownbusinessorselfemployed|veteransbenefits|weeksworkedinyear","age|detailedhouseholdandfamilystat|education|familymembersunder18|migrationcodemovewithinreg|ownbusinessorselfemployed|veteransbenefits|weeksworkedinyear"
+"2",9,"taxfilerstat",TRUE,"age|detailedhouseholdandfamilystat|education|familymembersunder18|migrationcodemovewithinreg|taxfilerstat|veteransbenefits|weeksworkedinyear","age|detailedhouseholdandfamilystat|education|familymembersunder18|migrationcodemovewithinreg|taxfilerstat|veteransbenefits|weeksworkedinyear"

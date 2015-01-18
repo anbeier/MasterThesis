@@ -1,0 +1,4 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",12,"detailedhouseholdandfamilystat",TRUE,"detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold|enrollineduinstlastwk|familymembersunder18|fillincquestionnaireforveteransadmin|sex|taxfilerstat|weeksworkedinyear","detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold|enrollineduinstlastwk|familymembersunder18|fillincquestionnaireforveteransadmin|sex|taxfilerstat|weeksworkedinyear"
+"2",12,"detailedhouseholdsummaryinhousehold",TRUE,"detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold","detailedhouseholdandfamilystat|detailedhouseholdsummaryinhousehold"
+"3",12,"familymembersunder18",TRUE,"detailedhouseholdandfamilystat|familymembersunder18","detailedhouseholdandfamilystat|familymembersunder18"
