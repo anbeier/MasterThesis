@@ -1,0 +1,4 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",25,"memberofalaborunion",TRUE,"memberofalaborunion|wageperhour","memberofalaborunion|wageperhour"
+"2",25,"taxfilerstat",TRUE,"countryofbirthfather|maritalstat|taxfilerstat|weeksworkedinyear","countryofbirthfather|maritalstat|taxfilerstat|weeksworkedinyear,maritalstat|taxfilerstat|weeksworkedinyear"
+"3",25,"veteransbenefits",TRUE,"countryofbirthfather|education|familymembersunder18|hispanicorigin|reasonforunemployment|veteransbenefits|wageperhour|weeksworkedinyear","countryofbirthfather|education|reasonforunemployment|veteransbenefits|wageperhour,education|familymembersunder18|hispanicorigin|reasonforunemployment|veteransbenefits,education|veteransbenefits,education|veteransbenefits|weeksworkedinyear"

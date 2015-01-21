@@ -324,3 +324,34 @@ plot_3d <- function(df) {
   
   ggsave(file="3d.svg", plot=last_plot(), width=20, height=16)
 }
+
+find_nice_pruned_cliques <- function(delta = 0.7) {
+  max_size = 4
+  min_size = 3
+  cliques = getCliquesForDataset('census', delta)
+  files = list.files(paste('census_delta', delta, '_alpha0.5-pruning', sep=''), full.names = TRUE, pattern = '.csv$')
+  for (file in files) {
+    index = as.numeric(gsub('.*\\/(\\d+).csv$', "\\1", file))
+    clique = cliques[[index]]
+    data = read.csv(file)
+    if (nrow(data[data$pruningPossible == FALSE, ]) > 0) {
+      next
+    }
+    allParts = c()
+    for (cols in data$pruned) {
+      parts = strsplit(cols, "\\|")[[1]]
+      allParts = unique(sort(c(allParts, parts)))
+    }
+    
+    if (length(allParts) != length(clique)) {
+      print(paste(index, 'has', length(allParts), 'parts, but need', length(clique)))
+      next
+    }
+    
+    if (length(clique) >= min_size && length(clique) <= max_size) {
+      print(paste('candidate clique', index)) 
+    } else {
+      print(paste('shitty match', index, 'has', length(clique)))
+    }
+  }
+}
