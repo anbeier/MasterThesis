@@ -311,6 +311,20 @@ plot_TargetCols_census07 <- function(delta) {
   ggsave(file="target_mcc.svg", plot=last_plot(), width=6, height=5)
 }
 
+plot_3d <- function(df) {
+  p = ggplot(df,aes(migrationcodechangeinreg, stateofpreviousresidence,
+                    shape = migrationcodemovewithinreg)) +
+    scale_shape_manual(name='migration code move within reg', 
+                       values = 0:length(unique(df$migrationcodemovewithinreg))) +
+    geom_point(size=6) +
+    xlab('state of previous residence') +
+    ylab('migration code change in reg') +
+    theme(text = element_text(size=16), 
+          axis.text.x  = element_text(angle=45, vjust=0.5, size=13))
+  
+  ggsave(file="3d.svg", plot=last_plot(), width=20, height=16)
+}
+
 plot_tpch_quasi_clique_results <- function() {
   gammas = c(0.7, 0.8, 0.9)
   for (gamma in gammas) {
@@ -347,7 +361,6 @@ plot_census_quasi_clique_results <- function() {
     
     ggsave(file=paste('census-cliques-', gamma, '.svg', sep=''), plot=last_plot(), width=6, height=5)
   }
-  image
 }
 
 find_nice_pruned_cliques <- function(delta = 0.7) {
