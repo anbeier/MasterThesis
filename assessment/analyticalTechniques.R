@@ -358,7 +358,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
       
       # reduce numbers of testing data, use training data as testing data
       #testData = takeSmallSamples(data$testing, targetColumn)$training
-      testData = head(data$testing, 5000)
+      testData = head(data$testing, 3000)
       #print(paste('predict with', nrow(data$training), 'rows', sep=' '))
       pred <- predict(model, testData)
       mcc = computeMCCExtern(data.frame(actual = testData[, targetColumn],
@@ -503,6 +503,23 @@ prune_census <- function(delta, cores=4, maxCliqueSize=10) {
     dir.create(outputDir)
   }
   prune_cliques('census', 
+                data,
+                delta,
+                indexToMethod,
+                outputDir,
+                cores = cores, maxCliqueSize = maxCliqueSize)
+  
+}
+
+prune_tpch <- function(delta, cores=4, maxCliqueSize=10) {
+  indexToMethod = read.csv(paste('tpch_modelselection_delta', delta, '.csv', sep=''))
+  load('tpch.rdata')
+  data = tpch
+  outputDir = paste('tpch_delta', delta, '_alpha0.5-pruning', sep='')
+  if (!file.exists(outputDir)) {
+    dir.create(outputDir)
+  }
+  prune_cliques('tpch', 
                 data,
                 delta,
                 indexToMethod,
