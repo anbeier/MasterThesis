@@ -143,11 +143,15 @@ mapBinsOntoColumn <- function(df, colname, bin, binsize){
   return(df)
 } 
 
+modifyColname <- function(name) {
+  name <- gsub(" ", "", name, fixed = TRUE)
+  name <- gsub("-", "", name, fixed = TRUE)
+  name <- gsub("'", "", name, fixed = TRUE)
+  name
+}
 # elinimate invalid symbols in column names
 modifyColnames <- function(qs) {  
-  colnames(qs) <- gsub(" ", "", colnames(qs), fixed = TRUE)
-  colnames(qs) <- gsub("-", "", colnames(qs), fixed = TRUE)
-  colnames(qs) <- gsub("'", "", colnames(qs), fixed = TRUE)
+  colnames(qs) = sapply(colnames(qs), modifyColname)
   return(qs)
 }
 

@@ -558,3 +558,98 @@ cliquesFulfillingAllCriterion <- function(result1, result2) {
   res <- Reduce(intersect, list(cliques1, cliques2))
   return(res)
 }
+
+isPrunable <- function(x) {
+  y = FALSE %in% x
+  !y
+}
+
+summarizePruning <- function(folderName, fqsFile) {
+  fileNames <- list.files(folderName, full.names = TRUE) 
+  
+  for(fn in fileNames) {
+    df = read.csv(fn)
+    finalPruningPossible = TRUE
+    index = as.integer(df$index)
+    cliqueGroup <- readingQuasiCliques(fqsFile) 
+    # check if a FALSE exists
+    if(!isPrunable(df$pruningPossible)) {
+      finalPruningPossible = FALSE
+    } else {
+      allCols = NULL
+      for(cols in as.character(df$pruned)) {
+        allCols = c(allCols, unlist(strsplit(cols, '|')))
+      }
+      allCols = sort(unique(allCols))
+      if(identical(allCols, sort(cliqueGroup[[index]]))) {
+        finalPruningPossible = FALSE
+      }
+    }
+  }
+}
+
+summarize_data <- function(datasetName, delta, name_map) {
+  pruning_result_files = list.files(paste(datasetName, '_delta', delta, '_alpha0.5-pruning', sep=''), full.names=TRUE)
+  results = list()
+  for (result_file in pruning_result_files) {
+    df = read.csv(result_file)
+    index = as.integer(head(df, 1)$index)
+    cliques = getCliquesForDataset(datasetName, delta)
+    clique = cliques[[index]]
+    
+    nice_pruned = sapply(df$pruned, function(x) {
+      parts = strsplit(as.character(x), "\\|")[[1]]
+      parts = sapply(parts, function(p) {
+        name_map[[p]]
+      })
+      parts
+    })
+    union = c()
+    for(c in nice_pruned) {
+      union = c(union, c)
+    }
+    union = unique(sort(union))
+    prunable = length(clique) > length(union)
+    results = c(results, list(list(index=index, union=union, prunable=prunable, original_size=length(clique))))
+  }
+  results
+}
+
+summarize_census <- function(delta) {
+  colnames = readLines('census_colnames.txt', encoding = "UTF-8")
+  ugly_to_colname_map = list()
+  for (line in colnames) {
+    ugly_to_colname_map[[modifyColname(line)]] = line
+  }
+  summarize_data('census', delta, ugly_to_colname_map)
+}
+
+summary_to_latex <- function(summary, output_file) {
+  indices = sapply(summary, function(x) {x$index})
+  summary = summary[order(indices)]
+  lines = c()
+  for (data in summary) {
+    first = TRUE
+    count = 0
+    for (col in data$union) {
+      count = count + 1
+      parts = c()
+      if (first) {
+        first = FALSE
+        parts = c(parts, paste("\\multirow{", length(data$union), "}{*}{", data$index, "}", sep=''))
+        parts = c(parts, paste("\\multirow{", length(data$union), "}{*}{", data$prunable, "}", sep=''))
+        parts = c(parts, paste("\\multirow{", length(data$union), "}{*}{", data$original_size, "/", length(data$union), "}", sep=''))
+      } else {
+        parts = c(parts, "", "", "")
+      }
+      
+      if (count < length(data$union)) {
+        parts = c(parts, paste(col, "\\\\ \\cline{4-4}"))
+      } else {
+        parts = c(parts, paste(col, "\\\\ \\cline{1-4}"))
+      }
+      lines = c(lines, paste(parts, collapse=" & "))
+    }
+  }
+  writeLines(lines, output_file)
+}
