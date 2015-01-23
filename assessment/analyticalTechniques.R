@@ -324,7 +324,7 @@ pruneColumns <- function(cliqueIndex, clique, targetColumn, cliqueMCC, classifie
   if (ncol(clique) == 2) {
     return(NULL)
   }
-  targetIndex = grep(targetColumn, names(clique))
+  targetIndex = grep(paste('^', targetColumn, '$', sep=''), names(clique))
   candidateIndices = 1:ncol(clique)
   candidateIndices = candidateIndices[candidateIndices != targetIndex]
 
