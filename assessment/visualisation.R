@@ -325,6 +325,44 @@ plot_3d <- function(df) {
   ggsave(file="3d.svg", plot=last_plot(), width=20, height=16)
 }
 
+plot_tpch_quasi_clique_results <- function() {
+  gammas = c(0.7, 0.8, 0.9)
+  for (gamma in gammas) {
+    c = getCliquesForDataset('tpch', gamma)
+    data = data.frame(index = 1:length(c), size=sapply(c, length))
+    image = ggplot(data=data, aes(x=factor(index), y=size, fill=size)) + 
+      geom_bar(stat="identity", position="dodge") + 
+      scale_fill_gradient(low="gray49", high = "black") +
+      theme(text = element_text(size=16), 
+            legend.position='none',
+            legend.title=element_blank(),
+            axis.text.x  = element_text(angle=90, vjust=0.5, size=13)) +
+      xlab('Quasi-Clique Index') +
+      ylab('Size of Quasi-Clique')
+    
+    ggsave(file=paste('tpch-cliques-', gamma, '.svg', sep=''), plot=last_plot(), width=6, height=5)
+  }
+}
+
+plot_census_quasi_clique_results <- function() {
+  gammas = c(0.7, 0.8, 0.9)
+  for (gamma in gammas) {
+    c = getCliquesForDataset('census', gamma)
+    data = data.frame(index = 1:length(c), size=sapply(c, length))
+    image = ggplot(data=data, aes(x=index, y=size, fill=size)) + 
+      geom_bar(stat="identity", position="dodge") + 
+      scale_fill_gradient(low="gray49", high = "black") +
+      theme(text = element_text(size=16), 
+            legend.position='none',
+            legend.title=element_blank(),
+            axis.text.x  = element_text(angle=90, vjust=0.5, size=13)) +
+      xlab('Quasi-Clique Index') +
+      ylab('Size of Quasi-Clique')
+    
+    ggsave(file=paste('census-cliques-', gamma, '.svg', sep=''), plot=last_plot(), width=6, height=5)
+  }
+}
+
 find_nice_pruned_cliques <- function(delta = 0.7) {
   max_size = 4
   min_size = 3

@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",18,"SN_NAME",TRUE,"S_NATIONKEY|SN_NAME","S_NATIONKEY|SN_NAME"
+"2",18,"S_NATIONKEY",TRUE,"S_NATIONKEY|SN_NAME","S_NATIONKEY|SN_NAME"

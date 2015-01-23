@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",25,"L_ORDERKEY",TRUE,"L_ORDERKEY|O_ORDERKEY","L_ORDERKEY|O_ORDERKEY"
+"2",25,"O_ORDERKEY",TRUE,"L_ORDERKEY|O_ORDERKEY","L_ORDERKEY|O_ORDERKEY"
