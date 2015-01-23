@@ -1,0 +1,3 @@
+"","index","target","pruningPossible","pruned","minimal"
+"1",21,"L_SUPPKEY",TRUE,"L_SUPPKEY|PS_SUPPKEY","L_SUPPKEY|PS_SUPPKEY"
+"2",21,"PS_SUPPKEY",TRUE,"L_SUPPKEY|PS_SUPPKEY","L_SUPPKEY|PS_SUPPKEY"
