@@ -17,7 +17,7 @@ setCensusParameters <- function() {
 }
 
 setTPCHParameters <- function() {
-  load('tpch_2chars.rdata')
+  load('tpch.rdata')
   list(data = tpch,
        fqsFile = 'DOCCO_FQS_07_yichi.txt')
 }
