@@ -624,6 +624,17 @@ summarize_census <- function(delta) {
   summarize_data('census', delta, ugly_to_colname_map)
 }
 
+
+summarize_tpch <- function(delta) {
+  load('tpch.rdata')
+  cn = colnames(tpch)
+  name_map = list()
+  for (c in cn) {
+    name_map[[c]] = c
+  }
+  summarize_data('tpch', delta, name_map)
+}
+
 summary_to_latex <- function(summary, output_file) {
   indices = sapply(summary, function(x) {x$index})
   summary = summary[order(indices)]
@@ -652,4 +663,12 @@ summary_to_latex <- function(summary, output_file) {
     }
   }
   writeLines(lines, output_file)
+}
+
+percentage_of_prunable <- function(summary) {
+  (100 / length(summary)) * sum(sapply(summary, function(x) {if (x$prunable) {return(1)} else {return(0)}}))
+}
+
+percentage_of_ultimate <- function(summary) {
+  100 - percentage_of_prunable(summary)
 }
