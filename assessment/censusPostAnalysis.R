@@ -615,13 +615,17 @@ summarize_data <- function(datasetName, delta, name_map) {
   results
 }
 
-summarize_census <- function(delta) {
+create_census_name_map <- function() {
   colnames = readLines('census_colnames.txt', encoding = "UTF-8")
   ugly_to_colname_map = list()
   for (line in colnames) {
     ugly_to_colname_map[[modifyColname(line)]] = line
   }
-  summarize_data('census', delta, ugly_to_colname_map)
+  ugly_to_colname_map
+}
+
+summarize_census <- function(delta) {
+  summarize_data('census', delta, create_census_name_map())
 }
 
 summary_to_latex <- function(summary, output_file) {
